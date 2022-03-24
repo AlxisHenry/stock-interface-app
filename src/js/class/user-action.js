@@ -1,28 +1,26 @@
-class UserAction {
+export class UserAction {
   constructor() {
     this.form = {
       id: $("#form-id"),
       pass: $("#form-pass"),
     };
-    //// On considère que le compte admin est tfadmin (mais les visiteurs ne voient pas le réel compte (placholder => admin)) on rajoutera en backend le 'tf'
     this.id = this.form.id[0].placeholder;
     this.pass = this.form.pass.val();
     this.confirm_id = "admin";
-    //   this.AuthorizedView est une variable liée au back-end qui récupère une information
     this.AuthorizedView = $.ajax({
       type: "GET",
-      url: "view_access.php",
+      url: "./stock-interface-app/website-access/view_access.php",
       data: { condition: "employee" },
       success: function (server_response) {
-        if (server_response == 'false') {
+        if (server_response === 'false') {
+          console.log("%cSuccess ajax :: Employee Dashboard status on " + server_response,'font-size:15px;');
           return false;
-          console.log("success ajax " + server_response);
-        } else if (server_response == 'true') {
+        } else if (server_response === 'true') {
+          console.log("%cSuccess ajax :: Employee Dashboard status on " + server_response,'font-size:15px;');
           return true;
-          console.log("success ajax " + server_response);
         } else {
+          console.log('%Request error','font-size:15px;');
           return undefined;
-          console.log('Erreur requête');
         }
       },
       error: function () {
@@ -32,14 +30,15 @@ class UserAction {
         $(".error-connexion").addClass("d-none");
         $(".authorization").addClass("d-none");
         $(".contact-admin").removeClass("d-none");
-        console.log("Ajax error : can't initialize authorized view for employee");
+        console.log("%cAjax error : can't initialize authorized view for employee",'font-size:15px;');
       },
     });
   };
 
-// Les messages d'erreurs seront à éxécuter dynamiquement (et non jouer avec les classes)
+//todo >> Les messages d'erreurs seront à implémenter dynamiquement.
+
   ConfirmFormInformations() {
-    if (this.id != this.confirm_id) {
+    if (this.id !== this.confirm_id) {
       this.form.id.css("background-color", "#faceca");
       return false;
     } else if (this.pass.length === 0) {
@@ -69,10 +68,14 @@ class UserAction {
       $(".authorization").removeClass("d-none");
       $.ajax({
         type: "POST",
-        url: "update_logs.php",
-        data: { session: 'employee',  },
+        url: "update_access_logs.php",
+        data: { target: 'employee', type: 'logs' },
         success: function (server_response) {
-
+              if (server_response == 'true') {
+                  console.log('%cUpdate logs table with success.','font-size:15px;')
+              } else {
+                  console.log('%cError during update of logs.','font-size:15px;')
+              }
           },
         error: function () {
 
@@ -98,7 +101,7 @@ class UserAction {
     }
     $.ajax({
       type: "GET",
-      url: "test.php",
+      url: "admin_access.php",
       data: { id: this.id, pass: this.pass },
       success: function (server_response) {
         if (server_response == true) {
@@ -110,7 +113,6 @@ class UserAction {
           $(".validation-connexion").removeClass("d-none");
 
            setTimeout(() => {
-             // Renvoi l'utilisateur vers le pannel admin
              document.location.replace('./admin-panel.php')
            }, 1725);
 
@@ -121,9 +123,6 @@ class UserAction {
           $(".contact-admin").addClass("d-none");
           $(".authorization").addClass("d-none");
           $(".error-connexion").removeClass("d-none");
-          // setTimeout(() => {
-          //   $(".error-connexion").addClass("d-none");
-          // }, 3500);
         } else {
           $(".features-incomming").addClass("d-none");
           $(".uncompleted-password").addClass("d-none");
@@ -143,23 +142,4 @@ class UserAction {
       },
     });
   }
-
-
-
 }
-
-$(document).ready(function () {
-  $(".submit-admin-panel").click(function () {
-    new UserAction().ConfirmFormInformations();
-    new UserAction().VerifyUsersPermissions();
-  });
-  $("#form-pass").on("keypress", function (e) {
-    if (e.which == 13) {
-      new UserAction().ConfirmFormInformations();
-      new UserAction().VerifyUsersPermissions();
-    }
-  });
-  $(".redirect-dashboard-user").click(function () {
-    new UserAction().EmployeeViewAccess();
-  });
-});
