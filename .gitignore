@@ -1,0 +1,8 @@
+# Ignore log & database files
+.sql
+.sqlite
+.log
+
+# Ignore database php file
+configs/dbCnnection.class.php
+
