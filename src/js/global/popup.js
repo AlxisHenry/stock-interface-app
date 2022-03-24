@@ -27,8 +27,13 @@ export function popUp(type) {
             containMessage.innerHTML = '';
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message authorization\"><i class=\"fa-regular fa-square-check\"></i>Redirection en cours !</div>\n");
             break;
+        case 'clean':
+            containMessage.innerHTML = '';
+            console.log('Clean pop-up');
+            break;
         default:
             containMessage.innerHTML = '';
+            console.log('Default case');
             break;
     }
 }
