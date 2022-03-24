@@ -3,16 +3,12 @@
 $Userid = $_GET['id'];
 $pass = $_GET['pass'];
 
-$dbhost = 'localhost';
-$db = 'timken_test';
-$dbuser = 'timken';
-$dbpass = 'root';
+include "./configs/class/dbConnection.class.php";
 
-try {
-	$pdo_connect = new PDO('mysql:host=' . $dbhost . ';dbname=' . $db . ';charset=utf8', $dbuser, $dbpass);
-} catch (Exception $e) {
-	die('Erreur : ' . $e->getMessage());
-}
+$dbhost = HOST;
+$db = DATABASE;
+$dbuser = USERNAME;
+$dbpass = PASSWORD;
 
 $DB_REQUEST = "SELECT * FROM `panel_manage_access` WHERE `username` = 'tf$Userid'";
 

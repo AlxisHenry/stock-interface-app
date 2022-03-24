@@ -1,17 +1,16 @@
 <?php
 
-$VIEW_ACCESS = $_GET['condition'];
-
-$dbhost = 'localhost';
-$db = 'timken_test';
-$dbuser = 'timken';
-$dbpass = 'root';
+const HOST = 'localhost';
+const DATABASE = 'timken_test';
+const USERNAME = 'timken';
+const PASSWORD = 'root';
 
 try {
-    $pdo_connect = new PDO('mysql:host=' . $dbhost . ';dbname=' . $db . ';charset=utf8', $dbuser, $dbpass);
+    $pdo_connect = new PDO('mysql:host=' . HOST . ';dbname=' . DATABASE . ';charset=utf8', USERNAME, PASSWORD);
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
+$VIEW_ACCESS = $_GET['condition'];
 
 // Les administrateurs pourront switch l'accès au dashboard pour les employés sur le panel.
 

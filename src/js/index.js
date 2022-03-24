@@ -1,4 +1,4 @@
-import { UserAction } from "./js/class/user-action.js";
+import { UserAction } from "./class/user-action.js";
 
 $(document).ready(function () {
 

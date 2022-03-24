@@ -1,18 +1,15 @@
 <?php
 
+include "./configs/class/dbConnection.class.php";
+
+$dbhost = HOST;
+$db = DATABASE;
+$dbuser = USERNAME;
+$dbpass = PASSWORD;
+
+$pdo_connect =  new PDO('mysql:host='.$host.';dbname='.$dbname.'', $user, $pass);
 
 $VIEW_ACCESS = $_GET['condition'];
-
-$dbhost = 'localhost';
-$db = 'timken_test';
-$dbuser = 'timken';
-$dbpass = 'root';
-
-try {
-    $pdo_connect = new PDO('mysql:host=' . $dbhost . ';dbname=' . $db . ';charset=utf8', $dbuser, $dbpass);
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
 
 #$USER_COMPUTER =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
 $TEMP_USER_COMPUTER = "COLWD6003l";

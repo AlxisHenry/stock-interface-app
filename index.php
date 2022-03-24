@@ -40,19 +40,18 @@
         </div>
     </div>
 
-    <div class="contain-send-message">
+    <div class="contain-send-message"><!--
         <div class="s-message validation-connexion d-none"> <i class="fa-regular fa-circle-check"></i> Vous avez été connnecté, redirection en cours.</div>
         <div class="s-message uncompleted-password d-none"> <i class="fa-solid fa-lock"></i> Pensez à entrer votre mot de passe.</div>
         <div class="s-message error-connexion d-none"><i class="fa-solid fa-xmark"></i>Tentative de connection échouée.</div>
-        <div class="s-message features-incomming d-none"> <i class="fa-solid fa-circle-exclamation"></i> Navré, cette fonctionnalité n'est pas encore disponible.</div>
+        <div class="s-message features-incoming d-none"> <i class="fa-solid fa-circle-exclamation"></i> Navré, cette fonctionnalité n'est pas encore disponible.</div>
         <div class="s-message contact-admin d-none"><i class="fa-solid fa-screwdriver-wrench"></i>Une panne s'est produite, réssayer plus tard.</div>
         <div class="s-message authorization d-none"><i class="fa-regular fa-square-check"></i>Redirection en cours !</div>
-    </div>
+   --> </div>
 
+    <script src='./src/js/jquery-3.6.0.min.js'></script>
+    <script src='./src/js/index.js' type="module"></script>
 
-    <!-- Javascript-Bibli JQuery :-->
-    <script src='src/js/jquery-3.6.0.min.js'></script>
-    <script type="module" src='./src/js/index.js'></script>
 </body>
 
 </html>
