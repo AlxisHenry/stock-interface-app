@@ -1,0 +1,143 @@
+/* ------------------------------------ *
+ CSS main
+ * ------------------------------------ */
+/* ================ DOM ==============*/
+:root {
+  --coul_fond: orange;
+}
+
+html {
+  height: 100%;
+}
+body {
+  font-family: arial, sans-serif;
+  font-size: 80%;
+  height: auto;
+  width: auto;
+  background: rgb(255, 119, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 119, 0, 1) 0%,
+    rgba(242, 143, 36, 1) 40%,
+    rgba(255, 208, 125, 1) 85%
+  );
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+/* ------------------------------------ 
+  Login page (redirect user to admin panel / demo)
+  ------------------------------------ */
+
+.form-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-card {
+  box-shadow: 0.5px 0.5px 0.5px 0.5px #ff7700;
+  width: 100%;
+}
+
+.btn-primary {
+  position: relative;
+  left: 25%;
+  width: 50%;
+  margin-bottom: 30px;
+}
+
+.employee-session {
+  position: relative;
+  height: 40px;
+  display: flex;
+  justify-content: end;
+}
+
+.employee-session .redirect-employee {
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.employee-session .redirect-employee i {
+  margin-right: 27.5px;
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+.contain-send-message {
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.features-incomming {
+  border: solid rgb(250, 197, 197);
+  background-color: rgb(250, 197, 197);
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.fa-circle-exclamation,
+.fa-circle-check,
+.fa-xmark,
+.fa-lock,
+.fa-screwdriver-wrench,
+.fa-square-check {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: black;
+}
+
+.validation-connexion {
+  border: solid rgb(191, 236, 191);
+  background-color: rgb(191, 236, 191);
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.error-connexion {
+  border: solid rgb(255, 150, 150);
+  background-color: rgb(255, 150, 150);
+  padding: 8px;
+  border-radius: 16px;
+  animation: bump 1s linear;
+}
+
+.uncompleted-password {
+  border: solid rgb(204, 241, 255);
+  background-color: rgb(204, 241, 255);
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.contact-admin {
+  border: solid rgb(242, 199, 255);
+  background-color: rgb(242, 199, 255);
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.authorization {
+  border: solid rgb(80, 221, 255);
+  background-color:rgb(80, 221, 255);
+  padding: 8px;
+  border-radius: 16px;
+}
+
+@keyframes bump {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
