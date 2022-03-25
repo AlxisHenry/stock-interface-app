@@ -29,11 +29,10 @@ export function popUp(type) {
             break;
         case 'clean':
             containMessage.innerHTML = '';
-            console.log('Clean pop-up');
             break;
         default:
             containMessage.innerHTML = '';
-            console.log('Default case');
+            console.log('%cDefault case of pop-up switch', 'font-size: 15px;');
             break;
     }
 }

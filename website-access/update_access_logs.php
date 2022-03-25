@@ -1,27 +1,36 @@
 <?php
 
-include "./configs/class/dbConnection.class.php";
-
-$dbhost = HOST;
-$db = DATABASE;
-$dbuser = USERNAME;
-$dbpass = PASSWORD;
-
-$pdo_connect =  new PDO('mysql:host='.$host.';dbname='.$dbname.'', $user, $pass);
-
-$VIEW_ACCESS = $_GET['condition'];
-
-#$USER_COMPUTER =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
-$TEMP_USER_COMPUTER = "COLWD6003l";
-
-$DB_REQUEST_UPDATE_LOGS_TABLE = "UPDATE `panel_manage_access` SET `derniereConnection` = (SELECT NOW()) WHERE `username` = 'employee';
-INSERT INTO `panel_logs_access` (`userID` , `date`, `asset`) VALUES ((SELECT `ID` FROM `panel_manage_access` WHERE `username` = 'employee'), (SELECT NOW()), '$TEMP_USER_COMPUTER');";
+const HOST = 'localhost';
+const DATABASE = 'timken_test';
+const USERNAME = 'timken';
+const PASSWORD = 'root';
 
 try {
-    $DB_QUERY = $pdo_connect->query($DB_REQUEST_UPDATE_LOGS_TABLE);
-    echo 'true';
+    $pdo_connect = new PDO('mysql:host=' . HOST . ';dbname=' . DATABASE . ';charset=utf8', USERNAME, PASSWORD);
 } catch (Exception $e) {
-    echo 'false';
+    die('Erreur : ' . $e->getMessage());
 }
 
-$DB_QUERY->closeCursor();
+$TARGET = $_POST['target'];
+$TYPE = $_POST['type'];
+#$ASSET =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
+$ASSET = "COLWD6003l";
+
+switch ($TYPE) {
+    case 'logs':
+        try {
+            $pdo_connect->query(UPDATE_LOGS_TABLE($TARGET, $ASSET));
+        } catch (Exception $e) {
+            echo $e;
+        }
+        break;
+    default:
+        break;
+}
+
+function UPDATE_LOGS_TABLE($TARGET, $TEMP_ASSET): string
+{
+    return "UPDATE `panel_manage_access` SET `derniereConnection` = (SELECT NOW()) WHERE `username` = '$TARGET';
+            INSERT INTO `panel_logs_access` (`userID` , `date`, `asset`) VALUES ((SELECT `ID` FROM `panel_manage_access` WHERE `username` = '$TARGET'), (SELECT NOW()), '$TEMP_ASSET');";
+}
+

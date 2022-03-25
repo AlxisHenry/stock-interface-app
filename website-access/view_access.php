@@ -1,5 +1,6 @@
 <?php
 
+
 const HOST = 'localhost';
 const DATABASE = 'timken_test';
 const USERNAME = 'timken';
@@ -10,6 +11,21 @@ try {
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
+
+
+/*
+$HOST = \dbConnection\IDENTIFIER\dbConnection::HOST;
+$DATABASE = \dbConnection\IDENTIFIER\dbConnection::DATABASE;
+$USERNAME = \dbConnection\IDENTIFIER\dbConnection::USERNAME;
+$PASSWORD = \dbConnection\IDENTIFIER\dbConnection::PASSWORD;
+
+try {
+    $pdo_connect = new PDO('mysql:host=' . $HOST . ';dbname=' . $DATABASE . ';charset=utf8', $USERNAME, $PASSWORD);
+} catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+}
+*/
+
 $VIEW_ACCESS = $_GET['condition'];
 
 // Les administrateurs pourront switch l'accès au dashboard pour les employés sur le panel.
@@ -26,5 +42,3 @@ while ($AUTH = $DB_QUERY->fetch()) {
     }
 
 }
-
-$DB_QUERY->closeCursor();

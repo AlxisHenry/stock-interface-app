@@ -2,7 +2,7 @@ import { UserAction } from "./class/user-action.js";
 
 $(document).ready(function () {
 
-    new UserAction().AuthorizedView; // Set website-access to employee page
+    //new UserAction().AuthorizedView; // Set website-access to employee page
 
     $(".submit-admin-panel").click(function () {
         new UserAction().ConfirmFormInformations();
@@ -19,6 +19,7 @@ $(document).ready(function () {
     });
 
     $(".redirect-dashboard-user").click(function () {
+        new UserAction().AuthorizedView;
         new UserAction().EmployeeViewAccess();
         // Manage employee request
     });

@@ -1,4 +1,5 @@
 import { popUp } from "../global/popup.js"
+import { consoleLog } from "../global/console.log.js";
 
 export class UserAction {
   constructor() {
@@ -15,23 +16,21 @@ export class UserAction {
       data: { condition: "employee" },
       success: function (server_response) {
         if (server_response === 'false') {
-          console.log("%cSuccess ajax :: Employee Dashboard status on " + server_response,'font-size:15px;');
+          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
           return false;
         } else if (server_response === 'true') {
-          console.log("%cSuccess ajax :: Employee Dashboard status on " + server_response,'font-size:15px;');
+          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
           return true;
         } else {
-          console.log('%Request error','font-size:15px;');
+          consoleLog('Request error');
           return undefined;
         }
       },
       error: function () {
-        console.log("%cAjax error : can't initialize authorized view for employee",'font-size:15px;');
+        consoleLog("Ajax error : can't initialize authorized view for employee");
       },
     });
   };
-
-//todo >> Les messages d'erreurs seront à implémenter dynamiquement.
 
   ConfirmFormInformations() {
     if (this.id !== this.confirm_id) {
@@ -51,25 +50,26 @@ export class UserAction {
 
   EmployeeViewAccess() {
     if (this.AuthorizedView) {
-      popUp('authorization');
+
+      //todo Update employee logs:
       $.ajax({
         type: "POST",
         url: "./website-access/update_access_logs.php",
         data: { target: 'employee', type: 'logs' },
         success: function (server_response) {
-              if (server_response == 'true') {
-                  console.log('%cUpdate logs table with success.','font-size:15px;')
-              } else {
-                  console.log('%cError during update of logs.','font-size:15px;')
-              }
-          },
+          consoleLog('Update logs table. target: employee.');
+        },
         error: function () {
-
+          consoleLog('Error during update of logs. target: employee.');
           },
       });
+
+      popUp('authorization');
+      consoleLog('Redirect to dashboard. target: employee.');
       setTimeout(() => {
         document.location.replace('./dashboard.php')
       }, 1725)
+
     } else {
       popUp('features-incoming');
       return false;
@@ -85,20 +85,38 @@ export class UserAction {
       url: "./website-access/admin_access.php",
       data: { id: this.id, pass: this.pass },
       success: function (server_response) {
-        if (server_response == true) {
-           popUp('validation');
+        switch (server_response) {
+          case "true":
+            $.ajax({
+              type: "POST",
+              url: "./website-access/update_access_logs.php",
+              data: {target: 'tfadmin', type: 'logs'},
+              success: function (server_response) {
+                consoleLog('Update logs table. target: tfadmin.');
+              },
+              error: function () {
+                consoleLog('Error during update of logs. target: tfadmin.');
+              },
+            });
 
-           setTimeout(() => {
-             document.location.replace('./admin-panel.php')
-           }, 1725);
-
-        } else if (server_response == false) {
-          popUp('error-connexion');
-        } else {
-          popUp('contact-admin');
+            popUp('validation');
+            consoleLog('Connection réussie.');
+            setTimeout(() => {
+              document.location.replace('./admin-panel.php')
+            }, 1725);
+            break;
+          case "false":
+            consoleLog('Informations incorrectes');
+            popUp('error-connexion');
+            break;
+          default:
+            consoleLog('Erreur de return lors de la requête Ajax.');
+            popUp('contact-admin');
+            break;
         }
       },
       error: function () {
+        consoleLog('Erreur lors de la tentative de connection');
         popUp('contact-admin');
       },
     });
