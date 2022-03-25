@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
-
+<?php
+#$ASSET =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
+$ASSET = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+$DATE = gmdate('d/m/Y h:i');
+?>
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -41,6 +45,13 @@
     </div>
 
     <div class="contain-send-message"></div>
+
+    <div class="about-user">
+
+        <div class="contain-asset-name"> <?= $ASSET ?> </div>
+        <div class="contain-date"> <?= $DATE ?> </div>
+
+    </div>
 
     <script src='./src/js/jquery-3.6.0.min.js'></script>
     <script src='./src/js/index.js' type="module"></script>
