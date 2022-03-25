@@ -10,26 +10,7 @@ export class UserActionClass {
     this.id = this.form.id[0].placeholder;
     this.pass = this.form.pass.val();
     this.confirm_id = "admin";
-    this.AuthorizedView = $.ajax({
-      type: "GET",
-      url: "./website-access/view_access.php",
-      data: { condition: "employee" },
-      success: function (server_response) {
-        if (server_response === 'false') {
-          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
-          return false;
-        } else if (server_response === 'true') {
-          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
-          return true;
-        } else {
-          consoleLog('Request error');
-          return undefined;
-        }
-      },
-      error: function () {
-        consoleLog("Ajax error : can't initialize authorized view for employee");
-      },
-    });
+    this.AuthorizedView = '';
   };
 
   ConfirmFormInformations() {
@@ -49,31 +30,39 @@ export class UserActionClass {
   }
 
   EmployeeViewAccess() {
-    if (this.AuthorizedView === true) {
 
-      $.ajax({
-        type: "POST",
-        url: "./website-access/update_access_logs.php",
-        data: { target: 'employee', type: 'logs' },
-        success: function (server_response) {
-          consoleLog('Update logs table. target: employee.');
-          popUp('authorization');
-          consoleLog('Redirect to dashboard. target: employee.');
-          setTimeout(() => {
-            document.location.replace('./dashboard.php');
-          }, 1725)
-        },
-        error: function () {
-          consoleLog('Error during update of logs. target: employee.');
+    this.AuthorizedView = $.ajax({
+      type: "POST",
+      url: "./website-access/manage.php",
+      data: { target: 'employee', type: 'access' },
+      success: function (server_response) {
+        if (server_response === 'false') {
+          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
           popUp('features-incoming');
-        },
-      });
-
-    } else {
-      popUp('features-incoming');
-      return false;
-    }
-
+        } else if (server_response === 'true') {
+          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
+          $.ajax({
+            type: "POST",
+            url: "./website-access/manage.php",
+            data: { target: 'employee', type: 'logs' },
+            success: function (server_response) {
+              consoleLog('Update logs table. target: employee.');
+              popUp('authorization');
+              consoleLog('Redirect to dashboard. target: employee.');
+              setTimeout(() => {
+                document.location.replace('./dashboard.php');
+              }, 1725)
+            },
+            error: function () {
+              consoleLog('Error during update of logs. target: employee.');
+              popUp('features-incoming');
+            },
+          });
+        } else {
+          consoleLog('Success ajax :: Error during request');
+          this.AuthorizedView = null;
+        }
+      },});
   }
 
   VerifyUsersPermissions() {
@@ -82,14 +71,14 @@ export class UserActionClass {
     }
     $.ajax({
       type: "GET",
-      url: "./website-access/admin_access.php",
+      url: "./website-access/manage-admin-access.php",
       data: { id: this.id, pass: this.pass },
       success: function (server_response) {
         switch (server_response) {
           case "true":
             $.ajax({
               type: "POST",
-              url: "./website-access/update_access_logs.php",
+              url: "./website-access/manage.php",
               data: {target: 'tfadmin', type: 'logs'},
               success: function (server_response) {
                 consoleLog('Update logs table. target: tfadmin.');
