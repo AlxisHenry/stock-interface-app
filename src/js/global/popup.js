@@ -17,7 +17,7 @@ export function popUp(type) {
             break;
         case 'features-incoming':
             containMessage.innerHTML = '';
-            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message features-incoming\"> <i class=\"fa-solid fa-circle-exclamation\"></i> Navré, cette fonctionnalité n'est pas encore disponible.</div>\n");
+            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message features-incomming\"> <i class=\"fa-solid fa-circle-exclamation\"></i> Navré, cette fonctionnalité n'est pas encore disponible.</div>\n");
             break;
         case 'contact-admin':
             containMessage.innerHTML = '';

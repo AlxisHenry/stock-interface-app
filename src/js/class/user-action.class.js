@@ -1,7 +1,7 @@
-import { popUp } from "../global/popup.js"
+import { popUp } from "../global/popup.js";
 import { consoleLog } from "../global/console.log.js";
 
-export class UserAction {
+export class UserActionClass {
   constructor() {
     this.form = {
       id: $("#form-id"),
@@ -49,31 +49,31 @@ export class UserAction {
   }
 
   EmployeeViewAccess() {
-    if (this.AuthorizedView) {
+    if (this.AuthorizedView === true) {
 
-      //todo Update employee logs:
       $.ajax({
         type: "POST",
         url: "./website-access/update_access_logs.php",
         data: { target: 'employee', type: 'logs' },
         success: function (server_response) {
           consoleLog('Update logs table. target: employee.');
+          popUp('authorization');
+          consoleLog('Redirect to dashboard. target: employee.');
+          setTimeout(() => {
+            document.location.replace('./dashboard.php');
+          }, 1725)
         },
         error: function () {
           consoleLog('Error during update of logs. target: employee.');
-          },
+          popUp('features-incoming');
+        },
       });
-
-      popUp('authorization');
-      consoleLog('Redirect to dashboard. target: employee.');
-      setTimeout(() => {
-        document.location.replace('./dashboard.php')
-      }, 1725)
 
     } else {
       popUp('features-incoming');
       return false;
     }
+
   }
 
   VerifyUsersPermissions() {
