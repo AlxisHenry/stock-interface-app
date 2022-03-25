@@ -13,8 +13,7 @@ try {
 
 $TARGET = $_POST['target'];
 $TYPE = $_POST['type'];
-#$ASSET =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
-$ASSET = "COLWD6003l";
+$ASSET =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
 
 switch ($TYPE) {
     case 'logs':
@@ -22,6 +21,18 @@ switch ($TYPE) {
             $pdo_connect->query(UPDATE_LOGS_TABLE($TARGET, $ASSET));
         } catch (Exception $e) {
             echo $e;
+        }
+        break;
+    case 'access':
+        $DB_QUERY = $pdo_connect->query(VIEW_ACCESS_EMPLOYEE($TARGET));
+        while ($AUTH = $DB_QUERY->fetch()) {
+
+            if ($AUTH['status'] == 0) {
+                echo 'false';
+            } elseif ($AUTH['status'] == 1) {
+                echo 'true';
+            }
+
         }
         break;
     default:
@@ -34,3 +45,7 @@ function UPDATE_LOGS_TABLE($TARGET, $TEMP_ASSET): string
             INSERT INTO `panel_logs_access` (`userID` , `date`, `asset`) VALUES ((SELECT `ID` FROM `panel_manage_access` WHERE `username` = '$TARGET'), (SELECT NOW()), '$TEMP_ASSET');";
 }
 
+function VIEW_ACCESS_EMPLOYEE($TARGET): string
+{
+    return "SELECT * FROM `panel_manage_access` WHERE `username` = '$TARGET'";
+}

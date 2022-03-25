@@ -19,7 +19,7 @@ export class UserActionClass {
       return false;
     } else if (this.pass.length === 0) {
       this.form.pass.css("background-color", "#faceca");
-      popUp('error-connexion');
+      popUp('uncompleted-password');
       return false;
     } else {
       popUp('clean');

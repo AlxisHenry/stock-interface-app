@@ -8,7 +8,7 @@ export function popUp(type) {
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message validation-connexion\"> <i class=\"fa-regular fa-circle-check\"></i> Vous avez été connnecté, redirection en cours.</div>\n");
             break;
         case 'uncompleted-password':
-            containMessage.html = '';
+            containMessage.innerHTML = '';
             containMessage.insertAdjacentHTML('beforeEnd',"<div class=\"s-message uncompleted-password\"> <i class=\"fa-solid fa-lock\"></i> Pensez à entrer votre mot de passe.</div>\n");
             break;
         case 'error-connexion':

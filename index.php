@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-#$ASSET =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
-$ASSET = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+$ASSET =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
 $DATE = gmdate('d/m/Y h:i');
 ?>
 <head>

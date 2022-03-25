@@ -20,7 +20,7 @@
 	<!-- Javascript-Bibli JQuery :-->
 	<script src='/src/js/jquery-3.6.0.min.js'></script>
 	<script src='/src/js/main.js'></script>
-	<script src='/src/js/class/user-action.js'></script>
+	<script src='/src/js/class/user-action.class.js'></script>
 </body>
 
 </html>

@@ -1,26 +1,25 @@
-import { UserAction } from "./class/user-action.js";
+import { UserActionClass } from "./class/user-action.class.js";
 
 $(document).ready(function () {
 
-    //new UserAction().AuthorizedView; // Set website-access to employee page
+    //new UserActionClass().AuthorizedView; // Set website-access to employee page
 
     $(".submit-admin-panel").click(function () {
-        new UserAction().ConfirmFormInformations();
-        new UserAction().VerifyUsersPermissions();
+        new UserActionClass().ConfirmFormInformations();
+        new UserActionClass().VerifyUsersPermissions();
         // Manage admin request
     });
 
     $("#form-pass").on("keypress", function (e) {
-        if (e.which == 13) { // Search 'Enter' key
-            new UserAction().ConfirmFormInformations();
-            new UserAction().VerifyUsersPermissions();
+        if (e.which == 13) { // Listen 'Enter' key
+            $(".submit-admin-panel").click();
             // Manage admin request
         }
     });
 
     $(".redirect-dashboard-user").click(function () {
-        new UserAction().AuthorizedView;
-        new UserAction().EmployeeViewAccess();
+        new UserActionClass().AuthorizedView; // Set website-access to employee page
+        new UserActionClass().EmployeeViewAccess();
         // Manage employee request
     });
 
