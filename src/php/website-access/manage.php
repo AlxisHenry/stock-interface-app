@@ -18,6 +18,15 @@ switch ($TYPE) {
             if ($AUTH['status'] == 0) {
                 echo 'false';
             } elseif ($AUTH['status'] == 1) {
+                session_start();
+                $_SESSION['user'] = [
+                    "id" => $AUTH['username'],
+                    "password" => $AUTH['password'],
+                    "lastConnection" => $AUTH['derniereConnection'],
+                    "thisConnectionDate" => date("Y-m-d H:i:s"),
+                    "state" => $AUTH['status'],
+                    "type" => $AUTH['type']
+                ];
                 echo 'true';
             }
 
@@ -30,8 +39,7 @@ switch ($TYPE) {
 
 function UPDATE_LOGS_TABLE($TARGET, $TEMP_ASSET): string
 {
-    return "UPDATE `panel_manage_access` SET `derniereConnection` = (SELECT NOW()) WHERE `username` = '$TARGET';
-            INSERT INTO `panel_logs_access` (`userID` , `date`, `asset`) VALUES ((SELECT `ID` FROM `panel_manage_access` WHERE `username` = '$TARGET'), (SELECT NOW()), '$TEMP_ASSET');";
+    return "INSERT INTO `panel_logs_access` (`userID` , `date`, `asset`) VALUES ((SELECT `ID` FROM `panel_manage_access` WHERE `username` = '$TARGET'), (SELECT NOW()), '$TEMP_ASSET');";
 }
 
 function VIEW_ACCESS_EMPLOYEE($TARGET): string

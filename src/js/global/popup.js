@@ -10,9 +10,9 @@ export function popUp(type) {
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup validation-connexion\"> <i class=\"fa-regular fa-pop-up fa-circle-check\"></i> Vous avez été connnecté, redirection en cours.</div>\n");
             SetPopupColor('s', 'rgb(191, 236, 191)');
             break;
-        case 'uncompleted-password':
+        case 'uncompleted-data':
             containMessage.innerHTML = '';
-            containMessage.insertAdjacentHTML('beforeEnd',"<div class=\"s-message popup uncompleted-password\"> <i class=\"fa-solid fa-pop-up fa-lock\"></i>Pensez à entrer votre mot de passe.</div>\n");
+            containMessage.insertAdjacentHTML('beforeEnd',"<div class=\"s-message popup uncompleted-data\"> <i class=\"fa-solid fa-pop-up fa-lock\"></i>Pensez à compléter les différents champs.</div>\n");
             SetPopupColor('e', 'rgb(204, 241, 255)');
             break;
         case 'error-connexion':

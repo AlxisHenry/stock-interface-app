@@ -6,11 +6,8 @@ function LastTimeUserConnected(): string
 {
 
     // todo: Le problème est que l'actualisation de la dernière connection s'effectue lors du login :
-    // todo 1ere possibilité : Effectué la requête sur la dernière date dans les logs.*
-    // todo 2nd possibilité : Enregistrer la date dans la session et update la table à la déconnection.
-
-
-    $dateToShow= '';
+    // todo 1ere possibilité : Effectué la requête sur la dernière date dans les logs.
+    // todo 2nd possibilité : Enregistrer la date dans la session et update la table à la déconnection. // Try this solution
 
     $GetDateOfLastConnexion = "SELECT `derniereConnection` AS 'DATE' FROM `panel_manage_access` WHERE `username` = 'tfadmin'";;
     $DB_QUERY = Connection()->query($GetDateOfLastConnexion);
@@ -25,21 +22,32 @@ function LastTimeUserConnected(): string
 
     $difference = $today->diff($lastConnection);
 
-    if (($difference->m) == 0) {
-        if (($difference->d) == 0) {
-            if (($difference->i) == 0) {
-                if (($difference->s) == 0) {
+    $month = $difference->m;
+    $days = $difference->d;
+    $hours = $difference->h;
+    $minutes = $difference->i;
+    $seconds = $difference->s;
+
+    if ($month === 0) {
+        if ($days === 0) {
+            if ($hours  === 0) {
+                if ($minutes === 0) {
+                    if ($seconds < 20) {
+                            $dateToShow = ' un instant.';
+                    } else {
+                        $dateToShow = $seconds . ' seconds';
+                    }
                 } else {
-                    $dateToShow = $difference->s . ' secondes';
+                    $dateToShow = $minutes . ' minutes';
                 }
             } else {
-                $dateToShow = $difference->i . ' minutes';
+                $dateToShow = $hours . ' hours';
             }
         } else {
-            $dateToShow = $difference->d . ' days';
+            $dateToShow = $days. ' days';
         }
     } else {
-        $dateToShow = $difference->m . ' months';
+        $dateToShow = $month . ' months';
     }
 
     return $dateToShow;

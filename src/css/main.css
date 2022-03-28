@@ -83,6 +83,11 @@ label[for="form-id"], label[for="form-pass"] {
   margin-top: 2px;
 }
 
+.redirect-admin {
+  text-decoration: none;
+  color: white;
+}
+
 .btn-primary {
   position: relative;
   left: 25%;
@@ -190,7 +195,37 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 /* END -- Asset Name & Date */
+/* Panel gestion de stock */
 
+.panel-header {
+  height: 140px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.last-connected-date {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+}
+
+.last-connected-date .date-span {
+  width: 125px;
+  margin-right: 30px;
+  color: white;
+  text-align: center;
+  font-weight: 800;
+}
+
+.last-connected-date .date-span .time {
+  color: burlywood;
+}
+
+
+/* END -- Panel gestion de stock */
 
 /*
 

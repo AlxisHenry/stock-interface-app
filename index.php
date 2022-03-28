@@ -2,7 +2,7 @@
 <html>
 <?php
 $ASSET = strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
-$DATE = gmdate('d/m/Y h:i');
+$DATE = date('d/m/Y h:i');
 ?>
 <head>
     <meta charset='utf-8'>
@@ -28,10 +28,10 @@ $DATE = gmdate('d/m/Y h:i');
                     <input type="password" id="form-pass" class="form-control">
                     <label for="form-pass">Veuillez saisir votre mot de passe</label>
                 </div>
-                <button type="submit" class="btn btn-primary submit-admin-panel">Me connecter</button>
+                <a class="redirect-admin"><button type="submit" class="btn btn-primary submit-admin-panel">Me connecter</button></a>
             </div>
             <div class="employee-session">
-                <div class="redirect-employee">Vous travaillez ici ? <i class="redirect-dashboard-user fa fa-solid fa-arrow-right-from-bracket"></i></div>
+                <div class="redirect-employee">Vous travaillez ici ? <a class="redirect-employee-dashboard"><i class="redirect-dashboard-user fa fa-solid fa-arrow-right-from-bracket"></i></a></div>
             </div>
     </div>
 

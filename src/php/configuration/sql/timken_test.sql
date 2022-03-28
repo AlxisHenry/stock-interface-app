@@ -10,15 +10,16 @@ CREATE TABLE IF NOT EXISTS `panel_manage_access`
     `ID` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(15),
     `password` VARCHAR(50),
+    `type` VARCHAR(25),
     `derniereConnection` TIMESTAMP,
     `status`  VARCHAR(25)
 );
 
-INSERT INTO `panel_manage_access` (username, password, derniereConnection, status)
-VALUES ('tfadmin', 'timken', (SELECT NOW()), 1);
+INSERT INTO `panel_manage_access` (username, password, type, derniereConnection, status)
+VALUES ('tfadmin', 'timken', 'administrator',(SELECT NOW()), 1);
 
-INSERT INTO `panel_manage_access` (username, password, derniereConnection, status)
-VALUES ('employee', 'employee', (SELECT NOW()), 1);
+INSERT INTO `panel_manage_access` (username, password, type, derniereConnection, status)
+VALUES ('employee', 'employee', 'visitor' ,(SELECT NOW()), 1);
 
 CREATE TABLE IF NOT EXISTS `panel_logs_access`
 (
