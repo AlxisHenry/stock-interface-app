@@ -153,15 +153,15 @@ label[for="form-id"], label[for="form-pass"] {
   display: flex;
   vertical-align: middle;
   align-items: center;
-
+  animation: bumpPopUp 0.6s;
 }
 
 @keyframes bumpPopUp {
   0% {
-    opacity: 0;
+    margin-top: -200%;
   }
   100% {
-    opacity: 1;
+    margin-top: 0;
   }
 }
 
