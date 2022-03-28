@@ -30,14 +30,19 @@ body {
   Login page (redirect user to admin panel / demo)
   ------------------------------------ */
 
+/* Formulaire de connexion */
+
 .form-container {
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
+  height: 400px;
   display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: red;
 }
 
 .form-card {
@@ -72,6 +77,9 @@ body {
   margin-left: 15px;
 }
 
+/* END -- Formulaire de connexion */
+/* PopUp (=> générées dans popup.js) */
+
 .contain-send-message {
   position: sticky;
   display: flex;
@@ -79,61 +87,19 @@ body {
   margin-top: 30px;
 }
 
-.features-incomming {
-  border: solid rgb(250, 197, 197);
-  background-color: rgb(250, 197, 197);
-  padding: 8px;
-  border-radius: 16px;
-}
-
-.fa-circle-exclamation,
-.fa-circle-check,
-.fa-xmark,
-.fa-lock,
-.fa-screwdriver-wrench,
-.fa-square-check {
+.fa-pop-up {
   margin-right: 5px;
   margin-left: 5px;
   color: black;
 }
 
-.validation-connexion {
-  border: solid rgb(191, 236, 191);
-  background-color: rgb(191, 236, 191);
+.popup {
   padding: 8px;
   border-radius: 16px;
+  animation: bumpPopUp;
 }
 
-.error-connexion {
-  border: solid rgb(255, 150, 150);
-  background-color: rgb(255, 150, 150);
-  padding: 8px;
-  border-radius: 16px;
-  animation: bump 1s linear;
-}
-
-.uncompleted-password {
-  border: solid rgb(204, 241, 255);
-  background-color: rgb(204, 241, 255);
-  padding: 8px;
-  border-radius: 16px;
-}
-
-.contact-admin {
-  border: solid rgb(242, 199, 255);
-  background-color: rgb(242, 199, 255);
-  padding: 8px;
-  border-radius: 16px;
-}
-
-.authorization {
-  border: solid rgb(80, 221, 255);
-  background-color:rgb(80, 221, 255);
-  padding: 8px;
-  border-radius: 16px;
-}
-
-@keyframes bump {
+@keyframes bumpPopUp {
   0% {
     opacity: 0;
   }
@@ -141,6 +107,9 @@ body {
     opacity: 1;
   }
 }
+
+/* END -- PopUp (=> générées dans popup.js) */
+/* Asset Name & Date */
 
 .about-user {
   position: absolute;
@@ -156,6 +125,11 @@ body {
   margin-right: 50px;
   font-size: 14px;
 }
+
+/* END -- Asset Name & Date */
+
+
+/*
 
 .switch-dashboard {
   top: 200px;
@@ -202,4 +176,4 @@ body {
       margin-left: 30.5px;
       }
 
-}
+}**/

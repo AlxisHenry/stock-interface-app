@@ -2,6 +2,7 @@ import { SwitchDashboardAccessClass } from "./class/switch-dashboard-access.clas
 
 $(document).ready(() => {
     document.querySelector('.switch-indicator').addEventListener('click', () => {
-            new SwitchDashboardAccessClass().SwitchDashboard();
+            new SwitchDashboardAccessClass().SwitchDashboardState();
+            new SwitchDashboardAccessClass().InitDashboard();
     })
 })

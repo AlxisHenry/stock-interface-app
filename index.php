@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$ASSET =  strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
+$ASSET = strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
 $DATE = gmdate('d/m/Y h:i');
 ?>
 <head>
@@ -9,13 +9,9 @@ $DATE = gmdate('d/m/Y h:i');
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta http-equiv='content-type' content='text/html' charset='utf-8' />
     <title>Login (test)</title>
-    <!-- fontawesome & favicon -->
-    <script src="https://kit.fontawesome.com/2d2078daec.js" crossorigin="anonymous"></script>
-    <link rel='icon' href='https://1ja0pa1tvpl63v04fj2l0oby-wpengine.netdna-ssl.com/wp-content/themes/timken/favicon.ico'>
-    <!-- Bootstrap lib -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href='src/styles/main.css' media='all' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel='icon' href='./assets/favicon.ico'>
+    <link href='./src/css/main.css' media='all' rel='stylesheet' type='text/css' />
 </head>
 
 <body>
@@ -25,7 +21,7 @@ $DATE = gmdate('d/m/Y h:i');
                 <h3 class="text-center white-text py-3">TIMKEN</h3>
                 <div class="md-form">
                     <i class="fa fa-user"></i>
-                    <input type="text" id="form-id" class="form-control" placeholder="admin" disabled>
+                    <input type="text" id="form-id" class="form-control" placeholder="admin" value="admin" disabled>
                     <label for="form-id">Votre identifiant</label>
                 </div>
                 <div class="md-form">

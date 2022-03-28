@@ -1,111 +1,115 @@
 import { popUp } from "../global/popup.js";
 import { consoleLog } from "../global/console.log.js";
 
-export class UserActionClass {
+export class UserAction {
   constructor() {
     this.form = {
-      id: $("#form-id"),
-      pass: $("#form-pass"),
+      id: document.querySelector("#form-id"),
+      pass: document.querySelector("#form-pass"),
     };
-    this.id = this.form.id[0].placeholder;
-    this.pass = this.form.pass.val();
+    this.id = this.form.id.value;
+    this.pass = this.form.pass.value;
     this.confirm_id = "admin";
-    this.AuthorizedView = '';
+    this.accessFiles = './src/php/website-access/'
   };
 
-  ConfirmFormInformations() {
+  ConfirmFormData() {
     if (this.id !== this.confirm_id) {
-      this.form.id.css("background-color", "#faceca");
+      consoleLog('ConfirmFormData() :: Wrong Username', 'e')
+      this.form.id.style.backgroundColor =  "#faceca";
       return false;
     } else if (this.pass.length === 0) {
-      this.form.pass.css("background-color", "#faceca");
+      consoleLog('ConfirmFormData() :: Uncompleted Password', 'e')
+      this.form.pass.style.backgroundColor = "#faceca";
       popUp('uncompleted-password');
       return false;
     } else {
+      consoleLog('ConfirmFormData() :: Correct', 's')
       popUp('clean');
-      this.form.id.css("background-color", "white");
-      this.form.pass.css("background-color", "white");
+      this.form.id.style.backgroundColor = "white";
+      this.form.pass.style.backgroundColor = "white";
       return true;
     }
   }
 
   EmployeeViewAccess() {
-
-    this.AuthorizedView = $.ajax({
+    $.ajax({
       type: "POST",
-      url: "./website-access/manage.php",
+      url: `${this.accessFiles}manage.php`,
       data: { target: 'employee', type: 'access' },
       success: function (server_response) {
         if (server_response === 'false') {
-          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
-          popUp('features-incoming');
+          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`, 's');
+          popUp('actually-disabled');
         } else if (server_response === 'true') {
-          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`);
+          consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`, 's');
           $.ajax({
             type: "POST",
-            url: "./website-access/manage.php",
+            url: `${this.accessFiles}manage.php`,
             data: { target: 'employee', type: 'logs' },
             success: function (server_response) {
-              consoleLog('Update logs table. target: employee.');
+              consoleLog('Update logs. target: employee.', 's');
               popUp('authorization');
-              consoleLog('Redirect to dashboard. target: employee.');
+              consoleLog('Redirect to dashboard. target: employee.', 's');
               setTimeout(() => {
                 document.location.replace('./dashboard.php');
               }, 1725)
             },
             error: function () {
-              consoleLog('Error during update of logs. target: employee.');
-              popUp('features-incoming');
+              consoleLog('Update logs failed. target: employee.', 'e');
+              popUp('actually-disabled');
             },
           });
         } else {
-          consoleLog('Success ajax :: Error during request');
-          this.AuthorizedView = null;
+          consoleLog('Success ajax :: Error during request','e');
+          popUp('actually-disabled');
+          return null;
         }
       },});
   }
 
   VerifyUsersPermissions() {
-    if (!this.ConfirmFormInformations()) {
+    if (!this.ConfirmFormData()) {
+      consoleLog('VerifyUsersPermissions() :: Wrong Form Values', 'e');
       return false;
     }
     $.ajax({
-      type: "GET",
-      url: "./website-access/manage-admin-access.php",
+      type: "POST",
+      url: `${this.accessFiles}manage-admin-access.php`,
       data: { id: this.id, pass: this.pass },
       success: function (server_response) {
         switch (server_response) {
           case "true":
             $.ajax({
               type: "POST",
-              url: "./website-access/manage.php",
+              url: `${this.accessFiles}manage.php`,
               data: {target: 'tfadmin', type: 'logs'},
               success: function (server_response) {
-                consoleLog('Update logs table. target: tfadmin.');
+                consoleLog('Update logs. target: tfadmin.', 's');
               },
               error: function () {
-                consoleLog('Error during update of logs. target: tfadmin.');
+                consoleLog('Update logs failed. target: tfadmin.', 'e');
               },
             });
 
             popUp('validation');
-            consoleLog('Connection réussie.');
+            consoleLog('VerifyUsersPermissions() :: Connexion success', 's');
             setTimeout(() => {
               document.location.replace('./admin-panel.php')
             }, 1725);
             break;
           case "false":
-            consoleLog('Informations incorrectes');
+            consoleLog('VerifyUsersPermissions() :: Wrong Login Informations', 'e');
             popUp('error-connexion');
             break;
           default:
-            consoleLog('Erreur de return lors de la requête Ajax.');
+            consoleLog('VerifyUsersPermissions() :: Back-end Return Error', 'e');
             popUp('contact-admin');
             break;
         }
       },
       error: function () {
-        consoleLog('Erreur lors de la tentative de connection');
+        consoleLog('VerifyUsersPermissions() :: Back-end Error', 'e');
         popUp('contact-admin');
       },
     });
