@@ -15,28 +15,24 @@ $DATE = gmdate('d/m/Y h:i');
 </head>
 
 <body>
-    <div class="col-md-6 mb-4 d-flex container form-container">
-        <div class="form-card card indigo form-white">
+    <div class=" form-container">
             <div class="card-body">
-                <h3 class="text-center white-text py-3">TIMKEN</h3>
+                <h3 class="card-title">TIMKEN</h3>
                 <div class="md-form">
                     <i class="fa fa-user"></i>
-                    <input type="text" id="form-id" class="form-control" placeholder="admin" value="admin" disabled>
+                    <input type="text" id="form-id" class="form-control"  value="tfadmin">
                     <label for="form-id">Votre identifiant</label>
                 </div>
                 <div class="md-form">
-                    <i class="fa fa-lock prefix white-text"></i>
+                    <i class="fa fa-lock fa-password"></i>
                     <input type="password" id="form-pass" class="form-control">
                     <label for="form-pass">Veuillez saisir votre mot de passe</label>
                 </div>
+                <button type="submit" class="btn btn-primary submit-admin-panel">Me connecter</button>
             </div>
-
-            <button type="submit" class="btn btn-primary submit-admin-panel">Me connecter</button>
-
             <div class="employee-session">
                 <div class="redirect-employee">Vous travaillez ici ? <i class="redirect-dashboard-user fa fa-solid fa-arrow-right-from-bracket"></i></div>
             </div>
-        </div>
     </div>
 
     <div class="contain-send-message"></div>

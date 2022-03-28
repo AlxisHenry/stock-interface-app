@@ -3,7 +3,7 @@
  * ------------------------------------ */
 /* ================ DOM ==============*/
 :root {
-  --coul_fond: orange;
+  --form-family: 'Bahnschrift';
 }
 
 html {
@@ -26,7 +26,7 @@ body {
   overflow: hidden;
 }
 
-/* ------------------------------------ 
+/* ------------------------------------
   Login page (redirect user to admin panel / demo)
   ------------------------------------ */
 
@@ -38,16 +38,49 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  height: 400px;
+  height: 450px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  background-color: red;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px 1px #ffdbbe;
+  border-radius: 10px;
 }
 
-.form-card {
-  box-shadow: 0.5px 0.5px 0.5px 0.5px #ff7700;
-  width: 100%;
+.card-title {
+  color: black;
+  text-align: center;
+  font-size: 40px;
+  font-family: var(--form-family);
+  margin-top: 25px;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  text-transform: none;
+}
+
+.md-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.fa-user, .fa-password{
+  margin-bottom: 10px;
+}
+
+.fa-password {
+  margin-top: 22px;
+}
+
+.form-control {
+  width: 300px;
+  letter-spacing: 1px;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+label[for="form-id"], label[for="form-pass"] {
+  margin-top: 2px;
 }
 
 .btn-primary {
@@ -55,13 +88,24 @@ body {
   left: 25%;
   width: 50%;
   margin-bottom: 30px;
+  border-radius: 5px;
+  margin-top: 30px;
+  padding: 8px;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  background-color: cornflowerblue;
+  border-color: cornflowerblue;
+  font-style: var(--form-family);
 }
 
 .employee-session {
   position: relative;
+  right: -115px;
   height: 40px;
   display: flex;
   justify-content: end;
+  align-items: center;
 }
 
 .employee-session .redirect-employee {
@@ -69,34 +113,47 @@ body {
   flex-direction: row;
   vertical-align: middle;
   text-align: center;
+  font-size: 14px;
 }
 
 .employee-session .redirect-employee i {
   margin-right: 27.5px;
   font-size: 20px;
   margin-left: 15px;
+  margin-top: -2px;
+}
+
+.employee-session .redirect-employee i:hover, .btn-primary:hover {
+  cursor: pointer;
 }
 
 /* END -- Formulaire de connexion */
 /* PopUp (=> générées dans popup.js) */
 
 .contain-send-message {
-  position: sticky;
   display: flex;
+  height: auto;
   justify-content: center;
   margin-top: 30px;
+  align-items: center;
 }
 
 .fa-pop-up {
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
   color: black;
 }
 
 .popup {
   padding: 8px;
   border-radius: 16px;
-  animation: bumpPopUp;
+  min-width: 200px;
+  min-height: 25px;
+  max-height: 20px;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+
 }
 
 @keyframes bumpPopUp {
@@ -124,6 +181,12 @@ body {
 .about-user > .contain-date, .about-user > .contain-asset-name {
   margin-right: 50px;
   font-size: 14px;
+}
+
+@media screen and (max-height: 600px) {
+  .about-user {
+    display: none;
+  }
 }
 
 /* END -- Asset Name & Date */

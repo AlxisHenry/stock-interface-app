@@ -9,13 +9,13 @@ export class UserAction {
     };
     this.id = this.form.id.value;
     this.pass = this.form.pass.value;
-    this.confirm_id = "admin";
+    this.confirm_id = "tfadmin";
   };
 
   ConfirmFormData() {
     if (this.id !== this.confirm_id) {
       consoleLog('ConfirmFormData() :: Wrong Username', 'e')
-      this.form.id.style.backgroundColor =  "#faceca";
+
       return false;
     } else if (this.pass.length === 0) {
       consoleLog('ConfirmFormData() :: Uncompleted Password', 'e')
@@ -68,6 +68,7 @@ export class UserAction {
   }
 
   VerifyUsersPermissions() {
+    console.log(this.id + this.pass);
     if (!this.ConfirmFormData()) {
       consoleLog('VerifyUsersPermissions() :: Wrong Form Values', 'e');
       return false;
