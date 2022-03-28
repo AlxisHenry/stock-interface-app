@@ -1,24 +1,42 @@
 <!DOCTYPE html>
 <html>
-<?php
-include 'src/php/functions.php';
-?>
+
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta http-equiv='content-type' content='text/html' charset='utf-8' />
-    <title>Login (test)</title>
+    <title>Gestion du stock</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel='icon' href='./assets/favicon.ico'>
-    <link href='./src/css/main.css' media='all' rel='stylesheet' type='text/css' />
+    <link rel='icon' href='/assets/favicon.ico'>
+    <link href='./src/css/main.css' media='all' rel='stylesheet' type='text/css'/>
+
+    <?php
+    include 'src/php/functions.php';
+
+    session_start();
+    $_SESSION['user'] = [
+        "id" => 'username',
+        "password" => 'password',
+        "lastConnection" => 'derniereConnection',
+        "thisConnectionDate" => date("Y-m-d H:i:s"),
+        "state" => 'status',
+        "type" => 'type'
+    ];
+    ?>
+
 </head>
 
 <body>
 
-<div class="">Dernière connection il y a <?= LastTimeUserConnected() ?></div>
+<header class="panel-header">
 
-<script src='./src/js/jquery-3.6.0.min.js'></script>
-<script src='./src/js/index.js' type="module"></script>
+
+
+    <div class="last-connected-date"><span class="date-span">Dernière connection il y a <span class="time"><?= LastTimeUserConnected() ?></span></span></div>
+
+
+</header>
+
 
 </body>
 
