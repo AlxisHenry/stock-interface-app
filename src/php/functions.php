@@ -6,8 +6,8 @@ function LastTimeUserConnected(): string
 {
 
     // todo: Le problème est que l'actualisation de la dernière connection s'effectue lors du login :
-    // todo 1ere possibilité : Effectué la requête sur la dernière date dans les logs.
-    // todo 2nd possibilité : Enregistrer la date dans la session et update la table à la déconnection. // Try this solution
+    // todo 1ere possibilité : Effectué la requête sur la dernière date dans les logs.  // Pas pratique car la dernière = celle-ci si on l'ajoute à la connexion.
+    // todo 2nd possibilité : Enregistrer la date dans la session et update la table à la déconnection. // Try this solution first
 
     $GetDateOfLastConnexion = "SELECT `derniereConnection` AS 'DATE' FROM `panel_manage_access` WHERE `username` = 'tfadmin'";;
     $DB_QUERY = Connection()->query($GetDateOfLastConnexion);
