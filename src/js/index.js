@@ -1,20 +1,30 @@
 import { UserAction } from "./class/user-action.class.js";
+import { popUp } from "./global/popup.js";
 
-$(document).ready(function () {
+window.addEventListener('load', () =>  {
 
-    $(".submit-admin-panel").click(function () {
+    popUp('clean');
+
+    document.querySelector(".submit-admin-panel").addEventListener('click', () => {
         setTimeout(() => { new UserAction().VerifyUsersPermissions(); }, 75);
         // Manage admin request
     });
 
-    $("#form-pass").on("keypress", function (e) {
+    document.querySelector("#form-pass").addEventListener("keypress",  (e) => {
         if (e.which === 13) { // Listen 'Enter' key
-            $(".submit-admin-panel").click();
+            document.querySelector(".submit-admin-panel").click();
             // Manage admin request
         }
     });
 
-    $(".redirect-dashboard-user").click(function () {
+    document.querySelector("#form-id").addEventListener("keypress", (e) => {
+        if (e.which === 13) { // Listen 'Enter' key
+            document.querySelector(".submit-admin-panel").click();
+            // Manage admin request
+        }
+    })
+
+    document.querySelector(".redirect-dashboard-user").addEventListener("click", () => {
         new UserAction().EmployeeViewAccess();
         // Manage employee request
     });
