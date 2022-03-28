@@ -12,14 +12,21 @@ export class UserAction {
   };
 
   ConfirmFormData() {
-      if (this.pass.length === 0) {
+
+      if (this.pass.length === 0 && this.id.length === 0) {
+        this.form.pass.style.backgroundColor = "#faceca";
+        this.form.id.style.backgroundColor = "#faceca";
+        popUp('uncompleted-data');
+        return false;
+      } else if (this.pass.length === 0) {
         consoleLog('ConfirmFormData() :: Uncompleted Password', 'e')
         this.form.pass.style.backgroundColor = "#faceca";
-        popUp('uncompleted-password');
+        popUp('uncompleted-data');
         return false;
       } else if (this.id.length === 0) {
         consoleLog('ConfirmFormData() :: Uncompleted Id', 'e')
         this.form.id.style.backgroundColor = "#faceca";
+        popUp('uncompleted-data');
         return false;
       } else {
         consoleLog('ConfirmFormData() :: Correct', 's')
@@ -53,11 +60,11 @@ export class UserAction {
                 consoleLog('Update logs failed. target: tfadmin.', 'e');
               },
             });
-
             popUp('validation');
             consoleLog('VerifyUsersPermissions() :: Connexion success', 's');
             setTimeout(() => {
-              document.location.replace('./admin-panel.php')
+              document.querySelector('.redirect-admin').setAttribute('href','./admin-panel.php');
+              document.querySelector('.redirect-admin').click();
             }, 1725);
             break;
           case "false":
@@ -84,7 +91,8 @@ export class UserAction {
                       popUp('authorization');
                       consoleLog('Redirect to dashboard. target: employee.', 's');
                       setTimeout(() => {
-                        document.location.replace('./dashboard.php');
+                        document.querySelector('.redirect-employee-dashboard').setAttribute('href','./dashboard.php');
+                        document.querySelector('.redirect-employee-dashboard').click();
                       }, 1725)
                     },
                     error: function () {
@@ -132,7 +140,8 @@ export class UserAction {
                 popUp('authorization');
                 consoleLog('Redirect to dashboard. target: employee.', 's');
                 setTimeout(() => {
-                  document.location.replace('./dashboard.php');
+                  document.querySelector('.redirect-employee-dashboard').setAttribute('href','./dashboard.php');
+                  document.querySelector('.redirect-employee-dashboard').click();
                 }, 1725)
               },
               error: function () {
