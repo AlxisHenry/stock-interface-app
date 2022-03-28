@@ -1,0 +1,7 @@
+# Ignore log & database files
+.sql
+.sqlite
+.log
+
+# Ignore database & configuration files
+/src/php/configuration/database-connexion.php
