@@ -1,6 +1,6 @@
 <?php
 
-include './../configuration/database-connexion.php';
+include "../functions.php";
 
 $Userid = $_POST['id'];
 $pass = $_POST['pass'];
@@ -14,7 +14,7 @@ while ($AUTH = $DB_QUERY->fetch()) {
     if ($AUTH['username'] == "tf$Userid" && $AUTH['password'] == $pass) {
 
         $DB_REQUEST_UPDATE_ACCOUNT = "UPDATE `panel_manage_access` SET `derniereConnection` = (SELECT NOW()) WHERE `username` = 'tf$Userid'";
-        $DB_QUERY = $DB_QUERY->query($DB_REQUEST_UPDATE_ACCOUNT);
+        $DB_QUERY = Connection()->query($DB_REQUEST_UPDATE_ACCOUNT);
         $DB_QUERY->closeCursor();
 
         echo "true";

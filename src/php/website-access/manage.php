@@ -1,6 +1,6 @@
 <?php
 
-include './../configuration/database-connexion.php';
+include '../functions.php';
 
 $TARGET = $_POST['target'];
 $TYPE = $_POST['type'];

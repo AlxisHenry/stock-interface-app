@@ -10,7 +10,6 @@ export class UserAction {
     this.id = this.form.id.value;
     this.pass = this.form.pass.value;
     this.confirm_id = "admin";
-    this.accessFiles = './src/php/website-access/'
   };
 
   ConfirmFormData() {
@@ -35,7 +34,7 @@ export class UserAction {
   EmployeeViewAccess() {
     $.ajax({
       type: "POST",
-      url: `${this.accessFiles}manage.php`,
+      url: `./src/php/website-access/manage.php`,
       data: { target: 'employee', type: 'access' },
       success: function (server_response) {
         if (server_response === 'false') {
@@ -45,7 +44,7 @@ export class UserAction {
           consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`, 's');
           $.ajax({
             type: "POST",
-            url: `${this.accessFiles}manage.php`,
+            url: `./src/php/website-access/manage.php`,
             data: { target: 'employee', type: 'logs' },
             success: function (server_response) {
               consoleLog('Update logs. target: employee.', 's');
@@ -75,14 +74,14 @@ export class UserAction {
     }
     $.ajax({
       type: "POST",
-      url: `${this.accessFiles}manage-admin-access.php`,
+      url: `./src/php/website-access/manage-admin-access.php`,
       data: { id: this.id, pass: this.pass },
       success: function (server_response) {
         switch (server_response) {
           case "true":
             $.ajax({
               type: "POST",
-              url: `${this.accessFiles}manage.php`,
+              url: `./src/php/website-access/manage.php`,
               data: {target: 'tfadmin', type: 'logs'},
               success: function (server_response) {
                 consoleLog('Update logs. target: tfadmin.', 's');
