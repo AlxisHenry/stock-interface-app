@@ -1,8 +1,8 @@
 <?php
 
-namespace Mouvement;
+namespace Mouvements;
 
-class Mouvement
+class Mouvements
 {
 
 }

@@ -38,10 +38,6 @@ export class SwitchDashboardAccess {
 
     SwitchAccess(status) {
         consoleLog('Switch use' + mode);
-        //todo Ajax request to turn on/off employee dashboard.
-        $.ajax()
-
-
     }
 
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Famille;
+namespace Familles;
 
-class Famille
+class Familles
 {
 
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Article;
+namespace Articles;
 
-class Article
+class Articles
 {
 
 }

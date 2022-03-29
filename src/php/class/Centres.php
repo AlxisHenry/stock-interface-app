@@ -1,8 +1,8 @@
 <?php
 
-namespace Centre;
+namespace Centres;
 
-class Centre
+class Centres
 {
 
 }

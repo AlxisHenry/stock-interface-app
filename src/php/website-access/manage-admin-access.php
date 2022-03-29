@@ -6,7 +6,7 @@ $Userid = $_POST['id'];
 $pass = $_POST['pass'];
 
 try {
-    $DB_REQUEST = "SELECT * FROM `panel_manage_access` WHERE `username` = '$Userid'";
+    $DB_REQUEST = "SELECT * FROM `Access` WHERE `username` = '$Userid'";
     $DB_QUERY = Connection()->query($DB_REQUEST);
 
     while ($AUTH = $DB_QUERY->fetch()) {

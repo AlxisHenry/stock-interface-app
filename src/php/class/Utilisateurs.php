@@ -1,8 +1,8 @@
 <?php
 
-namespace Utilisateur;
+namespace Utilisateurs;
 
-class Utilisateur
+class Utilisateurs
 {
 
 }

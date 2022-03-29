@@ -9,7 +9,7 @@ function LastTimeUserConnected(): string
     // todo 1ere possibilité : Effectué la requête sur la dernière date dans les logs.  // Pas pratique car la dernière = celle-ci si on l'ajoute à la connexion.
     // todo 2nd possibilité : Enregistrer la date dans la session et update la table à la déconnection. // Try this solution first
 
-    $GetDateOfLastConnexion = "SELECT `derniereConnection` AS 'DATE' FROM `panel_manage_access` WHERE `username` = 'tfadmin'";;
+    $GetDateOfLastConnexion = "SELECT `derniereConnection` AS 'DATE' FROM `Access` WHERE `username` = 'tfadmin'";;
     $DB_QUERY = Connection()->query($GetDateOfLastConnexion);
     $lastConnection = $DB_QUERY->fetch();
     $DB_QUERY->closeCursor();
@@ -32,23 +32,48 @@ function LastTimeUserConnected(): string
         if ($days === 0) {
             if ($hours  === 0) {
                 if ($minutes === 0) {
-                    if ($seconds < 20) {
+                    if ($seconds < 60) {
                             $dateToShow = ' un instant.';
-                    } else {
-                        $dateToShow = $seconds . ' seconds';
                     }
                 } else {
                     $dateToShow = $minutes . ' minutes';
                 }
             } else {
-                $dateToShow = $hours . ' hours';
+                $dateToShow = $hours . ' heures';
             }
         } else {
-            $dateToShow = $days. ' days';
+            $dateToShow = $days. ' jours';
         }
     } else {
-        $dateToShow = $month . ' months';
+        $dateToShow = $month . ' mois';
     }
 
     return $dateToShow;
+}
+
+function UPDATE_LAST_CONNEXION():string {
+
+    /* Le problème est qu'au refresh de la page la date prise est celle de l'user. */
+    return 'UPDATE `Access` SET `derniereConnection` = (SELECT NOW()) WHERE `username` = "tfadmin" ';
+
+}
+
+function UPDATE_LOGS_TABLE($TARGET, $TEMP_ASSET): string
+{
+    return "INSERT INTO `Logs` (`user` , `date`, `asset`) VALUES ((SELECT `id` FROM `Access` WHERE `username` = '$TARGET'), (SELECT NOW()), '$TEMP_ASSET');";
+}
+
+function VIEW_ACCESS_EMPLOYEE($TARGET): string
+{
+    return "SELECT * FROM `Access` WHERE `username` = '$TARGET'";
+}
+
+function GET_ASSET_NAME(): string
+{
+    return strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
+}
+
+function GET_DATE(): string
+{
+    return date('d/m/Y h:i');
 }

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$ASSET = strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
-$DATE = date('d/m/Y h:i');
+include 'src/php/functions.php';
 ?>
 <head>
     <meta charset='utf-8'>
@@ -39,8 +38,8 @@ $DATE = date('d/m/Y h:i');
 
     <div class="about-user">
 
-        <div class="contain-asset-name"> <?= $ASSET ?> </div>
-        <div class="contain-date"> <?= $DATE ?> </div>
+        <div class="contain-asset-name"> <?= GET_ASSET_NAME(); ?> </div>
+        <div class="contain-date"> <?= GET_DATE(); ?> </div>
 
     </div>
 

@@ -63,7 +63,7 @@ export class UserAction {
             popUp('validation');
             consoleLog('VerifyUsersPermissions() :: Connexion success', 's');
             setTimeout(() => {
-              document.querySelector('.redirect-admin').setAttribute('href','./admin-panel.php');
+              document.querySelector('.redirect-admin').setAttribute('href','./src/php/views/dashboard.php?nav=mvmt');
               document.querySelector('.redirect-admin').click();
             }, 1725);
             break;
@@ -91,7 +91,7 @@ export class UserAction {
                       popUp('authorization');
                       consoleLog('Redirect to dashboard. target: employee.', 's');
                       setTimeout(() => {
-                        document.querySelector('.redirect-employee-dashboard').setAttribute('href','./dashboard.php');
+                        document.querySelector('.redirect-employee-dashboard').setAttribute('href','./src/php/views/view.php');
                         document.querySelector('.redirect-employee-dashboard').click();
                       }, 1725)
                     },
@@ -140,7 +140,7 @@ export class UserAction {
                 popUp('authorization');
                 consoleLog('Redirect to dashboard. target: employee.', 's');
                 setTimeout(() => {
-                  document.querySelector('.redirect-employee-dashboard').setAttribute('href','./dashboard.php');
+                  document.querySelector('.redirect-employee-dashboard').setAttribute('href','./src/php/views/view.php');
                   document.querySelector('.redirect-employee-dashboard').click();
                 }, 1725)
               },
