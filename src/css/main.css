@@ -260,6 +260,14 @@ label[for="form-id"], label[for="form-pass"] {
   align-items: center;
 }
 
+.features:hover .nav-fa-icons {
+  color: black;
+}
+
+.features:hover .nav-span {
+  color: black;
+}
+
 .nav-separator {
   margin-top: 40px;
   width: 100%;
@@ -270,7 +278,7 @@ label[for="form-id"], label[for="form-pass"] {
 /* Active navigation */
 
 .nav-active {
-  background-color: #ffdbbe;
+  box-shadow: 0.5px 0.5px orange;
 }
 
 .nav-active .nav-redirection, .nav-active .nav-fa-icons {
@@ -278,6 +286,39 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 /* END -- Active navigation */
+
+.contain-users-informations {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  background-color: white;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 1px 1px 1px 1px orange;
+  border-radius: 5px;
+}
+
+.host {
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: black;
+}
+
+.date {
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  color: black;
+  width: 180px;
+}
+
 /* END -- Panel gestion de stock */
 
 /*
