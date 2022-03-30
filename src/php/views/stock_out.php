@@ -5,9 +5,11 @@ include '../templates/header.php';
 
 echo returnHeader('Sortie de stock !');
 include '../templates/navbar.php';
+include '../templates/informations.php';
+
 ?>
 
-<script type="module" src="./../../js/navbar.js"></script>
+<script type="module" src="../../js/global/navbar.js"></script>
 
 </body>
 </html>

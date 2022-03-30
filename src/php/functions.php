@@ -77,3 +77,7 @@ function GET_DATE(): string
 {
     return date('d/m/Y h:i');
 }
+
+function CHANGE_ACCESS_BOOLEAN($value, $target) {
+    return "UPDATE `Access` SET `status` = '$value' WHERE `username` = '$target'";
+}

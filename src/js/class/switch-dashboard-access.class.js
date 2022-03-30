@@ -1,23 +1,47 @@
-import { consoleLog } from "../global/console.log.js";
+import {consoleLog, popUp} from "../global/app.js";
 
 export class SwitchDashboardAccess {
 
     constructor() {
         this.indicator = document.querySelector('.switch-indicator');
+        this.textIndicator = document.querySelector('.toggle-span');
         this.state = false;
     }
 
-    InitDashboard() {
-        // Initialize switch position at loading
-        consoleLog(this.state);
+    InitSwitchState() {
+
+        $.ajax({
+            type: "POST",
+            url: `../../php/website-access/manage.php`,
+            data: { target:"employee", type: "access" },
+            success: function (server_response) {
+                switch (server_response) {
+                    case 'false':
+                        break;
+                    case 'true':
+                        new SwitchDashboardAccess().SwitchDashboardAccessOn();
+                        break;
+                    default:
+                        consoleLog('Une erreur est survenue durant le traitement de la requête (InitSwitchState())', 'e');
+                        break;
+                }
+            },
+            error: function () {
+                consoleLog("Une erreur est survenue durant l'initialisation du switch on/off.", 'e');
+            },
+        });
     }
 
     SwitchDashboardState() {
-        if (!this.state) {
+
+        if ((!this.indicator.classList.contains('switch-indicator-transition-left') && !this.indicator.classList.contains('switch-indicator-transition-right'))) {
             this.SwitchDashboardAccessOn();
-        } else if (this.state) {
+        } else if (this.indicator.classList.contains('switch-indicator-transition-left')) {
+            this.SwitchDashboardAccessOn();
+        } else if (this.indicator.classList.contains('switch-indicator-transition-right')) {
             this.SwitchDashboardAccessOff();
         }
+
     }
 
     SwitchDashboardAccessOn() {
@@ -25,7 +49,7 @@ export class SwitchDashboardAccess {
         consoleLog('DASHBOARD :: Switch Dashboard Access to on :: State : ' + this.state);
         this.indicator.classList.remove('switch-indicator-transition-left');
         this.indicator.classList.add('switch-indicator-transition-right');
-        this.SwitchAccess(this.state)
+        this._SwitchAccess('on', 'employee');
     }
 
     SwitchDashboardAccessOff() {
@@ -33,11 +57,20 @@ export class SwitchDashboardAccess {
         consoleLog('DASHBOARD :: Switch Dashboard Access to off :: State : ' + this.state);
         this.indicator.classList.remove('switch-indicator-transition-right');
         this.indicator.classList.add('switch-indicator-transition-left');
-        this.SwitchAccess(this.state);
+        this._SwitchAccess('off', 'employee');
     }
 
-    SwitchAccess(status) {
-        consoleLog('Switch use' + mode);
+    _SwitchAccess(value, target) {
+            $.ajax({
+                type: "POST",
+            url: `../../php/website-access/manage.php`,
+            data: { target: target, type: 'edit-access', value: value },
+                success: function (server_response) {
+                    consoleLog(server_response, 's');
+                },
+                error: function () {
+                    consoleLog("Une erreur est survenue durant la requête pour modifier l'accès.", 'e');
+                },
+            });
     }
-
 }

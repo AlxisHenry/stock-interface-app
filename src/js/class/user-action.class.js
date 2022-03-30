@@ -1,5 +1,4 @@
-import { popUp } from "../global/popup.js";
-import { consoleLog } from "../global/console.log.js";
+import { popUp, consoleLog } from "../global/app.js";
 
 export class UserAction {
   constructor() {

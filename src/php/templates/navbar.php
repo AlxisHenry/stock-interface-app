@@ -1,7 +1,7 @@
 <main class="features-navigation">
 
     <div class="logo">
-        <img src="../../../assets/images/Timken.png">
+        <a href="./dashboard.php?nav=mvmt"> <img src="../../../assets/images/Timken.png"> </a>
     </div>
 
     <div class="contain-features">
@@ -18,7 +18,7 @@
     <hr class="nav-separator">
 
     <div class="contain-actions">
-        <div class="features alerts"><a class="nav-redirection" href="./alerts.php?nav=alerts"><i class="nav-fa-icons fa-solid fa-bell"></i><span class="nav-span">Notifications</span></a></div> <!-- Pop up qui apparaît juste à côté avec le nombres ? Si 0 > rien, sinon la valeur ?-->
+        <div class="features alerts"><a class="nav-redirection" href="./alerts.php?nav=alerts"><i class="nav-fa-icons fa-solid fa-bell"></i><span class="nav-span">Notifications</span></a><div class="alert-indication">8</div></div> <!-- Pop up qui apparaît juste à côté avec le nombres ? Si 0 > rien, sinon la valeur ?-->
         <div class="features settings"><a class="nav-redirection" href="./settings.php?nav=settings"><i class="nav-fa-icons fa-solid fa-gear"></i><span class="nav-span">Settings</span></a></div>
         <div class="features disconnect"><a class="nav-redirection" href="#"><i class="nav-fa-icons fa-solid fa-right-from-bracket"></i><span class="nav-span">Me déconnecter</span></a></div>
     </div>

@@ -44,7 +44,7 @@ include 'src/php/functions.php';
     </div>
 
     <script src='./src/js/jquery-3.6.0.min.js'></script>
-    <script src='./src/js/index.js' type="module"></script>
+    <script src='src/js/main/index.js' type="module"></script>
 
 </body>
 
