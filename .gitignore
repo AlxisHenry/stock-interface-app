@@ -2,6 +2,7 @@
 .sql
 .sqlite
 .log
+.idea
 
 # Ignore database & configuration files
 /src/php/configuration/database-connexion.php

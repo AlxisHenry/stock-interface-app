@@ -2,6 +2,10 @@
 
 include 'configuration/database-connexion.php';
 
+spl_autoload_register(function ($class_name) {
+    include '../class/' . $class_name . '.class.php';
+});
+
 function LastTimeUserConnected(): string
 {
 

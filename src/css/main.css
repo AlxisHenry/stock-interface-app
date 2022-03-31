@@ -358,17 +358,18 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 /* END -- Panel gestion de stock */
-
 /* Settings page */
 
-.settings-section {
+.section {
   margin-left: 260px;
   width: 80%;
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
+  display: flex;
+  align-items: center;
 }
 
-.settings-section .contain-settings-sections {
+.section .contain-settings-sections {
   width: 100%;
   height: 100%;
   margin-top: 150px;
@@ -379,7 +380,7 @@ label[for="form-id"], label[for="form-pass"] {
   justify-content: space-around;
 }
 
-.settings-section .contain-settings-sections .fl {
+.section .contain-settings-sections .fl {
   width: 60%;
   height: 350px;
   margin-left: 10px;
@@ -390,7 +391,7 @@ label[for="form-id"], label[for="form-pass"] {
   border-radius: 10px;
 }
 
-.settings-section .contain-settings-sections .fl h1 {
+.section .contain-settings-sections .fl h1 {
   margin-left: 10%;
   font-family: var(--nav-family);
   font-size: 24px;
@@ -398,7 +399,7 @@ label[for="form-id"], label[for="form-pass"] {
   text-decoration-color: orange;
 }
 
-.settings-section .contain-settings-sections .fl h1 .settings-hr {
+.section .contain-settings-sections .fl h1 .settings-hr {
 }
 .employee-access, .edit-password {
   margin-top: 30px;
@@ -413,7 +414,7 @@ label[for="form-id"], label[for="form-pass"] {
 .switch-dashboard {
   margin-left: 12px;
   position: relative;
-  z-index: 12;
+  z-index: 0;
   width: 60px;
   height: 25px;
   border: solid black 2px;
