@@ -76,3 +76,33 @@ export function RemoveLastColumn() {
    const AllColumns = document.querySelectorAll('.row-values');
    AllColumns[AllColumns.length -1].remove();
 }
+
+export function ResponsiveColumn() {
+    const AllTableTitles = document.querySelectorAll('.column-title');
+
+    AllTableTitles.forEach(Title => {
+        switch (Title.innerHTML) {
+            case 'Dernière modification':
+                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
+                    Value.style.display = 'none';
+                })
+                break;
+            case 'Commentaire':
+                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
+                    Value.style.display = 'none';
+                })
+                break;
+            case 'Numéro':
+                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
+                    Value.style.display = 'none';
+                })
+                break;
+            case 'Famille':
+                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
+                    Value.style.display = 'none';
+                })
+                break;
+        }
+    })
+
+}

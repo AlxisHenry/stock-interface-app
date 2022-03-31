@@ -42,7 +42,7 @@ body {
 /* END -- GLOBAL */
 
 /* ----------  START  ---------------
-  Login page (redirect user to admin panel / visu)
+  Login page (redirect user to admin panel / visualisation employée)
   ------------------------------------ */
 
 /* Formulaire de connexion */
@@ -507,3 +507,38 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 /* END -- Admin Panel - Settings */
+
+/* Admin Panel - Visu. Stock */
+
+.visu-stock {
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid;
+  align-items: flex-start;
+}
+
+.table-visu-stock {
+  margin-top: 100px;
+  max-width: 100%;
+  width: 80%;
+  background-color: white;
+  box-shadow: 0 5px 50px black;
+  border: solid 1px midnightblue;
+  overflow: auto;
+}
+
+.column-title {
+  font-size: 18px;
+}
+
+th, td {
+  padding: 7px 7px;
+  max-width: 100px;
+  overflow: scroll;
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  font-family: var(--nav-family);
+  text-align: center;
+}
+
+/* END -- Admin Panel - Visu. Stock */

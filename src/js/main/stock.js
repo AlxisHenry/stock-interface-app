@@ -1,5 +1,6 @@
-import {RemoveLastColumn} from "../global/app.js";
+import {RemoveLastColumn, ResponsiveColumn} from "../global/app.js";
 
 window.addEventListener('load', () => {
     RemoveLastColumn();
+   // ResponsiveColumn();
 })
