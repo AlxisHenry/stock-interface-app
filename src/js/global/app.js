@@ -77,32 +77,35 @@ export function RemoveLastColumn() {
    AllColumns[AllColumns.length -1].remove();
 }
 
-export function ResponsiveColumn() {
+export function ResponsiveColumns() {
     const AllTableTitles = document.querySelectorAll('.column-title');
 
     AllTableTitles.forEach(Title => {
         switch (Title.innerHTML) {
             case 'Dernière modification':
-                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
-                    Value.style.display = 'none';
-                })
+                RemoveColumns(Title);
                 break;
             case 'Commentaire':
-                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
-                    Value.style.display = 'none';
-                })
+                RemoveColumns(Title);
                 break;
             case 'Numéro':
-                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
-                    Value.style.display = 'none';
-                })
+                RemoveColumns(Title);
                 break;
             case 'Famille':
-                document.querySelectorAll(`.${Title.classList[0]}`).forEach(Value => {
-                    Value.style.display = 'none';
-                })
+                RemoveColumns(Title);
                 break;
         }
     })
 
+function RemoveColumns(value) {
+    if(window.matchMedia("(min-width:1450px)").matches) {
+        document.querySelectorAll(`.${value.classList[0]}`).forEach(Value => {
+            Value.classList.remove('d-none');
+        })
+    } else {
+        document.querySelectorAll(`.${value.classList[0]}`).forEach(Value => {
+            Value.classList.add('d-none');
+        })
+    }
+}
 }

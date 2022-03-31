@@ -541,4 +541,8 @@ th, td {
   text-align: center;
 }
 
+.d-none {
+  display: none;
+}
+
 /* END -- Admin Panel - Visu. Stock */

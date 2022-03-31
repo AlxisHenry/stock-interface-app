@@ -7,3 +7,4 @@
 # Ignore database & configuration files
 /src/php/configuration/database-connexion.php
 /src/php/configuration/sql/timken_test.sql
+/src/php/configuration/sql/imports/articles.sql
