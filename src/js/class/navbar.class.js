@@ -4,11 +4,13 @@ export class Navbar {
 
     constructor() {
         this.option = new URLSearchParams(window.location.search).get("nav");
+        this.AuthorizedPage = ['c-users' ,'c-article' , 'c-ccout', 'c-famille', 's-entry', 's-checkout', 'visu', 'alerts', 'settings', 'mvmt'];
     };
+
 
     InitializeNavbarSelection() {
 
-        if (!this.option) {
+        if (this.AuthorizedPage.indexOf(this.option) === -1) {
             location.replace('./dashboard.php?nav=mvmt');
         }
 

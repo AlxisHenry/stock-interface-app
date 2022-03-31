@@ -85,3 +85,30 @@ function GET_DATE(): string
 function CHANGE_ACCESS_BOOLEAN($value, $target) {
     return "UPDATE `Access` SET `status` = '$value' WHERE `username` = '$target'";
 }
+
+function SetTitle() {
+    switch ($_GET['nav']) {
+        case 'c-users':
+            return 'Configuration Utilisateurs - Timken';
+        case 'c-article':
+            return 'Configuration Articles - Timken';
+        case 'c-ccout':
+            return 'Configuration Centre de Coûts - Timken';
+        case 'c-famille':
+            return 'Configuration Familles - Timken';
+        case 's-entry':
+            return 'Entrée de stock - Timken';
+        case 's-checkout':
+            return 'Sortie de stock - Timken';
+        case 'visu':
+            return 'Visualiser le stock - Timken';
+        case 'alerts':
+            return 'Alertes de stock - Timken';
+        case 'settings':
+            return 'Paramètres - Timken';
+        case 'mvmt':
+            return 'Derniers mouvements - Timken';
+        default:
+            return 'Gestion de stock - Timken';
+    }
+}
