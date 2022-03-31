@@ -1,10 +1,15 @@
 /* ------------------------------------ *
  CSS main
  * ------------------------------------ */
-/* ================ DOM ==============*/
+
+/* GLOBAL */
+
 :root {
   --form-family: 'Bahnschrift';
   --nav-family: 'Bahnschrift';
+  --background-orange-dark: rgb(255,119,0,1);
+  --background-orange-mid: rgb(242,143,36,1);
+  --background-orange-light: rgb(255, 208, 125, 1);
 }
 
 html {
@@ -15,25 +20,29 @@ body {
   font-size: 80%;
   height: auto;
   width: auto;
-  background: rgb(255, 119, 0);
   background: linear-gradient(
     90deg,
-    rgba(255, 119, 0, 1) 0%,
-    rgba(242, 143, 36, 1) 40%,
-    rgba(255, 208, 125, 1) 85%
+    var(--background-orange-dark) 0%,
+    var(--background-orange-mid) 40%,
+    var(--background-orange-light) 85%
   );
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
 }
+
+/* Scrollbar */
 
 ::-webkit-scrollbar {
   width: 0;
 }
 
+/* END -- Scrollbar */
 
-/* ------------------------------------
-  Login page (redirect user to admin panel / demo)
+/* END -- GLOBAL */
+
+/* ----------  START  ---------------
+  Login page (redirect user to admin panel / visu)
   ------------------------------------ */
 
 /* Formulaire de connexion */
@@ -139,6 +148,7 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 /* END -- Formulaire de connexion */
+
 /* PopUp (=> générées dans popup.js) */
 
 .contain-send-message {
@@ -177,6 +187,7 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 /* END -- PopUp (=> générées dans popup.js) */
+
 /* Asset Name & Date */
 
 .about-user {
@@ -201,7 +212,85 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 /* END -- Asset Name & Date */
-/* Panel gestion de stock */
+
+/* ------------  END  -----------------
+  Login page (redirect user to admin panel / visu)
+  ------------------------------------ */
+
+/* ----------  START  ---------------
+  Admin panel
+  ------------------------------------ */
+
+/* Global */
+
+/* Section */
+
+.section {
+  margin-left: 260px;
+  width: 80%;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* END -- Section*/
+
+/* Switch button (turn On/Off) */
+
+.switch {
+  margin-left: 12px;
+  position: relative;
+  z-index: 0;
+  width: 60px;
+  height: 25px;
+  border: solid black 2px;
+  background-color: black;
+}
+
+.switch-indicator {
+  position: relative;
+  background-color: red;
+  margin-left: -2.5px;
+  margin-top: -2.4px;
+  width: 30px;
+  height: 30px;
+  z-index: 20;
+}
+
+.switch-indicator-transition-left {
+  animation: slice-left 0.6s;
+  animation-fill-mode: forwards;
+}
+
+.switch-indicator-transition-right {
+  animation: slice-right 0.6s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slice-left {
+    0% {
+      margin-left: 30.5px;
+      background-color: green;
+    } 100% {
+      background-color: red;
+      margin-left: -2.5px;
+    }
+}
+
+@keyframes slice-right {
+    0% {
+      margin-left: -2.5px;
+      background-color: red;
+    } 100% {
+      margin-left: 30.5px;
+      background-color: green;
+    }
+}
+
+/* END -- Switch button (turn On/Off) */
+
+/* Barre de navigation */
 
 .features-navigation {
   position: absolute;
@@ -311,6 +400,10 @@ label[for="form-id"], label[for="form-pass"] {
 
 /* END -- Active navigation */
 
+/* END -- Barre de navigation */
+
+/* Asset Name & Last Connexion Date */
+
 .contain-users-informations {
   position: absolute;
   top: 0;
@@ -357,17 +450,11 @@ label[for="form-id"], label[for="form-pass"] {
   }
 }
 
-/* END -- Panel gestion de stock */
-/* Settings page */
+/* END -- Asset Name & Last Connexion Date */
 
-.section {
-  margin-left: 260px;
-  width: 80%;
-  height: 100vh;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-}
+/* END -- Global */
+
+/* Admin Panel - Settings */
 
 .section .contain-settings-sections {
   width: 100%;
@@ -401,6 +488,7 @@ label[for="form-id"], label[for="form-pass"] {
 
 .section .contain-settings-sections .fl h1 .settings-hr {
 }
+
 .employee-access, .edit-password {
   margin-top: 30px;
   font-size: 16px;
@@ -411,59 +499,11 @@ label[for="form-id"], label[for="form-pass"] {
   align-items: center;
 }
 
-.switch-dashboard {
-  margin-left: 12px;
-  position: relative;
-  z-index: 0;
-  width: 60px;
-  height: 25px;
-  border: solid black 2px;
-  background-color: black;
-}
-
-.switch-indicator {
-  position: relative;
-  background-color: red;
-  margin-left: -2.5px;
-  margin-top: -2.4px;
-  width: 30px;
-  height: 30px;
-  z-index: 20;
-}
-
-.switch-indicator-transition-left {
-  animation: slice-left 0.6s;
-  animation-fill-mode: forwards;
-}
-.switch-indicator-transition-right {
-  animation: slice-right 0.6s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes slice-left {
-  0% {
-    margin-left: 30.5px;
-    background-color: green;
-  } 100% {
-    background-color: red;
-    margin-left: -2.5px;}
-}
-
-@keyframes slice-right {
-
-  0% {
-      margin-left: -2.5px;
-    background-color: red;
-  } 100% {
-      margin-left: 30.5px;
-  background-color: green;
-      }
-
-}
-
 .logs, .mail-alerts, .show-alerts, .seuil-alert, .show-users-info, .settings-theme, .configuration-onglet {
   margin-top: 30px;
   font-size: 16px;
   margin-left: 20px;
   font-family: var(--nav-family);
 }
+
+/* END -- Admin Panel - Settings */

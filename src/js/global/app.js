@@ -71,3 +71,8 @@ function SetPopupColor(type, color) {
     PopUp.style.border = `solid ${color}`;
 
 }
+
+export function RemoveLastColumn() {
+   const AllColumns = document.querySelectorAll('.row-values');
+   AllColumns[AllColumns.length -1].remove();
+}

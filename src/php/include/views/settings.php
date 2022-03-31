@@ -1,7 +1,5 @@
 <?php
 include '../templates/home.php';
-echo Title('Paramètres - Timken');
-
 ?>
 <section class="section">
     <div class="contain-settings-sections">
@@ -17,7 +15,7 @@ echo Title('Paramètres - Timken');
 
             <div class="employee-access">
                 Souhaitez vous activer l'accès au dashboard ?.
-                <div class="switch-dashboard">
+                <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
@@ -40,7 +38,7 @@ echo Title('Paramètres - Timken');
 
             <div class="employee-access">
                 Souhaitez vous activer l'accès au dashboard ?.
-                <div class="switch-dashboard">
+                <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
