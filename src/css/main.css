@@ -513,22 +513,26 @@ label[for="form-id"], label[for="form-pass"] {
 .visu-stock {
   display: flex;
   justify-content: center;
+  align-items: start;
   border-top: 2px solid;
-  align-items: flex-start;
 }
 
 .table-visu-stock {
-  margin-top: 100px;
+  margin-top: 180px;
   max-width: 100%;
   width: 80%;
   background-color: white;
   box-shadow: 0 5px 50px black;
   border: solid 1px midnightblue;
-  overflow: auto;
 }
 
 .column-title {
   font-size: 18px;
+}
+
+tbody {
+  overflow: auto;
+
 }
 
 th, td {
@@ -541,8 +545,23 @@ th, td {
   text-align: center;
 }
 
+.action {
+  font-size: 1.4em;
+  color: gray;
+}
+
 .d-none {
   display: none;
+}
+
+.searchbar {
+  margin-top: 115px;
+  background-color: black;
+}
+
+.search-articles {
+  border-radius: 5px;
+  height: 30px;
 }
 
 /* END -- Admin Panel - Visu. Stock */
