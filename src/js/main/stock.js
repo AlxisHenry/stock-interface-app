@@ -1,4 +1,4 @@
-import {RemoveLastColumn, ResponsiveColumns} from "../global/app.js";
+import { RemoveLastColumn, ResponsiveColumns } from "../global/app.js";
 import { StockActionClass } from "../class/stock-action.class.js";
 
 window.addEventListener('load', () => {
