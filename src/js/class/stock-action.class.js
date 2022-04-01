@@ -5,6 +5,7 @@ export class Stock {
     constructor() {
         this.ActionArticleValues = [];
         this.ParentElement = '';
+        this.Searchbar = document.querySelector('.searchbar');
     };
 
     InitializeStockTitles() {
@@ -86,7 +87,9 @@ export class Stock {
 
     ResponsiveColumns() {
 
+        /*
         const AllTableTitles = document.querySelectorAll('.column-title');
+        console.log(AllTableTitles);
 
         AllTableTitles.forEach(Title => {
             switch (Title.innerHTML) {
@@ -114,6 +117,7 @@ export class Stock {
         function RemoveColumns(value, step) {
             if(window.matchMedia("(max-width:"+ step +"px)").matches) {
                 document.querySelectorAll(`.${value.classList[0]}`).forEach(Value => {
+                    console.log(Value);
                     Value.classList.add('d-none');
                 })
             } else {
@@ -121,14 +125,27 @@ export class Stock {
                     Value.classList.remove('d-none');
                 })
             }
-        }
+        }*/
 
     }
 
     RemoveLastColumn() {
         const AllColumns = document.querySelectorAll('.row-values');
-        AllColumns[AllColumns.length -1].remove();
+        document.querySelector('.' + AllColumns[AllColumns.length - 1].classList[0]).remove();
     }
 
+    NewResearchRequest() {
+            $.ajax({
+                type: "POST",
+                url: `../../ajax/request-stock-research.php`,
+                data: { value: this.Searchbar.value},
+                success: function (server_response) {
+                    document.querySelector('.table-body').innerHTML = server_response;
+                },
+                error: function () {
+                    consoleLog("Une erreur est survenue durant la recherche dynamique (Ajax request failed).", 'e');
+                },
+            });
 
+    }
 }

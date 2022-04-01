@@ -1,10 +1,10 @@
 <?php include '../templates/home.php'; ?>
 
-<section class="section visu-stock">
+<div class="search-articles">
+    <input class="searchbar" placeholder="Rechercher un article..." type="text">
+</div>
 
-    <div class="searchbar d-none">
-               <input type="text" class="search-articles" placeholder="Rechercher un article.">
-    </div>
+<section class="section visu-stock">
 
     <table class="table-visu-stock">
 
@@ -47,9 +47,9 @@
                 echo "<td class='column-4 column-values'>".$STOCK['code']."</td>";
                 echo "<td class='column-5 column-values'>".$STOCK['localisation']."</td>";
                 echo "<td class='column-6 column-values'>".$STOCK['dateModification']."</td>";
-                echo "<td class='column-7 column-values action'><i title='Entrée de stock' class='fa-solid fa-boxes-stacked action entry'></i></td>";
-                echo "<td class='column-8 column-values action'><i title='Sortie de stock' class='fa-solid fa-dolly action checkout'></td>";
-                echo "<td class='column-9 column-values action'><i title='Editer' class='fa-solid fa-user-gear action edit'></i></td>";
+                echo "<td class='column-7 column-values action'><i title='' class='fa-solid fa-plus action entry'></i></td>";
+                echo "<td class='column-8 column-values action'><i title='' class='fa-solid fa-minus action checkout'></td>";
+                echo "<td class='column-9 column-values action'><i title='' class='fa-solid fa-pen-clip action edit'></i></td>";
                 echo "</tr>\n";
                 echo "<tr class='row-$i row-values'>";
                 $i++;
