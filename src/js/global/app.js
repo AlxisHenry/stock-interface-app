@@ -83,28 +83,34 @@ export function ResponsiveColumns() {
     AllTableTitles.forEach(Title => {
         switch (Title.innerHTML) {
             case 'Dernière modification':
-                RemoveColumns(Title);
+                RemoveColumns(Title, 1450);
                 break;
             case 'Commentaire':
-                RemoveColumns(Title);
+                RemoveColumns(Title, 1450);
                 break;
             case 'Numéro':
-                RemoveColumns(Title);
+                RemoveColumns(Title, 1450);
                 break;
             case 'Famille':
-                RemoveColumns(Title);
+                RemoveColumns(Title, 1450);
+                break;
+            case 'Code':
+                RemoveColumns(Title, 900);
+                break;
+            case 'Localisation':
+                RemoveColumns(Title, 900);
                 break;
         }
     })
 
-function RemoveColumns(value) {
-    if(window.matchMedia("(min-width:1450px)").matches) {
+function RemoveColumns(value, step) {
+    if(window.matchMedia("(max-width:"+ step +"px)").matches) {
         document.querySelectorAll(`.${value.classList[0]}`).forEach(Value => {
-            Value.classList.remove('d-none');
+            Value.classList.add('d-none');
         })
     } else {
         document.querySelectorAll(`.${value.classList[0]}`).forEach(Value => {
-            Value.classList.add('d-none');
+            Value.classList.remove('d-none');
         })
     }
 }
