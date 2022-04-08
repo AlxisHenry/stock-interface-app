@@ -25,17 +25,6 @@ switch ($TYPE) {
         }
         $DB_QUERY->closeCursor();
         break;
-    case 'edit-access':
-        $VALUE = $_POST['value'];
-        if ($VALUE === 'on') {
-            $VALUE = 1;
-        } else {
-            $VALUE = 0;
-        }
-        $DB_QUERY = Connection()->query(CHANGE_ACCESS_BOOLEAN($VALUE, $TARGET));
-        $DB_QUERY->closeCursor();
-        echo 'Requête terminée';
-        break;
     default:
         break;
 }

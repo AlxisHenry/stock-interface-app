@@ -1,15 +1,14 @@
-import { SwitchDashboardAccess } from "../class/switch-dashboard-access.class.js";
+import { Switch } from "../class/settings.class.js";
 
 window.addEventListener('load', () => {
 
-    new SwitchDashboardAccess().InitSwitchState();
+    document.querySelectorAll('.switch-indicator').forEach(SwitchStatus => {
+        SwitchStatus.addEventListener('click', (e) => {
 
-    document.querySelector('.switch-indicator').addEventListener('click', () => {
+            new Switch().SwitchState(e);
+            new Switch().SwitchAction(e);
 
-        new SwitchDashboardAccess().SwitchDashboardState()
-
-    })
-
-
+        });
+    });
 
 })

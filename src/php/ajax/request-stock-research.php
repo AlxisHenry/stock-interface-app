@@ -16,7 +16,8 @@ OR `articles`.dateModification LIKE '%$VALUE%';");
 $i = 0;
 
 while ($STOCK = $GET_STOCK->fetch()) {
-    echo "  <tr class='row-$i row-values'>
+    echo "
+            <tr class='row-$i row-values'>
             <td class='column-0 column-values'>".$STOCK['id']."</td>
             <td class='column-1 column-values'>".$STOCK['Famille']."</td>
             <td class='column-2 column-values'>".$STOCK['nom']."</td>
@@ -24,9 +25,9 @@ while ($STOCK = $GET_STOCK->fetch()) {
             <td class='column-4 column-values'>".$STOCK['code']."</td>
             <td class='column-5 column-values'>".$STOCK['localisation']."</td>
             <td class='column-6 column-values'>".$STOCK['dateModification']."</td>
-            <td class='column-7 column-values action'><i title='Entrée de stock pour ".$STOCK['nom']."' class='fa-solid fa-plus action entry'></i></td>
-            <td class='column-8 column-values action'><i title='Sortie de stocc pour ".$STOCK['nom']."' class='fa-solid fa-minus action checkout'></td>
-            <td class='column-9 column-values action'><i title='Editer ".$STOCK['nom']."' class='fa-solid fa-pen-clip action edit'></i></td>
+            <td class='column-7 column-values action'><a class='redirect-entry' href='./stock_in.php?nav=s-entry&id=".$STOCK['id']."'><i title='Entrée de stock pour ".$STOCK['nom']."' class='fa-solid fa-plus action entry'></i></a></td>
+            <td class='column-8 column-values action'><a class='redirect-out' href='./stock_in.php?nav=s-checkout&id=".$STOCK['id']."'><i title='Sortie de stocc pour ".$STOCK['nom']."' class='fa-solid fa-minus action checkout'></a></td>
+            <td class='column-9 column-values action'><a class='redirect-edit' href='./stock_in.php?nav=c-article&id=".$STOCK['id']."'><i title='Editer ".$STOCK['nom']."' class='fa-solid fa-pen-clip action edit'></i></a></td>
             </tr>\n</tr><tr class='row-". ($i + 1) . " row-values'>";
             $i = $i + 2;
 }

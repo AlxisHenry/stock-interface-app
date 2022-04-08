@@ -1,4 +1,4 @@
-import { Stock } from "../class/stock-action.class.js";
+import { Stock } from "../class/stock.class.js";
 
 window.addEventListener('load', () => {
 

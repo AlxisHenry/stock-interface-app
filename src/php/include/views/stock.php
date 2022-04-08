@@ -1,7 +1,7 @@
 <?php include '../templates/home.php'; ?>
 
 <div class="search-articles">
-    <input class="searchbar" placeholder="Rechercher un article..." type="text">
+    <input class="searchbar" placeholder=" Rechercher un article..." type="text">
 </div>
 
 <section class="section visu-stock">

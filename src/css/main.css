@@ -501,7 +501,7 @@ label[for="form-id"], label[for="form-pass"] {
 .section .contain-settings-sections .fl h1 .settings-hr {
 }
 
-.employee-access, .edit-password {
+.contain-switch {
   margin-top: 30px;
   font-size: 16px;
   margin-left: 20px;
@@ -511,7 +511,7 @@ label[for="form-id"], label[for="form-pass"] {
   align-items: center;
 }
 
-.logs, .mail-alerts, .show-alerts, .seuil-alert, .show-users-info, .settings-theme, .configuration-onglet {
+.contain-settings {
   margin-top: 30px;
   font-size: 16px;
   margin-left: 20px;
@@ -531,8 +531,8 @@ label[for="form-id"], label[for="form-pass"] {
 
 .table-visu-stock {
   margin-top: 140px;
-  max-width: 100%;
-  width: 80%;
+  max-width: 80%;
+  width: 90%;
   background-color: white;
   box-shadow: 0 5px 50px black;
   border: solid 1px midnightblue;
@@ -576,6 +576,9 @@ th, td {
   top: 14px;
   left: 380px;
   z-index: 99;
+}
+table tr:nth-child(odd){
+ border: outset;
 }
 
 .searchbar {

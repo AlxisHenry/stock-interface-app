@@ -1,4 +1,4 @@
-import { UserAction } from "../class/user-action.class.js";
+import { UserAction } from "../class/users.class.js";
 import { popUp } from "../global/app.js";
 
 window.addEventListener('load', () =>  {

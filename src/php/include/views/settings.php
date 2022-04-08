@@ -9,19 +9,23 @@ include '../templates/home.php';
 
             <hr class="settings-hr">
 
-            <div class="edit-password">
-                Modifier le mot de passe du compte employé :
+            <div class="employee-password contain-settings">
+                Changer le mot de passe du compte Employé :
+                <input class="reset-employee-password">
             </div>
 
-            <div class="employee-access">
-                Souhaitez vous activer l'accès au dashboard ?.
+            <div class="employee-access contain-switch">
+                Souhaitez vous activer l'accès au dashboard ?
                 <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
 
-            <div class="logs">
+            <div class="employee-logs contain-switch">
                 Souhaitez vous activer les logs de connexion ?
+                <div class="switch">
+                    <div class="switch-indicator"></div>
+                </div>
             </div>
 
         </div>
@@ -32,20 +36,23 @@ include '../templates/home.php';
 
             <hr class="settings-hr">
 
-            <div class="edit-password">
-                Modifier le mot de passe du compte administrateur :
+            <div class="admin-password contain-settings">
+                Changer le mot de passe du compte Administrateur :
+                <input class="reset-admin-password">
             </div>
 
-            <div class="employee-access">
+            <div class="admin-access contain-switch">
                 Souhaitez vous activer l'accès au dashboard ?.
                 <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
 
-
-            <div class="logs">
+            <div class="admin-logs contain-switch">
                 Souhaitez vous activer les logs de connexion ?
+                <div class="switch">
+                    <div class="switch-indicator"></div>
+                </div>
             </div>
 
         </div>
@@ -56,40 +63,53 @@ include '../templates/home.php';
 
             <hr class="settings-hr">
 
-            <div class="show-users-info">
+            <div class="website-info contain-switch">
                 Souhaitez-vous afficher la barre d'informations ?
+                <div class="switch">
+                    <div class="switch-indicator"></div>
+                </div>
             </div>
 
-            <div class="configuration-onglet">
+            <div class="website-configs contain-switch">
                 Souhaitez-vous voir les onglets de configuration ?
+                <div class="switch">
+                    <div class="switch-indicator"></div>
+                </div>
             </div>
 
-            <div class="settings-theme">
+            <div class="website-theme contain-settings">
                 Quel thème souhaitez-vous utiliser ?
+
             </div>
 
         </div>
 
-        <div class="fl alert-section">
+        <div class="fl alerts-section">
 
             <h1>Paramètres : Notifications.</h1>
 
             <hr class="settings-hr">
 
-            <div class="mail-alerts">
+            <div class="alerts-mail contain-switch">
                 Souhaitez-vous recevoir les alertes par mail ?
+                <div class="switch">
+                    <div class="switch-indicator"></div>
+                </div>
             </div>
 
-            <div class="show-alerts">
+            <div class="alerts-indicator contain-switch">
                 Souhaitez-vous afficher les alertes dans le menu ?
+                <div class="switch">
+                    <div class="switch-indicator"></div>
+                </div>
             </div>
 
-            <div class="seuil-alert">
+            <div class="alerts-minimal contain-settings">
                 Modifier le seuil avant alerte :
+                <input class="change-count-alert">
             </div>
 
         </div>
-
     </div>
 </section>
 
