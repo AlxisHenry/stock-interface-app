@@ -51,42 +51,62 @@ export class Stock {
 
     ActionEntry(e) {
 
-        this.ActionArticleValues = [];
+        this.ActionArticleValues = ['entry'];
         this.ParentElement = e.target.parentNode.parentNode;
         for (let Element = 0; Element < this.ParentElement.childNodes.length; Element++) {
             this.ActionArticleValues.push(this.ParentElement.childNodes[Element].innerText);
         }
 
-        console.table(this.ActionArticleValues);
+        this.RedirectAction(this.ActionArticleValues);
 
     }
 
     ActionCheckout(e) {
 
-        this.ActionArticleValues = [];
+        this.ActionArticleValues = ['out'];
         this.ParentElement = e.target.parentNode.parentNode;
         for (let Element = 0; Element < this.ParentElement.childNodes.length; Element++) {
             this.ActionArticleValues.push(this.ParentElement.childNodes[Element].innerText);
         }
 
-        console.table(this.ActionArticleValues);
+        this.RedirectAction(this.ActionArticleValues);
 
     }
 
     ActionEdit(e) {
 
-        this.ActionArticleValues = [];
+        this.ActionArticleValues = ['edit'];
         this.ParentElement = e.target.parentNode.parentNode;
         for (let Element = 0; Element < this.ParentElement.childNodes.length; Element++) {
             this.ActionArticleValues.push(this.ParentElement.childNodes[Element].innerText);
         }
 
-        console.table(this.ActionArticleValues);
+        this.RedirectAction(this.ActionArticleValues);
 
     }
 
-    ResponsiveColumns() {
+    RedirectAction(article) {
 
+        consoleLog("L'utilisateur va être redirigé vers la page demandée.",'s')
+
+        console.table(article);
+
+        setTimeout(() => {
+               switch (article[0]) {
+                   case 'entry':
+                       document.location.href = `./stock_in.php?nav=s-entry&id=${article[1]}`;
+                       break;
+                   case 'out':
+                       document.location.href = `./stock_out.php?nav=s-checkout&id=${article[1]}`;
+                       break;
+                   case 'edit':
+                       document.location.href = `./configs.php?nav=c-article&id=${article[1]}`;
+                       break;
+               }
+           }, 525)
+    };
+
+    ResponsiveColumns() {
         /*
         const AllTableTitles = document.querySelectorAll('.column-title');
         console.log(AllTableTitles);
@@ -126,7 +146,6 @@ export class Stock {
                 })
             }
         }*/
-
     }
 
     RemoveLastColumn() {
@@ -146,6 +165,5 @@ export class Stock {
                     consoleLog("Une erreur est survenue durant la recherche dynamique (Ajax request failed).", 'e');
                 },
             });
-
     }
 }
