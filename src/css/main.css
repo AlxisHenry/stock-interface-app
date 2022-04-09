@@ -20,15 +20,15 @@ body {
   font-size: 80%;
   height: auto;
   width: auto;
-  background: linear-gradient(
-    90deg,
-    var(--background-orange-dark) 0%,
-    var(--background-orange-mid) 40%,
-    var(--background-orange-light) 85%
-  );
   margin: 0;
   padding: 0;
   overflow: hidden;
+  background: linear-gradient(
+          90deg,
+          var(--background-orange-dark) 0%,
+          var(--background-orange-mid) 40%,
+          var(--background-orange-light) 85%
+  );
 }
 
 /* Scrollbar */
@@ -157,7 +157,11 @@ label[for="form-id"], label[for="form-pass"] {
   justify-content: center;
   margin-top: 30px;
   align-items: center;
-}
+  position: absolute;
+  background-color: transparent;
+  z-index: 99;
+  top: 0%; left: 50%;
+  transform: translate(-50%, -50%);}
 
 .fa-pop-up {
   margin-right: 10px;
@@ -174,15 +178,29 @@ label[for="form-id"], label[for="form-pass"] {
   display: flex;
   vertical-align: middle;
   align-items: center;
-  animation: bumpPopUp 0.6s;
+  animation: bump 0.6s;
 }
 
-@keyframes bumpPopUp {
+.reverseBump {
+  animation: reverseBump 1.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bump {
   0% {
     margin-top: -200%;
   }
   100% {
     margin-top: 0;
+  }
+}
+
+@keyframes reverseBump {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -200%;
   }
 }
 
@@ -299,15 +317,15 @@ label[for="form-id"], label[for="form-pass"] {
     0% {
       margin-left: 28px;
     } 100% {
-      margin-left: 2.5px;
+      margin-left: 2px;
     }
 }
 
 @keyframes slice-right {
     0% {
-      margin-left: 2.5px;
+      margin-left: 2px;
     } 100% {
-      margin-left: 28px;
+      margin-left: 30px;
     }
 }
 

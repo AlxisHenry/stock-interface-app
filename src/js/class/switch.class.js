@@ -51,9 +51,11 @@ export class Switch {
         if (e.target.classList.contains(this.ToLeft)) {
             this.SwitchToOn(e);
             this.SwitchAction(e, 'up');
+            popUp('success')
         } else if (e.target.classList.contains(this.ToRight)) {
             this.SwitchToOff(e);
             this.SwitchAction(e, 'down');
+            popUp('success')
         }
     }
 

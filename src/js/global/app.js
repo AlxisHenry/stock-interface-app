@@ -51,6 +51,11 @@ export function popUp(type) {
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup authorization\"><i class=\"fa-regular fa-pop-up fa-square-check\"></i>Redirection en cours !</div>\n");
             SetPopupColor('s', 'rgb(80, 221, 255)');
             break;
+        case 'success':
+            containMessage.innerHTML = '';
+            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup success\"><i class=\"fa-regular fa-pop-up fa-square-check\"></i>Changement effectué avec succès !</div>\n");
+            SetPopupColor('s', 'rgb(80, 221, 255)');
+            break;
         case 'clean':
             containMessage.innerHTML = '';
             break;
@@ -61,6 +66,15 @@ export function popUp(type) {
             consoleLog('Default case of Popup function', 'e');
             break;
     }
+
+    setTimeout( () => {
+
+        containMessage.classList.add('reverseBump');
+
+        setTimeout( () => {  containMessage.innerHTML = ''; }, 1200)
+
+    }, 2225);
+
 }
 
 function SetPopupColor(type, color) {
