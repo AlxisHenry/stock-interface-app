@@ -1,4 +1,4 @@
-import { Switch } from "../class/settings.class.js";
+import { Switch } from "../class/switch.class.js";
 
 window.addEventListener('load', () => {
 

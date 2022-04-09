@@ -5,6 +5,8 @@ export class Switch {
     constructor() {
         this.ToLeft = 'switch-indicator-transition-left';
         this.ToRight = 'switch-indicator-transition-right';
+        this._Left = 'switch-transition-left';
+        this._Right = 'switch-transition-right';
     }
 
     InitState() {
@@ -13,7 +15,6 @@ export class Switch {
             url: `../../ajax/init-switch-state.php`,
             data: { method: 'init'},
             success: function (server_response) {
-                console.table( JSON.parse(server_response) );
 
                 const States = JSON.parse(server_response);
 
@@ -24,9 +25,13 @@ export class Switch {
                     if (Element.classList.contains('contain-switch')) {
                         const Children = Element.children[0].children[0].classList;
                         if (el['state'] === 1) {
+                            Element.children[0].classList.remove('switch-transition-left');
+                            Element.children[0].classList.add('switch-transition-right');
                             Children.remove('switch-indicator-transition-left');
                             Children.add('switch-indicator-transition-right');
                         } else {
+                            Element.children[0].classList.remove('switch-transition-right');
+                            Element.children[0].classList.add('switch-transition-left');
                             Children.remove('switch-indicator-transition-right');
                             Children.add('switch-indicator-transition-left');
                         }
@@ -55,11 +60,15 @@ export class Switch {
     SwitchToOn(e) {
         e.target.classList.remove(this.ToLeft);
         e.target.classList.add(this.ToRight);
+        e.target.parentNode.classList.remove(this._Left);
+        e.target.parentNode.classList.add(this._Right);
     }
 
     SwitchToOff(e) {
         e.target.classList.remove(this.ToRight);
         e.target.classList.add(this.ToLeft);
+        e.target.parentNode.classList.remove(this._Right);
+        e.target.parentNode.classList.add(this._Left);
     }
 
     SwitchAction(e, turn) {
@@ -72,7 +81,7 @@ export class Switch {
             url: `../../ajax/request-switch-state.php`,
             data: { element: action, turn: turn},
             success: function (server_response) {
-                consoleLog('Changement réussi. Element : ' + server_response, 's');
+                consoleLog('Mise à jour effectuée.', 's');
             },
             error: function () {
                 consoleLog("Une erreur est survenue lors du changement d'état " +  action + " (Ajax request failed).", 'e');

@@ -1,4 +1,4 @@
-import { UserAction } from "../class/users.class.js";
+import { Users } from "../class/users.class.js";
 import { popUp } from "../global/app.js";
 
 window.addEventListener('load', () =>  {
@@ -6,7 +6,7 @@ window.addEventListener('load', () =>  {
     popUp('clean');
 
     document.querySelector(".submit-admin-panel").addEventListener('click', () => {
-        setTimeout(() => { new UserAction().VerifyUsersPermissions(); }, 75);
+        setTimeout(() => { new Users().VerifyUsersPermissions(); }, 75);
         // Manage admin request
     });
 
@@ -25,7 +25,7 @@ window.addEventListener('load', () =>  {
     })
 
     document.querySelector(".redirect-dashboard-user").addEventListener("click", () => {
-        new UserAction().EmployeeViewAccess();
+        new Users().EmployeeViewAccess();
         // Manage employee request
     });
 

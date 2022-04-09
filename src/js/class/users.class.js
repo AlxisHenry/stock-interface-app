@@ -1,6 +1,6 @@
 import { consoleLog, popUp } from "../global/app.js";
 
-export class UserAction {
+export class Users {
   constructor() {
     this.form = {
       id: document.querySelector("#form-id"),
