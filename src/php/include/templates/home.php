@@ -3,12 +3,12 @@ include '../../functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="FR">
+
 <head>
     <?php include '../component/header.php';?>
 </head>
-<body>
 
-<!-- todo Requête vérifiant l'état du switch pour l'affichage des onglets configuration -->
+<body>
 
     <main class="features-navigation">
         <?php include '../component/navbar.php'; ?>
@@ -16,16 +16,6 @@ include '../../functions.php';
 
     <div class="contain-send-message"></div>
 
-<!-- todo Requête vérifiant l'état du switch pour l'affichage des informations -->
-
-<?php
-
-    if(CHECK_SETTINGS_STATE('website-info')[0][0]) {
-
-        include '../component/informations.php';
-
-    }
-
-?>
+<?php if(CHECK_SETTINGS_STATE('website-info')[0][0]) { include '../component/informations.php'; } ?>
 
 
