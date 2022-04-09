@@ -69,11 +69,12 @@ export function popUp(type) {
 
     setTimeout( () => {
 
+        containMessage.classList.remove('reverseBump');
         containMessage.classList.add('reverseBump');
 
-        setTimeout( () => {  containMessage.innerHTML = ''; }, 1200)
+        setTimeout( () => {  containMessage.innerHTML = ''; containMessage.classList.remove('reverseBump'); }, 400)
 
-    }, 2225);
+    }, 1000);
 
 }
 

@@ -270,11 +270,28 @@ label[for="form-id"], label[for="form-pass"] {
 .switch-indicator {
   background-color: white;
   position: relative;
-  margin-top: 1px;
   width: 28px;
   height: 28px;
+  border: inset 1px white;
   z-index: 20;
   border-radius: 50%;
+}
+
+.switch-indicator-init-left {
+  margin-left: 2px;
+}
+
+.switch-indicator-init-right {
+  margin-left: 29px;
+  border: inset 1px #bcbcff;
+}
+
+.switch-init-left {
+  background-color: gray;
+}
+
+.switch-init-right {
+  background-color: lightgreen;
 }
 
 .switch-indicator-transition-left {
@@ -315,7 +332,7 @@ label[for="form-id"], label[for="form-pass"] {
 
 @keyframes slice-left {
     0% {
-      margin-left: 28px;
+      margin-left: 29px;
     } 100% {
       margin-left: 2px;
     }
@@ -325,7 +342,8 @@ label[for="form-id"], label[for="form-pass"] {
     0% {
       margin-left: 2px;
     } 100% {
-      margin-left: 30px;
+      margin-left: 29px;
+      border: inset 1px #bcbcff;
     }
 }
 
