@@ -112,3 +112,10 @@ function SetTitle() {
             return 'Gestion de stock - Timken';
     }
 }
+
+function CHECK_SETTINGS_STATE($features)
+{
+
+    return (Connection()->query("SELECT `state` FROM `front` WHERE `nom` LIKE '%$features%'"))->fetchAll();
+
+}

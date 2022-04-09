@@ -36,7 +36,17 @@ export class Switch {
                             Children.add('switch-indicator-transition-left');
                         }
                     }
-
+                  /*  if (el['state'] === 1) {
+                        Element.children[0].classList.remove('switch-init-left');
+                        Element.children[0].classList.add('switch-init-right');
+                        Children.remove('switch-indicator-transition-left');
+                        Children.add('switch-indicator-init-right');
+                    } else {
+                        Element.children[0].classList.remove('switch-init-right');
+                        Element.children[0].classList.add('switch-init-left');
+                        Children.remove('switch-indicator-init-right');
+                        Children.add('switch-indicator-init-left');
+                    }*/
                    Element.title = 'Dernière modification le ' + el['modification'];
 
                 });

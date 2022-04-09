@@ -18,6 +18,14 @@ include '../../functions.php';
 
 <!-- todo Requête vérifiant l'état du switch pour l'affichage des informations -->
 
-    <div class="contain-users-informations">
-        <?php include '../component/informations.php'; ?>
-    </div>
+<?php
+
+    if(CHECK_SETTINGS_STATE('website-info')[0][0]) {
+
+        include '../component/informations.php';
+
+    }
+
+?>
+
+
