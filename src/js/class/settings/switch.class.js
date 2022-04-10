@@ -1,4 +1,4 @@
-import {consoleLog, popUp} from "../global/app.js";
+import {consoleLog, popUp} from "../../global/app.js";
 
 export class Switch {
 
@@ -59,29 +59,49 @@ export class Switch {
     }
 
     SwitchState(e) {
-        if (e.target.classList.contains(this.ToLeft)) {
-            this.SwitchToOn(e);
-            this.SwitchAction(e, 'up');
-            popUp('success')
-        } else if (e.target.classList.contains(this.ToRight)) {
-            this.SwitchToOff(e);
-            this.SwitchAction(e, 'down');
-            popUp('success')
+
+        if ((e.target.classList.contains(this.ToLeft)) || (e.target.classList.contains(this.ToRight))) {
+
+            console.log(e.target);
+
+            if (e.target.classList.contains(this.ToLeft)) {
+
+                e.target.classList.remove(this.ToLeft);
+                e.target.parentNode.classList.remove(this._Left);
+                e.target.classList.add(this.ToRight);
+                e.target.parentNode.classList.add(this._Right);
+
+            } else {
+
+                e.target.classList.remove(this.ToRight);
+                e.target.parentNode.classList.remove(this._Right);
+                e.target.classList.add(this.ToLeft);
+                e.target.parentNode.classList.add(this._Left);
+
+            }
+
+        } else if ((e.target.classList.contains(this._Left)) || (e.target.classList.contains(this._Right))) {
+
+            console.log(e.target.children);
+
+            if (e.target.classList.contains(this._Left)) {
+
+                e.target.classList.remove(this._Left);
+                e.target.children[0].classList.remove(this.ToLeft);
+                e.target.classList.add(this._Right);
+                e.target.children[0].classList.add(this.ToRight);
+
+            } else {
+
+                e.target.classList.remove(this._Right);
+                e.target.children[0].classList.remove(this.ToRight);
+                e.target.classList.add(this._Left);
+                e.target.children[0].classList.add(this.ToLeft);
+
+            }
+
         }
-    }
 
-    SwitchToOn(e) {
-        e.target.classList.remove(this.ToLeft);
-        e.target.classList.add(this.ToRight);
-        e.target.parentNode.classList.remove(this._Left);
-        e.target.parentNode.classList.add(this._Right);
-    }
-
-    SwitchToOff(e) {
-        e.target.classList.remove(this.ToRight);
-        e.target.classList.add(this.ToLeft);
-        e.target.parentNode.classList.remove(this._Right);
-        e.target.parentNode.classList.add(this._Left);
     }
 
     SwitchAction(e, turn) {

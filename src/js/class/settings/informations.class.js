@@ -6,7 +6,7 @@ export class Informations extends Switch {
         super();
     }
 
-    Informations() {
+    Toggle() {
 
             if (document.querySelector('.contain-users-informations')) {
                 this.RemoveInformations();

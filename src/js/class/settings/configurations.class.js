@@ -6,7 +6,7 @@ export class Configurations extends Switch {
         super();
     }
 
-    Configurations() {
+    Toggle() {
 
         if (document.querySelector('.contain-features .configuration')) {
             this.RemoveConfigurations();
