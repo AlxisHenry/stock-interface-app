@@ -11,6 +11,8 @@
         <thead class="table-header">
 
             <?php
+// TODO : Optimiser le chargement du stock. Temps de chargement un peu long...
+
             $FIELD = array('Numéro', 'Famille', 'Nom', 'Commentaire', 'Code', 'Localisation', 'Dernière modification');
             $i = 0;
 

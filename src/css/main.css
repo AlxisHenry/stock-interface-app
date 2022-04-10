@@ -399,6 +399,7 @@ label[for="form-id"], label[for="form-pass"] {
 
 .contain-features {
   width: 100%;
+  height: 544px;
 }
 
 .features {
@@ -422,6 +423,9 @@ label[for="form-id"], label[for="form-pass"] {
   width: 100%;
   height: 1px;
   color: black;
+}
+
+.nav-separator {
 }
 
 .alert-indication {
