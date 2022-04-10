@@ -10,6 +10,7 @@ export class Switch {
     }
 
     InitState() {
+        // TODO : Ajout d'une popup d'erreur.
         $.ajax({
             type: "GET",
             url: `../../ajax/init-switch-state.php`,

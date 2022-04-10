@@ -21,7 +21,7 @@ export class Informations extends Switch {
     }
 
     ShowInformations() {
-
+     // TODO : Ajout d'une popup d'erreur.
         $.ajax({
             type: "GET",
             url: `../../ajax/init-asset-date.php`,
@@ -33,13 +33,13 @@ export class Informations extends Switch {
                 const ElementBefore = document.querySelector('.contain-send-message');
 
                 const ThisElement = `<div class='contain-users-informations'>
-                            <div class="host">
-                                <span class="hostname">Vous êtes connecté sur <span class="hostl">${Informations.asset}</span>.</span>
-                            </div>
-                            <div class="date">
-                                <span class="time">Dernière connexion il y a <span class="timel">${Informations.date}</span>.</span>
-                            </div>
-                        </div>`
+                                        <div class="host">
+                                            <span class="hostname">Vous êtes connecté sur <span class="hostl">${Informations.asset}</span>.</span>
+                                        </div>
+                                        <div class="date">
+                                            <span class="time">Dernière connexion il y a <span class="timel">${Informations.date}</span>.</span>
+                                        </div>
+                                    </div>`
 
                 ElementBefore.insertAdjacentHTML('afterend', ThisElement);
 

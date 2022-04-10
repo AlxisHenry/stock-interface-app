@@ -1,5 +1,6 @@
 import { Switch } from "../class/switch.class.js";
 import { Informations } from "../class/informations.class.js";
+import { Configurations } from "../class/configurations.class.js";
 
 window.addEventListener('load', () => {
 
@@ -16,6 +17,12 @@ window.addEventListener('load', () => {
     document.querySelector('.website-info .switch .switch-indicator').addEventListener('click', () => {
 
         new Informations().Informations();
+
+    })
+
+    document.querySelector('.website-configs .switch .switch-indicator').addEventListener('click', () => {
+
+        new Configurations().Configurations();
 
     })
 
