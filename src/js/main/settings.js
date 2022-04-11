@@ -1,42 +1,45 @@
 import { Switch } from "../class/settings/switch.class.js";
 import { Informations } from "../class/settings/informations.class.js";
 import { Configurations } from "../class/settings/configurations.class.js";
+import { Themes } from "../class/settings/themes.class.js";
+import { Alerts } from "../class/settings/alerts.class.js";
 
 window.addEventListener('load', () => {
-
-    // TODO : Dans la table créer un compteur pour chaque fonctionnalités. L'update à chaque fois. Cela permettra d'avoir un aperçu de l'utilisation des fonctionnalités.
-
+    
     new Switch().InitState();
+
+    // Cet event va modifier les données dans la base de données.
 
     document.querySelectorAll('.switch').forEach(SwitchStatus => {
         SwitchStatus.addEventListener('click', (e) => {
-
             new Switch().SwitchState(e);
 
         })
     })
 
-    document.querySelector('.website-info .switch .switch-indicator').addEventListener('click', () => {
+    // Ces events appliquent les modifications visuellement.
 
-        new Informations().Toggle();
+    document.querySelector('.website-info .switch').addEventListener('click', () => {
 
-    })
-
-    document.querySelector('.website-configs .switch .switch-indicator').addEventListener('click', () => {
-
-        new Configurations().Toggle();
+            new Informations().Toggle();
 
     })
 
-    document.querySelector('.website-theme').addEventListener('click', () => {
+    document.querySelector('.website-configs .switch').addEventListener('click', () => {
 
-        // new Themes().Toggle();
+            new Configurations().Toggle();
 
     })
 
-    document.querySelector('.alerts-indicator .switch .switch-indicator').addEventListener('click', () => {
+    //document.querySelector('.website-theme .switch').addEventListener('click', () => {
 
-        // new Alerts().Toggle();
+      //       new Themes().Toggle();
+
+    //})
+
+    document.querySelector('.alerts-indicator .switch').addEventListener('click', () => {
+
+             new Alerts().Toggle();
 
     })
 

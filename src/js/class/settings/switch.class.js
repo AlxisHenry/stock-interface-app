@@ -10,7 +10,6 @@ export class Switch {
     }
 
     InitState() {
-        // TODO : Ajout d'une popup d'erreur.
         $.ajax({
             type: "GET",
             url: `../../ajax/init-switch-state.php`,
@@ -25,35 +24,29 @@ export class Switch {
 
                     if (Element.classList.contains('contain-switch')) {
                         const Children = Element.children[0].children[0].classList;
+
                         if (el['state'] === 1) {
-                            Element.children[0].classList.remove('switch-transition-left');
-                            Element.children[0].classList.add('switch-transition-right');
-                            Children.remove('switch-indicator-transition-left');
-                            Children.add('switch-indicator-transition-right');
+                                   Element.children[0].classList.remove('switch-transition-left');
+                                   Element.children[0].classList.add('switch-transition-right');
+                                   Children.remove('switch-indicator-transition-left');
+                                   Children.add('switch-indicator-transition-right');
                         } else {
-                            Element.children[0].classList.remove('switch-transition-right');
-                            Element.children[0].classList.add('switch-transition-left');
-                            Children.remove('switch-indicator-transition-right');
-                            Children.add('switch-indicator-transition-left');
+                                   Element.children[0].classList.remove('switch-transition-right');
+                                   Element.children[0].classList.add('switch-transition-left');
+                                   Children.remove('switch-indicator-transition-right');
+                                   Children.add('switch-indicator-transition-left');
                         }
                     }
-                  /*  if (el['state'] === 1) {
-                        Element.children[0].classList.remove('switch-init-left');
-                        Element.children[0].classList.add('switch-init-right');
-                        Children.remove('switch-indicator-transition-left');
-                        Children.add('switch-indicator-init-right');
-                    } else {
-                        Element.children[0].classList.remove('switch-init-right');
-                        Element.children[0].classList.add('switch-init-left');
-                        Children.remove('switch-indicator-init-right');
-                        Children.add('switch-indicator-init-left');
-                    }*/
+
                    Element.title = 'Dernière modification le ' + el['modification'];
 
                 });
 
             },
             error: function () {
+
+                popUp('contact-admin');
+
             },
         });
     }
@@ -62,14 +55,13 @@ export class Switch {
 
         if ((e.target.classList.contains(this.ToLeft)) || (e.target.classList.contains(this.ToRight))) {
 
-            console.log(e.target);
-
             if (e.target.classList.contains(this.ToLeft)) {
 
                 e.target.classList.remove(this.ToLeft);
                 e.target.parentNode.classList.remove(this._Left);
                 e.target.classList.add(this.ToRight);
                 e.target.parentNode.classList.add(this._Right);
+                this.SwitchAction(e.target.parentNode.parentNode, 'up')
 
             } else {
 
@@ -77,12 +69,10 @@ export class Switch {
                 e.target.parentNode.classList.remove(this._Right);
                 e.target.classList.add(this.ToLeft);
                 e.target.parentNode.classList.add(this._Left);
-
+                this.SwitchAction(e.target.parentNode.parentNode, 'down')
             }
 
         } else if ((e.target.classList.contains(this._Left)) || (e.target.classList.contains(this._Right))) {
-
-            console.log(e.target.children);
 
             if (e.target.classList.contains(this._Left)) {
 
@@ -90,6 +80,7 @@ export class Switch {
                 e.target.children[0].classList.remove(this.ToLeft);
                 e.target.classList.add(this._Right);
                 e.target.children[0].classList.add(this.ToRight);
+                this.SwitchAction(e.target.parentNode, 'up')
 
             } else {
 
@@ -97,15 +88,19 @@ export class Switch {
                 e.target.children[0].classList.remove(this.ToRight);
                 e.target.classList.add(this._Left);
                 e.target.children[0].classList.add(this.ToLeft);
+                this.SwitchAction(e.target.parentNode, 'down')
 
             }
 
+        } else {
+            e.preventDefault();
         }
 
     }
 
-    SwitchAction(e, turn) {
-        this.SwitchActionRequest(e.target.parentNode.parentNode.classList[0], turn);
+    SwitchAction(parent, turn) {
+        this.SwitchActionRequest(parent.classList[0], turn);
+        popUp('success');
     }
 
     SwitchActionRequest(action, turn) {
@@ -118,6 +113,7 @@ export class Switch {
             },
             error: function () {
                 consoleLog("Une erreur est survenue lors du changement d'état " +  action + " (Ajax request failed).", 'e');
+                popUp('contact-admin');
             },
         });
     }

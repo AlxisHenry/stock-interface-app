@@ -8,14 +8,16 @@ export class Configurations extends Switch {
 
     Toggle() {
 
-        if (document.querySelector('.contain-features .configuration')) {
-            this.RemoveConfigurations();
-        } else {
-            try {
+        setTimeout(() => {
+            if (document.querySelector('.contain-features .configuration')) {
                 this.RemoveConfigurations();
-            } catch (e) {}
-            this.ShowConfigurations();
-        }
+            } else {
+                try {
+                    this.RemoveConfigurations();
+                } catch (e) {}
+                this.ShowConfigurations();
+            }
+        }, 125);
 
     }
 

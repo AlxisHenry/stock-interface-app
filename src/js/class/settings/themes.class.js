@@ -6,6 +6,8 @@ export class Themes extends Switch {
         super();
     }
 
+    Toggle() {
 
+    }
 
 }

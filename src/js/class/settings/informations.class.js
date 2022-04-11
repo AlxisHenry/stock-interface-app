@@ -1,4 +1,5 @@
 import {Switch} from "./switch.class.js";
+import {popUp} from "../../global/app.js";
 
 export class Informations extends Switch {
 
@@ -8,6 +9,7 @@ export class Informations extends Switch {
 
     Toggle() {
 
+        setTimeout(() => {
             if (document.querySelector('.contain-users-informations')) {
                 this.RemoveInformations();
             } else {
@@ -17,11 +19,11 @@ export class Informations extends Switch {
                 }
                 this.ShowInformations();
             }
+        }, 125)
 
     }
 
     ShowInformations() {
-     // TODO : Ajout d'une popup d'erreur.
         $.ajax({
             type: "GET",
             url: `../../ajax/init-asset-date.php`,
@@ -45,6 +47,7 @@ export class Informations extends Switch {
 
             },
             error: function () {
+                popUp('contact-admin');
             },
         });
     }
