@@ -445,6 +445,25 @@ label[for="form-id"], label[for="form-pass"] {
   font-family: var(--nav-family);
 }
 
+.contain-settings input {
+  padding: 5px;
+  background-color: transparent;
+  width: 150px;
+  height: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px #ffb234;
+}
+
+.password-eye {
+  position: relative;
+  margin-left: -33px;
+}
+
+.password-eye:hover {
+  color: orange;
+  cursor: pointer;
+}
+
 /* Active navigation */
 
 .nav-active .nav-redirection span {

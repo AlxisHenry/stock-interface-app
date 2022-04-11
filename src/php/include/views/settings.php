@@ -11,7 +11,8 @@ include '../templates/home.php';
 
             <div class="employee-password contain-settings">
                 Changer le mot de passe du compte Employé :
-                <input class="reset-employee-password">
+                <input type="password" class="reset-employee-password">
+                <i class="password-eye fa-regular fa-eye-slash"></i>
             </div>
 
             <div class="employee-access contain-switch">
@@ -38,7 +39,8 @@ include '../templates/home.php';
 
             <div class="admin-password contain-settings">
                 Changer le mot de passe du compte Administrateur :
-                <input class="reset-admin-password">
+                <input type="password" class="reset-admin-password">
+                <i class="password-eye fa-regular fa-eye-slash"></i>
             </div>
 
             <div class="admin-access contain-switch">
