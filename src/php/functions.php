@@ -38,8 +38,51 @@ function setCurrentTitle():string
 function FormatLastConnection():string {
 
     $lastConnection = Access_OBJECT_('tfadmin', 'username')->getDerniereConnection();
+    $today = date("Y-m-d H:i:s");
+    $today = new DateTime($today);
+    $lastConnection = new DateTime($lastConnection);
+    $difference = $today->diff($lastConnection);
 
-    return $lastConnection;
+    $dateToShow = '';
+    $month = $difference->m;
+    $days = $difference->d;
+    $hours = $difference->h;
+    $minutes = $difference->i;
+    $seconds = $difference->s;
+
+    if ($month === 0) {
+        if ($days === 0) {
+            if ($hours  === 0) {
+                if ($minutes === 0) {
+                    if ($seconds < 60) {
+                        $dateToShow = ' un instant.';
+                    }
+                } else {
+                    if ($minutes === 1) {
+                        $dateToShow = $minutes . ' minute';
+                    } else {
+                        $dateToShow = $minutes . ' minutes';
+                    }
+                }
+            } else {
+                if ($hours === 1) {
+                    $dateToShow = $hours . ' heure';
+                } else {
+                    $dateToShow = $hours . ' heures';
+                }
+            }
+        } else {
+            if ($days === 1) {
+                $dateToShow = $days. ' jour';
+            } else {
+                $dateToShow = $days. ' jours';
+            }
+        }
+    } else {
+        $dateToShow = $month . ' mois';
+    }
+
+    return $dateToShow;
 
 }
 
