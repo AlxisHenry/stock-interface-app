@@ -1,5 +1,5 @@
 import { Switch } from "./switch.class.js";
-import { popUp } from "../../global/app.js";
+import {consoleLog, popUp} from "../../global/app.js";
 
 export class Inputs extends Switch {
 
@@ -39,7 +39,7 @@ export class Inputs extends Switch {
         }
     }
 
-    Save(e) {
+    async Save(e) {
 
         const GetPassword = (e) => {
             if (!e.target.parentNode.classList.contains('alerts-minimal')) {
@@ -75,9 +75,9 @@ export class Inputs extends Switch {
                 value: e.target.parentNode.children[0].children[0].value
             },
             informations: {
-                    username: GetUsername(e),
-                    password: GetPassword(e),
-                    quantity: GetQuantity(e)
+                username: GetUsername(e),
+                password: GetPassword(e),
+                quantity: GetQuantity(e)
             },
             about: {
                 date: Date.now(),
@@ -85,44 +85,73 @@ export class Inputs extends Switch {
             }
         }
 
-        if (Save.main.value.length <= 0) {
+        if (Save.main.value.length <= 0 || Save.main.value === -1) {
             e.target.parentNode.children[0].children[0].style.backgroundColor = 'rgb(241,178,178)';
             popUp('uncompleted-data');
             setTimeout(() => {
-                e.target.parentNode.children[0].style.backgroundColor = 'white';
+                e.target.parentNode.children[0].children[0].style.backgroundColor = 'white';
             }, 1625)
             return false;
         }
 
-        // todo: Requête de modification du mot de passe.
-        // todo: Gérer les évènements:
-            // - mot de passe identique à l'ancien, popUp : mot de passe identique
-            // - mot de passe ne respectant pas la norme, popUp : mot de passe incorrect
-            // - mot de passe vide, popUp : pensez à compléter les champs
+        // TODO: Relier le fetch au back-end
+        // TODO: Refaire fonctionner l'update des switchs
 
-        const SettingsToFetch = {
-            target: e.target.parentNode.classList[0].split('-')[0],
-            action: e.target.parentNode.classList[0].split('-')[1],
-            username: GetUsername(e),
-            password: GetPassword(e),
-            quantity: GetQuantity(e)
-        }
-
-            fetch(`../../ajax/apply-input-settings.php`, {
+        // Utilisation de fetch pour tester le principe des requêtes en JS
+            await fetch(`../../ajax/apply-input-settings.php`, {
                 method: 'POST',
                 header: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(SettingsToFetch),
-            })
-            .then((response) => response.json())
-            .then((save) => {
-                console.log(save.action);
-            })
-            .catch((e) => {
+                body: JSON.stringify(Save),
+            }).then((response) => response.json()
+            ).then((array) => {
+
+                const [ Type, Target, Null, Status, Final ] = array[0];
+
+                consoleLog('Requête effectuée, état de la réponse : ' + Status, 's');
+
+            if (!Null) {
+                switch (Type) {
+                    case 'password':
+                        if (!Status) {
+                            if (!Final) {
+                                consoleLog('Mot de passe du compte '+ Target +' changé avec succès.', 's');
+                                popUp('update-password');
+                            } else if (Final) {
+                                consoleLog('Le mot de passe ne correspond pas aux critères demandés');
+                                popUp('password-incorrect');
+                            } else {
+                                consoleLog('Une erreur est survenue dans la réponse du fetch.', 'e');
+                                popUp('contact-admin');
+                            }
+                        } else if (Status) {
+                            consoleLog('Le mot de passe du compte '+ Target +' est identique à votre ancien...', 'e');
+                            popUp('same-password');
+                        } else {
+                            consoleLog('Une erreur est survenue dans la réponse du fetch.', 'e');
+                            popUp('contact-admin');
+                        }
+                        break;
+                    case 'alerts':
+                        if (!Status) {
+                            popUp('update-alert-minimum');
+                        } else if (Status) {
+                            consoleLog("Niveau d'alerte identique au précédent.", 'e');
+                            popUp('update-alert-failed');
+                        } else {
+                            consoleLog('Une erreur est survenue dans la réponse du fetch.', 'e');
+                            popUp('contact-admin');
+                        }
+                        break;
+                }
+            } else {
+                popUp('uncompleted-data');
+            }
+            }).catch((e) => {
+                consoleLog('Une erreur est survenue lors de la tentative de fetch.', 'e');
                 console.log(e);
+                popUp('contact-admin');
             });
-
     }
-
 }
