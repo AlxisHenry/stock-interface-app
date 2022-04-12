@@ -1,8 +1,6 @@
 import { Users } from "../class/users.class.js";
 import { popUp } from "../global/app.js";
 
-// TODO : À terme exclure jQuery, changer les requêtes ajax par fetch ?
-
 window.addEventListener('load', () =>  {
 
     popUp('clean');

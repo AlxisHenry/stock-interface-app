@@ -12,7 +12,7 @@
                 <label>
                     Changer le mot de passe du compte Employé :
                     <?php
-                        echo "<input type='password' value='". GET_PASSWORD('employee')[0][0] ."' class='reset-employee-password'>";
+                        echo "<input type='password' value='". GET_PASSWORD('employee') ."' class='reset-employee-password'>";
                     ?>
                 </label>
                 <i class="password-eye fa-regular fa-eye-slash"></i>
@@ -44,7 +44,7 @@
             <div class="admin-password contain-settings">
                 <label>
                     Changer le mot de passe du compte Administrateur :
-                    <?php echo "<input type='password' value='". GET_PASSWORD('tfadmin')[0][0] ."' class='reset-admin-password'>" ?>
+                    <?php echo "<input type='password' value='". GET_PASSWORD('tfadmin') ."' class='reset-admin-password'>" ?>
                 </label>
                 <i class="password-eye fa-regular fa-eye-slash"></i>
                 <span class="save-modification">Sauvegarder</span>

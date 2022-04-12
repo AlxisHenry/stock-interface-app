@@ -14,6 +14,6 @@
 
     <div class="contain-send-message"></div>
 
-<?php if(CHECK_SETTINGS_STATE('website-info')[0][0]) { include '../component/informations.php'; } ?>
+<?php if(CHECK_SETTINGS_STATE('website-info')) { include '../component/informations.php'; } ?>
 
 

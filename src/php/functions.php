@@ -100,7 +100,7 @@ function UPDATE_LOGS_TABLE($TARGET, $TEMP_ASSET): string
 
 function VIEW_ACCESS_EMPLOYEE($TARGET): string
 {
-    return "SELECT * FROM `access` WHERE `username` = '$TARGET'";
+    return Access_OBJECT_($TARGET, 'username')->getStatus();
 }
 
 
@@ -109,20 +109,14 @@ function CHANGE_ACCESS_BOOLEAN($value, $target) {
 }
 
 
-function CHECK_SETTINGS_STATE($features): bool|array|PDOStatement
+function CHECK_SETTINGS_STATE($features): int
 {
-
-    return (Connection()->query("SELECT `state` FROM `front` WHERE `nom` LIKE '%$features%';"))->fetchAll();
-
+    return Front_OBJECT_($features, 'nom')->getState();
 }
 
-function GET_PASSWORD($account): bool|array|PDOStatement
+function GET_PASSWORD($account): string
 {
-
-    $QUERY = Connection()->query("SELECT `password` FROM `access` WHERE `username` LIKE '$account';");
-
-    return $QUERY->fetchAll();
-
+    return Access_OBJECT_($account, 'username')->getPassword();
 }
 
 
