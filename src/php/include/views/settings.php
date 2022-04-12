@@ -1,6 +1,5 @@
-<?php
-include '../templates/home.php';
-?>
+<?php include '../templates/home.php'; ?>
+
 <section class="section">
     <div class="contain-settings-sections">
         <div class="fl employee-section">
@@ -10,9 +9,14 @@ include '../templates/home.php';
             <hr class="settings-hr">
 
             <div class="employee-password contain-settings">
-                Changer le mot de passe du compte Employé :
-                <input type="password" class="reset-employee-password">
+                <label>
+                    Changer le mot de passe du compte Employé :
+                    <?php
+                        echo "<input type='password' value='". GET_PASSWORD('employee')[0][0] ."' class='reset-employee-password'>";
+                    ?>
+                </label>
                 <i class="password-eye fa-regular fa-eye-slash"></i>
+                <span class="save-modification">Sauvegarder</span>
             </div>
 
             <div class="employee-access contain-switch">
@@ -38,9 +42,12 @@ include '../templates/home.php';
             <hr class="settings-hr">
 
             <div class="admin-password contain-settings">
-                Changer le mot de passe du compte Administrateur :
-                <input type="password" class="reset-admin-password">
+                <label>
+                    Changer le mot de passe du compte Administrateur :
+                    <?php echo "<input type='password' value='". GET_PASSWORD('tfadmin')[0][0] ."' class='reset-admin-password'>" ?>
+                </label>
                 <i class="password-eye fa-regular fa-eye-slash"></i>
+                <span class="save-modification">Sauvegarder</span>
             </div>
 
             <div class="admin-access contain-switch">
@@ -107,8 +114,11 @@ include '../templates/home.php';
             </div>
 
             <div class="alerts-minimal contain-settings">
-                Modifier le seuil avant alerte :
-                <input class="change-count-alert">
+                <label>
+                    Modifier le seuil avant alerte :
+                    <?php  echo "<input type='number' value='24' class='change-count-alert'>" ?>
+                </label>
+                <span class="save-modification">Sauvegarder</span>
             </div>
 
         </div>

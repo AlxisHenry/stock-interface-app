@@ -1,17 +1,14 @@
 <?php
 
-namespace Front;
-
 class Front
 {
 
     private $id;
-    private $barre;
-    private $barreModification;
-    private $configurations;
-    private $configurationsModification;
-    private $theme;
-    private $themeModification;
+    private $nom;
+    private $comment;
+    private $state;
+    private $modification;
+    private $count;
 
     /**
      * @return mixed
@@ -32,99 +29,82 @@ class Front
     /**
      * @return mixed
      */
-    public function getBarre()
+    public function getNom()
     {
-        return $this->barre;
+        return $this->nom;
     }
 
     /**
-     * @param mixed $barre
+     * @param mixed $nom
      */
-    public function setBarre($barre): void
+    public function setNom($nom): void
     {
-        $this->barre = $barre;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBarreModification()
-    {
-        return $this->barreModification;
-    }
-
-    /**
-     * @param mixed $barreModification
-     */
-    public function setBarreModification($barreModification): void
-    {
-        $this->barreModification = $barreModification;
+        $this->nom = $nom;
     }
 
     /**
      * @return mixed
      */
-    public function getConfigurations()
+    public function getComment()
     {
-        return $this->configurations;
+        return $this->comment;
     }
 
     /**
-     * @param mixed $configurations
+     * @param mixed $comment
      */
-    public function setConfigurations($configurations): void
+    public function setComment($comment): void
     {
-        $this->configurations = $configurations;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getConfigurationsModification()
-    {
-        return $this->configurationsModification;
-    }
-
-    /**
-     * @param mixed $configurationsModification
-     */
-    public function setConfigurationsModification($configurationsModification): void
-    {
-        $this->configurationsModification = $configurationsModification;
+        $this->comment = $comment;
     }
 
     /**
      * @return mixed
      */
-    public function getTheme()
+    public function getState()
     {
-        return $this->theme;
+        return $this->state;
     }
 
     /**
-     * @param mixed $theme
+     * @param mixed $state
      */
-    public function setTheme($theme): void
+    public function setState($state): void
     {
-        $this->theme = $theme;
+        $this->state = $state;
     }
 
     /**
      * @return mixed
      */
-    public function getThemeModification()
+    public function getModification()
     {
-        return $this->themeModification;
+        return $this->modification;
     }
 
     /**
-     * @param mixed $themeModification
+     * @param mixed $modification
      */
-    public function setThemeModification($themeModification): void
+    public function setModification($modification): void
     {
-        $this->themeModification = $themeModification;
+        $this->modification = $modification;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+    /**
+     * @param mixed $count
+     */
+    public function setCount($count): void
+    {
+        $this->count = $count;
+    }
 
 
 }

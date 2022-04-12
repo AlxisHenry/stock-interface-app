@@ -1,7 +1,5 @@
 <?php
 
-namespace Mouvements;
-
 class Mouvements
 {
     private $id;

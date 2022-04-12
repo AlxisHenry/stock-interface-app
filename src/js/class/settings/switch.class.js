@@ -110,6 +110,7 @@ export class Switch {
             data: { element: action, turn: turn},
             success: function (server_response) {
                 consoleLog('Mise à jour effectuée.', 's');
+                console.log(server_response);
             },
             error: function () {
                 consoleLog("Une erreur est survenue lors du changement d'état " +  action + " (Ajax request failed).", 'e');

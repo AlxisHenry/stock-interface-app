@@ -12,10 +12,13 @@ window.addEventListener('load', () => {
     // Cet event va modifier les données dans la base de données.
 
     document.querySelectorAll('.switch').forEach(SwitchStatus => {
+
         SwitchStatus.addEventListener('click', (e) => {
+
             new Switch().SwitchState(e);
 
         })
+
     })
 
     // Ces events appliquent les modifications visuellement.
@@ -32,11 +35,11 @@ window.addEventListener('load', () => {
 
     })
 
-    //document.querySelector('.website-theme .switch').addEventListener('click', () => {
+    document.querySelector('.website-theme').addEventListener('click', () => {
 
-      //       new Themes().Toggle();
+             new Themes().Toggle();
 
-    //})
+    })
 
     document.querySelector('.alerts-indicator .switch').addEventListener('click', () => {
 
@@ -47,17 +50,29 @@ window.addEventListener('load', () => {
     // Ces events vont gérer les inputs.
 
     document.querySelectorAll('.password-eye').forEach(Eye => {
+
         Eye.addEventListener('mouseover', (e) => {
 
             new Inputs().DisabledEye(e);
 
         });
+
         Eye.addEventListener('mouseout', (e) => {
 
             new Inputs().ActiveEye(e);
 
         })
+
     })
 
+    document.querySelectorAll('.save-modification').forEach(Save => {
+
+        Save.addEventListener('click', (e) => {
+
+            new Inputs().Save(e);
+
+        })
+
+    })
 
 })

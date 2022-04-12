@@ -1,31 +1,54 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 include 'configuration/database-connexion.php';
+include 'get_class_object.php';
 
-spl_autoload_register(function ($class_name) {
-    include '../class/' . $class_name . '.class.php';
-});
+/* Globals functions */
 
-function LastTimeUserConnected(): string
+function getAssetName():string
 {
+    return strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
+}
 
-    // todo: Le problème est que l'actualisation de la dernière connection s'effectue lors du login :
-    // todo 1ere possibilité : Effectué la requête sur la dernière date dans les logs.  // Pas pratique car la dernière = celle-ci si on l'ajoute à la connexion.
-    // todo 2nd possibilité : Enregistrer la date dans la session et update la table à la déconnection. // Try this solution first
+function getFormatDate():string
+{
+    return date('d/m/Y h:i');
+}
 
-    $GetDateOfLastConnexion = "SELECT `derniereConnection` AS 'DATE' FROM `access` WHERE `username` = 'tfadmin'";;
-    $DB_QUERY = Connection()->query($GetDateOfLastConnexion);
-    $lastConnection = $DB_QUERY->fetch();
-    $DB_QUERY->closeCursor();
+function setCurrentTitle():string
+{
+    return match ($_GET['nav']) {
+        'c-users' => 'Configuration Utilisateurs - Timken',
+        'c-article' => 'Configuration Articles - Timken',
+        'c-ccout' => 'Configuration Centre de Coûts - Timken',
+        'c-famille' => 'Configuration Familles - Timken',
+        's-entry' => 'Entrée de stock - Timken',
+        's-checkout' => 'Sortie de stock - Timken',
+        'visu' => 'Visualiser le stock - Timken',
+        'alerts' => 'Alertes de stock - Timken',
+        'settings' => 'Paramètres - Timken',
+        'mvmt' => 'Derniers mouvements - Timken',
+        default => 'Gestion de stock - Timken',
+    };
+}
 
-    $today = date("Y-m-d H:i:s");
-    $lastConnection = $lastConnection['DATE'];
+function FormatLastConnection():string {
 
-    $today = new DateTime($today);
+    $lastConnection = Access_OBJECT_('tfadmin', 'username')->getDerniereConnection();
+
+    return $lastConnection;
+
+}
+
+/*$todayFormat = new DateTime($today);
     $lastConnection = new DateTime($lastConnection);
 
-    $difference = $today->diff($lastConnection);
+    $difference = $todayFormat->diff($lastConnection);
 
+    $lastConnection = '';
     $month = $difference->m;
     $days = $difference->d;
     $hours = $difference->h;
@@ -37,29 +60,28 @@ function LastTimeUserConnected(): string
             if ($hours  === 0) {
                 if ($minutes === 0) {
                     if ($seconds < 60) {
-                            $dateToShow = ' un instant.';
+                        $lastConnection = ' un instant.';
                     }
                 } else {
-                    $dateToShow = $minutes . ' minutes';
+                    $lastConnection = $minutes . ' minutes';
                 }
             } else {
-                $dateToShow = $hours . ' heures';
+                $lastConnection = $hours . ' heures';
             }
         } else {
-            $dateToShow = $days. ' jours';
+            $lastConnection = $days. ' jours';
         }
     } else {
-        $dateToShow = $month . ' mois';
-    }
+        $lastConnection = $month . ' mois';
+    }*/
 
-    return $dateToShow;
-}
+
+
+/* Globals functions -- END */
+/* SQL Request */
 
 function UPDATE_LAST_CONNEXION():string {
-
-    /* Le problème est qu'au refresh de la page la date prise est celle de l'user. */
     return 'UPDATE `access` SET `derniereConnection` = (SELECT NOW()) WHERE `username` = "tfadmin" ';
-
 }
 
 function UPDATE_LOGS_TABLE($TARGET, $TEMP_ASSET): string
@@ -72,50 +94,27 @@ function VIEW_ACCESS_EMPLOYEE($TARGET): string
     return "SELECT * FROM `access` WHERE `username` = '$TARGET'";
 }
 
-function GET_ASSET_NAME(): string
-{
-    return strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
-}
-
-function GET_DATE(): string
-{
-    return date('d/m/Y h:i');
-}
 
 function CHANGE_ACCESS_BOOLEAN($value, $target) {
     return "UPDATE `access` SET `status` = '$value' WHERE `username` = '$target'";
 }
 
-function SetTitle() {
-    switch ($_GET['nav']) {
-        case 'c-users':
-            return 'Configuration Utilisateurs - Timken';
-        case 'c-article':
-            return 'Configuration Articles - Timken';
-        case 'c-ccout':
-            return 'Configuration Centre de Coûts - Timken';
-        case 'c-famille':
-            return 'Configuration Familles - Timken';
-        case 's-entry':
-            return 'Entrée de stock - Timken';
-        case 's-checkout':
-            return 'Sortie de stock - Timken';
-        case 'visu':
-            return 'Visualiser le stock - Timken';
-        case 'alerts':
-            return 'Alertes de stock - Timken';
-        case 'settings':
-            return 'Paramètres - Timken';
-        case 'mvmt':
-            return 'Derniers mouvements - Timken';
-        default:
-            return 'Gestion de stock - Timken';
-    }
-}
 
-function CHECK_SETTINGS_STATE($features)
+function CHECK_SETTINGS_STATE($features): bool|array|PDOStatement
 {
 
-    return (Connection()->query("SELECT `state` FROM `front` WHERE `nom` LIKE '%$features%'"))->fetchAll();
+    return (Connection()->query("SELECT `state` FROM `front` WHERE `nom` LIKE '%$features%';"))->fetchAll();
 
 }
+
+function GET_PASSWORD($account): bool|array|PDOStatement
+{
+
+    $QUERY = Connection()->query("SELECT `password` FROM `access` WHERE `username` LIKE '$account';");
+
+    return $QUERY->fetchAll();
+
+}
+
+
+

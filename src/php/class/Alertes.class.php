@@ -1,7 +1,5 @@
 <?php
 
-namespace Alertes;
-
 class Alertes
 {
     private $id;

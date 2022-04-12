@@ -38,8 +38,8 @@ include 'src/php/functions.php';
 
     <div class="about-user">
 
-        <div class="contain-asset-name"> <?= GET_ASSET_NAME(); ?> </div>
-        <div class="contain-date"> <?= GET_DATE(); ?> </div>
+        <div class="contain-asset-name"> <?= getAssetName(); ?> </div>
+        <div class="contain-date"> <?= getFormatDate(); ?> </div>
 
     </div>
 

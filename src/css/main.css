@@ -214,7 +214,7 @@ label[for="form-id"], label[for="form-pass"] {
   height: auto;
   width: 100%;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   flex-direction: column;
 }
 
@@ -457,11 +457,28 @@ label[for="form-id"], label[for="form-pass"] {
 .password-eye {
   position: relative;
   margin-left: -33px;
+  min-width: 25px;
 }
 
 .password-eye:hover {
   color: orange;
   cursor: pointer;
+}
+
+.save-modification {
+  margin-left: 25px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  color: gray;
+}
+
+.save-modification:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+.change-count-alert {
+  width: 40px !important;
 }
 
 /* Active navigation */
@@ -527,13 +544,7 @@ label[for="form-id"], label[for="form-pass"] {
   font-weight: 700;
 }
 
-@media screen and (max-width: 600px) {
-  .contain-users-informations {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 1450px) {
+@media screen and (max-width: 1300px) {
   .host {
     display: none;
   }

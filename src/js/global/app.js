@@ -74,7 +74,7 @@ export function popUp(type) {
 
         setTimeout( () => {  containMessage.innerHTML = ''; containMessage.classList.remove('reverseBump'); }, 400)
 
-    }, 1000);
+    }, 1625);
 
 }
 

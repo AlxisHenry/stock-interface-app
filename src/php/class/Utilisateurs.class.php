@@ -1,7 +1,5 @@
 <?php
 
-namespace Utilisateurs;
-
 class Utilisateurs
 {
     private $id;

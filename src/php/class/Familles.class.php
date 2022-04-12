@@ -1,7 +1,5 @@
 <?php
 
-namespace Familles;
-
 class Familles
 {
     private $id;
