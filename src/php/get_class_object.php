@@ -7,7 +7,6 @@ function loadClass($class) {
 }
 
 function Access_OBJECT_(string|int $value, string $by):Access {
-
     $QUERY = getRequest($by, 'Access');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -19,7 +18,6 @@ function Access_OBJECT_(string|int $value, string $by):Access {
 }
 
 function Alertes_OBJECT_(string|int $value, string $by):Alertes {
-
     $QUERY = getRequest($by, 'Alertes');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -31,7 +29,6 @@ function Alertes_OBJECT_(string|int $value, string $by):Alertes {
 }
 
 function Articles_OBJECT_(string|int $value, string $by):Articles {
-
     $QUERY = getRequest($by, 'Articles');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -43,7 +40,6 @@ function Articles_OBJECT_(string|int $value, string $by):Articles {
 }
 
 function Centres_OBJECT_(string|int $value, string $by):Centres {
-
     $QUERY = getRequest($by, 'Centres');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -55,7 +51,6 @@ function Centres_OBJECT_(string|int $value, string $by):Centres {
 }
 
 function Familles_OBJECT_(string|int $value, string $by):Familles {
-
     $QUERY = getRequest($by, 'Familles');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -68,7 +63,6 @@ function Familles_OBJECT_(string|int $value, string $by):Familles {
 }
 
 function Front_OBJECT_(string|int $value, string $by):Front {
-
     $QUERY = getRequest($by, 'Front');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -81,7 +75,6 @@ function Front_OBJECT_(string|int $value, string $by):Front {
 }
 
 function Logs_OBJECT_(string|int $value, string $by):Logs {
-
     $QUERY = getRequest($by, 'Logs');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -93,7 +86,6 @@ function Logs_OBJECT_(string|int $value, string $by):Logs {
 }
 
 function Mouvements_OBJECT_(string|int $value, string $by):Mouvements {
-
     $QUERY = getRequest($by, 'Mouvements');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -105,7 +97,6 @@ function Mouvements_OBJECT_(string|int $value, string $by):Mouvements {
 }
 
 function Utilisateurs_OBJECT_(string|int $value, string $by):Utilisateurs {
-
     $QUERY = getRequest($by, 'Utilisateurs');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -117,7 +108,6 @@ function Utilisateurs_OBJECT_(string|int $value, string $by):Utilisateurs {
 }
 
 function getRequest(string|int $by, string $table):string {
-
     return match ($table) {
         'Access' => match ($by) {
             'username' => "SELECT * FROM `access` WHERE `username`=:value",
@@ -208,5 +198,4 @@ function getRequest(string|int $by, string $table):string {
         },
         default => false,
     };
-
 }

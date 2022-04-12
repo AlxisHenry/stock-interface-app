@@ -118,6 +118,7 @@
                     Modifier le seuil avant alerte :
                     <?php  echo "<input type='number' value='24' class='change-count-alert'>" ?>
                 </label>
+                <span></span>
                 <span class="save-modification">Sauvegarder</span>
             </div>
 

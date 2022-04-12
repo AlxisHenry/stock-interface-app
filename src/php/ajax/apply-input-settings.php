@@ -1,19 +1,8 @@
 <?php
 
-$Save = $_POST['settings'];
+$content = trim(file_get_contents("php://input"));
 
-foreach ($Save as $Sv => $toSave ) {
-    if (empty($toSave)) {
-        unset($Save[array_search($toSave, $Save)]);
-    }
-}
+$data = json_decode($content, true);
 
-if (count($Save) != 5) {
 
-    echo "Une erreur est survenue";
-
-} else {
-
-    echo "Ok";
-
-}
+echo json_encode($data);

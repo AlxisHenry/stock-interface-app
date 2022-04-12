@@ -86,7 +86,7 @@ export class Inputs extends Switch {
         }
 
         if (Save.main.value.length <= 0) {
-            e.target.parentNode.children[0].style.backgroundColor = 'rgb(241,178,178)';
+            e.target.parentNode.children[0].children[0].style.backgroundColor = 'rgb(241,178,178)';
             popUp('uncompleted-data');
             setTimeout(() => {
                 e.target.parentNode.children[0].style.backgroundColor = 'white';
@@ -100,23 +100,28 @@ export class Inputs extends Switch {
             // - mot de passe ne respectant pas la norme, popUp : mot de passe incorrect
             // - mot de passe vide, popUp : pensez à compléter les champs
 
-        $.ajax({
-            type: "POST",
-            url: `../../ajax/apply-input-settings.php`,
-            data: { settings: Save},
-            success: function (call) {
+        const SettingsToFetch = {
+            target: e.target.parentNode.classList[0].split('-')[0],
+            action: e.target.parentNode.classList[0].split('-')[1],
+            username: GetUsername(e),
+            password: GetPassword(e),
+            quantity: GetQuantity(e)
+        }
 
-                console.log(call)
-
-            },
-            error: function () {
-
-                popUp('contact-admin');
-
-            },
-        });
-
-        console.log(Save);
+            fetch(`../../ajax/apply-input-settings.php`, {
+                method: 'POST',
+                header: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(SettingsToFetch),
+            })
+            .then((response) => response.json())
+            .then((save) => {
+                console.log(save.action);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
 
     }
 

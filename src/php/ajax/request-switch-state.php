@@ -5,12 +5,20 @@ include '../functions.php';
 $ELEMENT = $_POST['element'];
 $STATE = $_POST['turn'];
 
-function test() {
-    $ITEM = Access_OBJECT_('tfadmin', 'username');
-    return $ITEM;
+$settings = Front_OBJECT_($ELEMENT, 'nom');
+
+$currentState = $settings->getState();
+$setNewState = '';
+
+if ($currentState === 1) {
+    $settings->setState(0);
+} elseif ($currentState === 0) {
+    $settings->setState(1);
+} else {
+    echo 'Une erreur est survenue.';
 }
 
-var_dump(test()->getDerniereConnection());
+var_dump($settings);
 
 /*
  *

@@ -73,6 +73,14 @@ window.addEventListener('load', () => {
 
         })
 
+        Save.parentNode.children[0].children[0].addEventListener('keypress', (e) => {
+
+            if (e.which === 13) {
+                Save.click();
+            }
+
+        })
+
     })
 
 })

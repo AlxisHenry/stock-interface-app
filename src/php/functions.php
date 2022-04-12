@@ -86,40 +86,6 @@ function FormatLastConnection():string {
 
 }
 
-/*$todayFormat = new DateTime($today);
-    $lastConnection = new DateTime($lastConnection);
-
-    $difference = $todayFormat->diff($lastConnection);
-
-    $lastConnection = '';
-    $month = $difference->m;
-    $days = $difference->d;
-    $hours = $difference->h;
-    $minutes = $difference->i;
-    $seconds = $difference->s;
-
-    if ($month === 0) {
-        if ($days === 0) {
-            if ($hours  === 0) {
-                if ($minutes === 0) {
-                    if ($seconds < 60) {
-                        $lastConnection = ' un instant.';
-                    }
-                } else {
-                    $lastConnection = $minutes . ' minutes';
-                }
-            } else {
-                $lastConnection = $hours . ' heures';
-            }
-        } else {
-            $lastConnection = $days. ' jours';
-        }
-    } else {
-        $lastConnection = $month . ' mois';
-    }*/
-
-
-
 /* Globals functions -- END */
 /* SQL Request */
 
