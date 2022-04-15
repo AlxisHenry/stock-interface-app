@@ -124,12 +124,12 @@ export class Users {
         type: "POST",
         url: `./src/php/website-access/manage.php`,
         data: { target: 'employee', type: 'access' },
-        success: function (server_response) {
-          if (server_response === 'false') {
-            consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`, 's');
+        success: function (access) {
+          if (access === 'false') {
+            consoleLog(`Success ajax :: Employee Dashboard status on ${access} !`, 's');
             popUp('actually-disabled');
-          } else if (server_response === 'true') {
-            consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`, 's');
+          } else if (access === 'true') {
+            consoleLog(`Success ajax :: Employee Dashboard status on ${access} !`, 's');
             $.ajax({
               type: "POST",
               url: `./src/php/website-access/manage.php`,

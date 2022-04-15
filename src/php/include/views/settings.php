@@ -11,9 +11,7 @@
             <div class="employee-password contain-settings">
                 <label>
                     Changer le mot de passe du compte Employé :
-                    <?php
-                        echo "<input type='password' value='". GET_PASSWORD('employee') ."' class='reset-employee-password'>";
-                    ?>
+                    <?= "<input type='password' value='". Access_OBJECT_('employee', 'username')->getPassword()."' class='reset-employee-password'>"; ?>
                 </label>
                 <i class="password-eye fa-regular fa-eye-slash"></i>
                 <span class="save-modification">Sauvegarder</span>
@@ -44,7 +42,7 @@
             <div class="admin-password contain-settings">
                 <label>
                     Changer le mot de passe du compte Administrateur :
-                    <?php echo "<input type='password' value='". GET_PASSWORD('tfadmin') ."' class='reset-admin-password'>" ?>
+                    <?= "<input type='password' value='". Access_OBJECT_('tfadmin', 'username')->getPassword() ."' class='reset-admin-password'>" ?>
                 </label>
                 <i class="password-eye fa-regular fa-eye-slash"></i>
                 <span class="save-modification">Sauvegarder</span>
@@ -116,7 +114,7 @@
             <div class="alerts-minimal contain-settings">
                 <label>
                     Modifier le seuil avant alerte :
-                    <?php  echo "<input type='number' value='24' class='change-count-alert'>" ?>
+                    <?= "<input type='number' value='24' class='change-count-alert'>" ?>
                 </label>
                 <span></span>
                 <span class="save-modification">Sauvegarder</span>

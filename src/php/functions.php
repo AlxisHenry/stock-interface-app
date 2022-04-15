@@ -87,37 +87,3 @@ function FormatLastConnection():string {
 }
 
 /* Globals functions -- END */
-/* SQL Request */
-
-function UPDATE_LAST_CONNEXION():string {
-    return 'UPDATE `access` SET `derniereConnection` = (SELECT NOW()) WHERE `username` = "tfadmin" ';
-}
-
-function UPDATE_LOGS_TABLE($TARGET, $TEMP_ASSET): string
-{
-    return "INSERT INTO `logs` (`user` , `date`, `asset`) VALUES ((SELECT `id` FROM `access` WHERE `username` = '$TARGET'), (SELECT NOW()), '$TEMP_ASSET');";
-}
-
-function VIEW_ACCESS_EMPLOYEE($TARGET): string
-{
-    return Access_OBJECT_($TARGET, 'username')->getStatus();
-}
-
-
-function CHANGE_ACCESS_BOOLEAN($value, $target) {
-    return "UPDATE `access` SET `status` = '$value' WHERE `username` = '$target'";
-}
-
-
-function CHECK_SETTINGS_STATE($features): int
-{
-    return Front_OBJECT_($features, 'nom')->getState();
-}
-
-function GET_PASSWORD($account): string
-{
-    return Access_OBJECT_($account, 'username')->getPassword();
-}
-
-
-

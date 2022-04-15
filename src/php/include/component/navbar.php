@@ -9,7 +9,7 @@
         <div class="features s-entry stock-entry"><a class="nav-redirection" href="./stock_in.php?nav=s-entry" title="Réaliser uen entrée de stock"><i class="nav-fa-icons fa-solid fa-boxes-stacked"></i><span class="nav-span">Entrée de stock</span></a></div>
         <div class="features s-checkout stock-checkout"><a class="nav-redirection" href="./stock_out.php?nav=s-checkout" title="Sortir un/des articles"><i class="nav-fa-icons fa-solid fa-dolly"></i><span class="nav-span">Sortie de stock</span></a></div>
         <div class="features visu visualisation"><a class="nav-redirection" href="./stock.php?nav=visu" title="Visualiser le stock"><i class="nav-fa-icons fa-solid fa-box-open"></i><span class="nav-span">Voir le stock</span></a></div>
-        <?php if(CHECK_SETTINGS_STATE('website-configs')) { include '../component/configurations.php'; } ?>
+        <?php if(Front_OBJECT_('website-configs', 'nom')->getState()) { include '../component/configurations.php'; } ?>
     </div>
 
     <hr class="nav-separator">
@@ -17,7 +17,7 @@
     <div class="contain-actions">
         <!-- todo Relier au back-end ::: Pop up avec le nombres ? Si 0 = rien, sinon le nombres d'alertes ? -->
         <div class="features alerts"><a class="nav-redirection" href="./alerts.php?nav=alerts" title="Voir les alertes"><i class="nav-fa-icons fa-solid fa-bell"></i><span class="nav-span">Notifications</span></a>
-                <?php if(CHECK_SETTINGS_STATE('alerts-indicator')){ echo '<div class="alert-indication" title="Alertes">8</div>'; } ?>
+                <?php if(Front_OBJECT_('alerts-indicator', 'nom')->getState()){ echo '<div class="alert-indication" title="Alertes">8</div>'; } ?>
         </div>
         <div class="features settings"><a class="nav-redirection" href="./settings.php?nav=settings" title="Voir les paramètres"><i class="nav-fa-icons fa-solid fa-gear"></i><span class="nav-span">Paramètres</span></a></div>
         <div class="features disconnect"><a class="nav-redirection" href="#"><i class="nav-fa-icons fa-solid fa-right-from-bracket"></i><span title="Me déconnecter" class="nav-span">Me déconnecter</span></a></div>

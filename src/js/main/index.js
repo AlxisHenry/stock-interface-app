@@ -7,26 +7,25 @@ window.addEventListener('load', () =>  {
 
     document.querySelector(".submit-admin-panel").addEventListener('click', () => {
         setTimeout(() => { new Users().VerifyUsersPermissions(); }, 75);
-        // Manage admin request
     });
 
     document.querySelector("#form-pass").addEventListener("keypress",  (e) => {
-        if (e.which === 13) { // Listen 'Enter' key
+        if (e.which === 13) {
             document.querySelector(".submit-admin-panel").click();
-            // Manage admin request
         }
     });
 
     document.querySelector("#form-id").addEventListener("keypress", (e) => {
-        if (e.which === 13) { // Listen 'Enter' key
+        if (e.which === 13) {
             document.querySelector(".submit-admin-panel").click();
-            // Manage admin request
         }
     })
 
-    document.querySelector(".redirect-dashboard-user").addEventListener("click", () => {
+    const Employee_Redirection = document.querySelector(".redirect-dashboard-user") ? document.querySelector(".redirect-dashboard-user") : document.querySelector(".redirect-dashboard-user-off")
+
+    Employee_Redirection.addEventListener("click", () => {
         new Users().EmployeeViewAccess();
-        // Manage employee request
     });
+
 
 });

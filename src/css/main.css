@@ -1,4 +1,4 @@
-/* ------------------------------------ *
+  /* ------------------------------------ *
  CSS main
  * ------------------------------------ */
 
@@ -143,8 +143,21 @@ label[for="form-id"], label[for="form-pass"] {
   margin-top: -2px;
 }
 
-.employee-session .redirect-employee i:hover, .btn-primary:hover {
+.redirect-dashboard-user, .btn-primary:hover {
   cursor: pointer;
+}
+
+.btn-primary:hover {
+  filter: saturate(1.5);
+}
+
+.redirect-dashboard-user:hover {
+    color: var(--background-orange-mid);
+}
+
+.redirect-dashboard-user-off {
+  color: lightgray;
+  cursor: not-allowed;
 }
 
 /* END -- Formulaire de connexion */

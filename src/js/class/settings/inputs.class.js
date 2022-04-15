@@ -94,9 +94,6 @@ export class Inputs extends Switch {
             return false;
         }
 
-        // TODO: Relier le fetch au back-end
-        // TODO: Refaire fonctionner l'update des switchs
-
         // Utilisation de fetch pour tester le principe des requêtes en JS
             await fetch(`../../ajax/apply-input-settings.php`, {
                 method: 'POST',

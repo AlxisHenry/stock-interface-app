@@ -7,5 +7,5 @@
 <link href='../../../css/main.css' media='all' rel='stylesheet' type='text/css'/>
 <script type="module" src="../../../js/global/navbar.js" defer></script>
 <script src="../../../js/jquery-3.6.0.min.js"></script>
-<title><?php echo setCurrentTitle(); ?></title>
+<title><?= setCurrentTitle(); ?></title>
 
