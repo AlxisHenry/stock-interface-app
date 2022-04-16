@@ -1,0 +1,33 @@
+<?php
+
+include "../functions.php";
+
+$TARGET = $_POST['target'];
+$ID = $_POST['id'];
+$PASSWORD = $_POST['pass'];
+$TYPE = $_POST['type'];
+
+if ($TYPE === 'login') {
+
+    if (Access_OBJECT_($TARGET, 'username')->getType() === 'admin') {
+        if (Front_OBJECT_('1', 'id')->getState()) {
+            if (Access_OBJECT_($TARGET, 'username')->getPassword() === $PASSWORD) {
+                echo "true";
+            }
+        } else {
+            echo "false";
+        }
+    } elseif (Access_OBJECT_($TARGET, 'username')->getType() === 'dev') {
+        echo "true";
+    }
+
+} elseif ($TYPE === 'view') {
+
+    if (Front_OBJECT_('2', 'id')->getState()) {
+        echo "true";
+    } elseif (!Front_OBJECT_('2', 'id')->getState()) {
+        echo "false";
+    }
+
+}
+

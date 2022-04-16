@@ -13,7 +13,7 @@
         <div class="md-form">
             <i class="fa fa-lock fa-password"></i>
             <input type="password" id="form-pass" class="form-control">
-            <label for="form-pass">Veuillez saisir votre mot de passe</label>
+            <label for="form-pass">Votre mot de passe</label>
         </div>
 
         <a class="redirect-admin">

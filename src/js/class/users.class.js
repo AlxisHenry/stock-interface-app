@@ -1,6 +1,7 @@
 import { consoleLog, popUp } from "../global/app.js";
 
 export class Users {
+
   constructor() {
     this.form = {
       id: document.querySelector("#form-id"),
@@ -8,57 +9,53 @@ export class Users {
     };
     this.id = this.form.id.value;
     this.pass = this.form.pass.value;
+    this.valid = "#faceca";
+    this.cancel = "white";
   };
 
-  ConfirmFormData() {
+  Validity() {
 
       if (this.pass.length === 0 && this.id.length === 0) {
-        this.form.pass.style.backgroundColor = "#faceca";
-        this.form.id.style.backgroundColor = "#faceca";
+        this.form.pass.style.backgroundColor = this.valid;
+        this.form.id.style.backgroundColor = this.valid;
         popUp('uncompleted-data');
         return false;
       } else if (this.pass.length === 0) {
         consoleLog('ConfirmFormData() :: Uncompleted Password', 'e')
-        this.form.pass.style.backgroundColor = "#faceca";
+        this.form.id.style.backgroundColor = this.cancel;
+        this.form.pass.style.backgroundColor = this.valid;
         popUp('uncompleted-data');
         return false;
       } else if (this.id.length === 0) {
         consoleLog('ConfirmFormData() :: Uncompleted Id', 'e')
-        this.form.id.style.backgroundColor = "#faceca";
+        this.form.pass.style.backgroundColor = this.cancel;
+        this.form.id.style.backgroundColor = this.valid;
         popUp('uncompleted-data');
         return false;
       } else {
         consoleLog('ConfirmFormData() :: Correct', 's')
         popUp('clean');
-        this.form.id.style.backgroundColor = "white";
-        this.form.pass.style.backgroundColor = "white";
+        this.form.id.style.backgroundColor = this.cancel;
+        this.form.pass.style.backgroundColor = this.cancel;
         return true;
     }
   }
 
-  VerifyUsersPermissions() {
-    if (!this.ConfirmFormData()) {
+  Login() {
+    if (!this.Validity()) {
       consoleLog('VerifyUsersPermissions() :: Wrong Form Values', 'e');
       return false;
     }
     $.ajax({
       type: "POST",
-      url: `./src/php/website-access/manage-admin-access.php`,
-      data: {id: this.id, pass: this.pass},
-      success: function (server_response) {
-        switch (server_response) {
+      url: `./src/php/website-access/login.php`,
+      data: { target: this.id,
+              id: this.id,
+              pass: this.pass,
+              type: 'login' },
+      success: function (login) {
+        switch (login) {
           case "true":
-            $.ajax({
-              type: "POST",
-              url: `./src/php/website-access/manage.php`,
-              data: {target: 'tfadmin', type: 'logs'},
-              success: function (server_response) {
-                consoleLog('Update logs. target: tfadmin.', 's');
-              },
-              error: function () {
-                consoleLog('Update logs failed. target: tfadmin.', 'e');
-              },
-            });
             popUp('validation');
             consoleLog('VerifyUsersPermissions() :: Connexion success', 's');
             setTimeout(() => {
@@ -67,48 +64,11 @@ export class Users {
             }, 1725);
             break;
           case "false":
-            consoleLog('VerifyUsersPermissions() :: Wrong Login Informations', 'e');
-            popUp('error-connexion');
-            break;
-          case "employee-access":
-            $.ajax({
-              type: "POST",
-              url: `./src/php/website-access/manage.php`,
-              data: { target: 'employee', type: 'access' },
-              success: function (server_response) {
-                if (server_response === 'false') {
-                  consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`, 's');
-                  popUp('actually-disabled');
-                } else if (server_response === 'true') {
-                  consoleLog(`Success ajax :: Employee Dashboard status on ${server_response} !`, 's');
-                  $.ajax({
-                    type: "POST",
-                    url: `./src/php/website-access/manage.php`,
-                    data: { target: 'employee', type: 'logs' },
-                    success: function (server_response) {
-                      consoleLog('Update logs. target: employee.', 's');
-                      popUp('authorization');
-                      consoleLog('Redirect to dashboard. target: employee.', 's');
-                      setTimeout(() => {
-                        document.querySelector('.redirect-employee-dashboard').setAttribute('href','./src/php/include/views/view.php');
-                        document.querySelector('.redirect-employee-dashboard').click();
-                      }, 1725)
-                    },
-                    error: function () {
-                      consoleLog('Update logs failed. target: employee.', 'e');
-                      popUp('actually-disabled');
-                    },
-                  });
-                } else {
-                  consoleLog('Success ajax :: Error during request','e');
-                  popUp('actually-disabled');
-                  return null;
-                }
-              },});
+            popUp('actually-disabled');
             break;
           default:
-            consoleLog('VerifyUsersPermissions() :: Back-end Return Error', 'e');
-            popUp('contact-admin');
+            consoleLog('VerifyUsersPermissions() :: Wrong Login Informations', 'e');
+            popUp('error-connexion');
             break;
         }
       },
@@ -119,35 +79,27 @@ export class Users {
     });
   }
 
-    EmployeeViewAccess() {
+    Employee() {
       $.ajax({
         type: "POST",
-        url: `./src/php/website-access/manage.php`,
-        data: { target: 'employee', type: 'access' },
+        url: `./src/php/website-access/login.php`,
+        data: { target: 'employee',
+                id: null,
+                pass: null,
+                type: 'view' },
         success: function (access) {
           if (access === 'false') {
             consoleLog(`Success ajax :: Employee Dashboard status on ${access} !`, 's');
             popUp('actually-disabled');
           } else if (access === 'true') {
             consoleLog(`Success ajax :: Employee Dashboard status on ${access} !`, 's');
-            $.ajax({
-              type: "POST",
-              url: `./src/php/website-access/manage.php`,
-              data: { target: 'employee', type: 'logs' },
-              success: function (server_response) {
-                consoleLog('Update logs. target: employee.', 's');
-                popUp('authorization');
-                consoleLog('Redirect to dashboard. target: employee.', 's');
-                setTimeout(() => {
-                  document.querySelector('.redirect-employee-dashboard').setAttribute('href','./src/php/include/views/view.php');
-                  document.querySelector('.redirect-employee-dashboard').click();
-                }, 1725)
-              },
-              error: function () {
-                consoleLog('Update logs failed. target: employee.', 'e');
-                popUp('actually-disabled');
-              },
-            });
+            consoleLog('Update logs. target: employee.', 's');
+            popUp('authorization');
+            consoleLog('Redirect to dashboard. target: employee.', 's');
+            setTimeout(() => {
+              document.querySelector('.redirect-employee-dashboard').setAttribute('href','./src/php/include/views/view.php');
+              document.querySelector('.redirect-employee-dashboard').click();
+            }, 1725)
           } else {
             consoleLog('Success ajax :: Error during request','e');
             popUp('actually-disabled');
