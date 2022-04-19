@@ -99,7 +99,7 @@ export function popUp(type) {
 
         setTimeout( () => {  containMessage.innerHTML = ''; containMessage.classList.remove('reverseBump'); }, 400)
 
-    }, 1625);
+    }, 2000);
 
 }
 

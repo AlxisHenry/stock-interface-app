@@ -8,15 +8,6 @@
 
             <hr class="settings-hr">
 
-            <div class="employee-password contain-settings">
-                <label>
-                    Changer le mot de passe du compte Employé :
-                    <?= "<input type='password' value='". Access_OBJECT_('employee', 'username')->getPassword()."' class='reset-employee-password'>"; ?>
-                </label>
-                <i class="password-eye fa-regular fa-eye-slash"></i>
-                <span class="save-modification">Sauvegarder</span>
-            </div>
-
             <div class="employee-access contain-switch">
                 Souhaitez vous activer l'accès au dashboard ?
                 <div class="switch">
@@ -42,7 +33,7 @@
             <div class="admin-password contain-settings">
                 <label>
                     Changer le mot de passe du compte Administrateur :
-                    <?= "<input type='password' value='". Access_OBJECT_('tfadmin', 'username')->getPassword() ."' class='reset-admin-password'>" ?>
+                    <?= "<input type='password' value='". Access_OBJECT_(1, 'id')->getPassword() ."' class='reset-admin-password'>" ?>
                 </label>
                 <i class="password-eye fa-regular fa-eye-slash"></i>
                 <span class="save-modification">Sauvegarder</span>

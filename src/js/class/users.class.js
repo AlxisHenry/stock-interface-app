@@ -14,7 +14,6 @@ export class Users {
   };
 
   Validity() {
-
       if (this.pass.length === 0 && this.id.length === 0) {
         this.form.pass.style.backgroundColor = this.valid;
         this.form.id.style.backgroundColor = this.valid;
@@ -54,17 +53,41 @@ export class Users {
               pass: this.pass,
               type: 'login' },
       success: function (login) {
-        switch (login) {
-          case "true":
+        const LoginInformations = login.includes('bool') ? null : JSON.parse(login);
+        console.table(LoginInformations)
+        if (LoginInformations === null) {
+          consoleLog('VerifyUsersPermissions() :: Wrong Login Informations (LoginInformations === null)', 'e');
+          popUp('error-connexion');
+          return false;
+        }
+        switch (LoginInformations[0][1]) {
+          case 'true':
             popUp('validation');
             consoleLog('VerifyUsersPermissions() :: Connexion success', 's');
-            setTimeout(() => {
-              document.querySelector('.redirect-admin').setAttribute('href','./src/php/include/views/dashboard.php?nav=mvmt');
-              document.querySelector('.redirect-admin').click();
-            }, 1725);
+            $.ajax({
+              type: "POST",
+              url: './src/php/website-access/logs.php',
+              data: {
+                target: LoginInformations[0][2],
+                id: null,
+                pass: null,
+                type : 'logs',
+              },
+              success: function () {
+                consoleLog('Update logs. target: login.', 's');
+                setTimeout(() => {
+                  document.querySelector('.redirect-admin').setAttribute('href','./src/php/include/views/dashboard.php?nav=mvmt');
+                  document.querySelector('.redirect-admin').click();
+                }, 1725);
+              }
+            })
+            break;
+          case "disabled":
+            popUp('actually-disabled');
             break;
           case "false":
-            popUp('actually-disabled');
+            consoleLog('VerifyUsersPermissions() :: Wrong Login Informations', 'e');
+            popUp('error-connexion');
             break;
           default:
             consoleLog('VerifyUsersPermissions() :: Wrong Login Informations', 'e');
@@ -93,12 +116,24 @@ export class Users {
             popUp('actually-disabled');
           } else if (access === 'true') {
             consoleLog(`Success ajax :: Employee Dashboard status on ${access} !`, 's');
-            consoleLog('Update logs. target: employee.', 's');
+            $.ajax({
+              type: "POST",
+              url: './src/php/website-access/logs.php',
+              data: {
+                  target: 'employee',
+                  id: null,
+                  pass: null,
+                  type : 'logs',
+              },
+              success: function () {
+                consoleLog('Update logs. target: employee.', 's');
+              }
+            })
             popUp('authorization');
             consoleLog('Redirect to dashboard. target: employee.', 's');
             setTimeout(() => {
-              document.querySelector('.redirect-employee-dashboard').setAttribute('href','./src/php/include/views/view.php');
-              document.querySelector('.redirect-employee-dashboard').click();
+                  document.querySelector('.redirect-employee-dashboard').setAttribute('href','./src/php/include/views/view.php');
+                  document.querySelector('.redirect-employee-dashboard').click();
             }, 1725)
           } else {
             consoleLog('Success ajax :: Error during request','e');
