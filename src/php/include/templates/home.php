@@ -14,6 +14,6 @@
 
     <div class="contain-send-message"></div>
 
-<?php if(Front_OBJECT_('website-info', 'nom')->getState()) { include '../component/informations.php'; } ?>
+<?php if(Front_OBJECT_(8, 'id')->getState()) { include '../component/informations.php'; } ?>
 
 

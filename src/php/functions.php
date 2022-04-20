@@ -37,7 +37,7 @@ function setCurrentTitle():string
 
 function FormatLastConnection():string {
 
-    $lastConnection = Access_OBJECT_('tfadmin', 'username')->getDerniereConnection();
+    $lastConnection = Access_OBJECT_(1, 'id')->getDerniereConnection();
     $today = date("Y-m-d H:i:s");
     $today = new DateTime($today);
     $lastConnection = new DateTime($lastConnection);

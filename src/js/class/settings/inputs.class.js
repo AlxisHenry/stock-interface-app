@@ -39,7 +39,7 @@ export class Inputs extends Switch {
         }
     }
 
-    async Save(e) {
+    Save(e) {
 
         const GetPassword = (e) => {
             if (!e.target.parentNode.classList.contains('alerts-minimal')) {
@@ -95,7 +95,7 @@ export class Inputs extends Switch {
         }
 
         // Utilisation de fetch pour tester le principe des requêtes en JS
-            await fetch(`../../ajax/apply-input-settings.php`, {
+            fetch(`../../ajax/apply-input-settings.php`, {
                 method: 'POST',
                 header: {
                     "Content-Type": "application/json"

@@ -30,7 +30,7 @@
 
             <hr class="settings-hr">
 
-            <div class="admin-password contain-settings">
+            <div data-access-id="1" class="admin-password contain-settings">
                 <label>
                     Changer le mot de passe du compte Administrateur :
                     <?= "<input type='password' value='". Access_OBJECT_(1, 'id')->getPassword() ."' class='reset-admin-password'>" ?>
@@ -104,7 +104,7 @@
                 </div>
             </div>
 
-            <div class="alerts-minimal contain-settings">
+            <div data-alert-id="1" class="alerts-minimal contain-settings">
                 <label>
                     Modifier le seuil avant alerte :
                     <?= "<input type='number' value='24' class='change-count-alert'>" ?>

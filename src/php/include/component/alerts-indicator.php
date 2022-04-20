@@ -1,0 +1,1 @@
+<div class="alert-indication" title="Alertes">8</div>
