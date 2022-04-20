@@ -8,14 +8,14 @@
 
             <hr class="settings-hr">
 
-            <div class="employee-access contain-switch">
+            <div data-front-id="2" class="employee-access contain-switch">
                 Souhaitez vous activer l'accès au dashboard ?
                 <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
 
-            <div class="employee-logs contain-switch">
+            <div data-front-id="4" class="employee-logs contain-switch">
                 Souhaitez vous activer les logs de connexion ?
                 <div class="switch">
                     <div class="switch-indicator"></div>
@@ -39,14 +39,14 @@
                 <span class="save-modification">Sauvegarder</span>
             </div>
 
-            <div class="admin-access contain-switch">
+            <div data-front-id="1" class="admin-access contain-switch">
                 Souhaitez vous activer l'accès au dashboard ?.
                 <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
 
-            <div class="admin-logs contain-switch">
+            <div data-front-id="3" class="admin-logs contain-switch">
                 Souhaitez vous activer les logs de connexion ?
                 <div class="switch">
                     <div class="switch-indicator"></div>
@@ -61,23 +61,25 @@
 
             <hr class="settings-hr">
 
-            <div class="website-info contain-switch">
+            <div data-front-id="8" class="website-info contain-switch">
                 Souhaitez-vous afficher la barre d'informations ?
                 <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
 
-            <div class="website-configs contain-switch">
+            <div data-front-id="7" class="website-configs contain-switch">
                 Souhaitez-vous voir les onglets de configuration ?
                 <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
 
-            <div class="website-theme contain-settings">
+            <div data-front-id="9" class="website-theme contain-switch">
                 Quel thème souhaitez-vous utiliser ?
-
+                <div class="switch">
+                    <div class="switch-indicator"></div>
+                </div>
             </div>
 
         </div>
@@ -88,14 +90,14 @@
 
             <hr class="settings-hr">
 
-            <div class="alerts-mail contain-switch">
+            <div data-front-id="5" class="alerts-mail contain-switch">
                 Souhaitez-vous recevoir les alertes par mail ?
                 <div class="switch">
                     <div class="switch-indicator"></div>
                 </div>
             </div>
 
-            <div class="alerts-indicator contain-switch">
+            <div data-front-id="6" class="alerts-indicator contain-switch">
                 Souhaitez-vous afficher les alertes dans le menu ?
                 <div class="switch">
                     <div class="switch-indicator"></div>

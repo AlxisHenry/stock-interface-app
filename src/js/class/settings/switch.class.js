@@ -20,7 +20,9 @@ export class Switch {
 
                 States.forEach((el) => {
 
-                    const Element = document.querySelector('.' + el['nom']);
+                    //const Element = document.querySelector('.' + el['nom']);
+                    const Element = document.querySelector('[data-front-id="' + el['id']  + '"]');
+                    console.log(Element);
 
                     if (Element.classList.contains('contain-switch')) {
                         const Children = Element.children[0].children[0].classList;
@@ -99,7 +101,8 @@ export class Switch {
     }
 
     SwitchAction(parent, turn) {
-        this.SwitchActionRequest(parent.classList[0], turn);
+        console.log('data-id:' + parent.getAttribute('data-front-id'));
+        this.SwitchActionRequest(parent.getAttribute('data-front-id'), turn);
         popUp('success');
     }
 
@@ -110,7 +113,6 @@ export class Switch {
             data: { element: action, turn: turn},
             success: function (server_response) {
                 consoleLog('Mise à jour effectuée.', 's');
-                console.log(server_response);
             },
             error: function () {
                 consoleLog("Une erreur est survenue lors du changement d'état " +  action + " (Ajax request failed).", 'e');

@@ -5,30 +5,32 @@ include '../functions.php';
 $ELEMENT = $_POST['element'];
 $STATE = $_POST['turn'];
 
-$settings = Front_OBJECT_($ELEMENT, 'nom');
+$currentState = Front_OBJECT_($ELEMENT, 'id')->getState();
+$currentCount = Front_OBJECT_($ELEMENT, 'id')->getCount();
 
-$currentState = $settings->getState();
-$setNewState = '';
+$newState = $currentState === 1 ? 0 : 1;
+$newCount = $currentCount + 1;
 
-if ($currentState === 1) {
-    $settings->setState(0);
-} elseif ($currentState === 0) {
-    $settings->setState(1);
-} else {
-    echo 'Une erreur est survenue.';
-}
+$QUERY_STATE_ = "UPDATE `front` SET `state`=:newState WHERE `id`=:element;";
+$QUERY_DATE_ = "UPDATE `front` SET `modification` = (SELECT NOW()) WHERE `id`=:element;";
+$QUERY_COUNT_ = "UPDATE `front` SET `count`=:newCount WHERE `id`=:element;";
 
-var_dump($settings);
+$cSTATE = Connection()->prepare($QUERY_STATE_);
+$cSTATE->bindValue(':newState', $newState);
+$cSTATE->bindValue(':element', $ELEMENT);
 
-/*
- *
- * if ($STATE === 'up') {
-    $CHANGE_STATE_ELEMENT = Connection()->query("UPDATE `front` SET `state` = 1 WHERE `nom` LIKE '$ELEMENT';");
-} elseif ($STATE === 'down') {
-    $CHANGE_STATE_ELEMENT = Connection()->query("UPDATE `front` SET `state` = 0 WHERE `nom` LIKE '$ELEMENT';");
-}
+$cDATE = Connection()->prepare($QUERY_DATE_);
+$cDATE->bindValue(':element', $ELEMENT);
 
-$CHANGE_MODIFICATION_DATE = Connection()->query("UPDATE `front` SET `modification` = (SELECT NOW()) WHERE `nom` LIKE '$ELEMENT';");
-$UPDATE_COUNT = Connection()->query("UPDATE `front` SET `count` = `count` + 1  WHERE `nom` LIKE '$ELEMENT';");
+$cCOUNT = Connection()->prepare($QUERY_COUNT_);
+$cCOUNT->bindValue(':newCount', $newCount);
+$cCOUNT->bindValue(':element', $ELEMENT);
 
-*/
+$cSTATE->execute();
+$cDATE->execute();
+$cCOUNT->execute();
+
+$cSTATE->closeCursor();
+$cDATE->closeCursor();
+$cCOUNT->closeCursor();
+
