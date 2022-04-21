@@ -1,24 +1,25 @@
-echo "--------------------------------------------";
-echo "Création des tables, importation des données";
-echo "--------------------------------------------";
-
-echo "";
 echo "----------------------------------------------------";
 echo "Création de la base de données, ainsi que des tables";
 echo "----------------------------------------------------";
-sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/timken_test.sql";
-
 echo "";
-echo "----------------------";
-echo "Insertion des articles";
-echo "----------------------";
-sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/imports/articles.sql";
 
-echo "";
-echo "----------------------";
-echo "Insertion des familles";
-echo "----------------------";
-sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/imports/famille.sql";
+echo "Importation de la base de données & des tables";
+sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/Database.import.sql";
+
+echo "Importation de la table Access";
+sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/imports/Access.import.sql";
+
+echo "Importation de la table Front";
+sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/imports/Front.import.sql";
+
+echo "Importation de la table Articles";
+sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/imports/Articles.import.sql";
+
+echo "Importation de la table Familles";
+sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/imports/Familles.import.sql";
+
+echo "Importation de la table Alertes";
+sudo mariadb -e "source /var/www/timken/src/php/configuration/sql/imports/Alertes.import.sql";
 
 echo "";
 echo "--------------------";
