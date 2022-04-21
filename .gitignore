@@ -5,7 +5,15 @@
 .idea
 
 # Ignore database & configuration files
+
 /src/php/configuration/database-connexion.php
-/src/php/configuration/sql/timken_test.sql
-/src/php/configuration/sql/imports/articles.sql
-/src/php/configuration/sql/imports/famille.sql
+
+/src/php/configuration/sql/Database.import.sql
+
+/src/php/configuration/sql/imports
+
+/src/php/configuration/sql/imports/Access.import.sql
+/src/php/configuration/sql/imports/Alertes.import.sql
+/src/php/configuration/sql/imports/Articles.import.sql
+/src/php/configuration/sql/imports/Familles.import.sql
+/src/php/configuration/sql/imports/Front.import.sql
