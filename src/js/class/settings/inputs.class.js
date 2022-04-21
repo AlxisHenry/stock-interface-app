@@ -64,7 +64,6 @@ export class Inputs extends Switch {
             url: `../../ajax/apply-input-settings.php`,
             data: { _DATA_SAVE_ },
             success: (save) => {
-                console.log(save)
                 const [Value, Action] = JSON.parse(save);
                 switch (Value) {
                     case false:

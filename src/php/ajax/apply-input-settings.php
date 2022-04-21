@@ -26,6 +26,12 @@
         // Test Password
         if ((($__VALUE__ != $currentPassword) && $__ACTION__ === 'password')) {
             if (strlen($__VALUE__) > 4) {
+                $QUERY_RESET_PASSWORD = "UPDATE `access` SET `password`=:newPassword WHERE `id`=:id";
+                $qPASSWORD = Connection()->prepare($QUERY_RESET_PASSWORD);
+                $qPASSWORD->bindValue(':newPassword', $__VALUE__);
+                $qPASSWORD->bindValue(':id', $__DATABASE__);
+                $qPASSWORD->execute();
+                $qPASSWORD->closeCursor();
                 return json_encode([true, $__ACTION__]);
             } else {
                 return json_encode(['none', $__ACTION__]);
@@ -35,6 +41,12 @@
         // Test Alerts
         if ((($__VALUE__ != $currentLevel) && $__ACTION__ === 'minimal')) {
             if ($__VALUE__ >= 0 && $__VALUE__ < 100) {
+                $QUERY_RESET_PASSWORD = "UPDATE `alerts` SET `seuil`=:newSeuil WHERE `id`=:id";
+                $qPASSWORD = Connection()->prepare($QUERY_RESET_PASSWORD);
+                $qPASSWORD->bindValue(':newSeuil', $__VALUE__);
+                $qPASSWORD->bindValue(':id', $__DATABASE__);
+                $qPASSWORD->execute();
+                $qPASSWORD->closeCursor();
                 return json_encode([true, $__ACTION__]);
             } else {
                 return json_encode(['none', $__ACTION__]);
