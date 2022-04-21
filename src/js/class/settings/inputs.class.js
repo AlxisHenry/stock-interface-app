@@ -41,114 +41,80 @@ export class Inputs extends Switch {
 
     Save(e) {
 
-        const GetPassword = (e) => {
-            if (!e.target.parentNode.classList.contains('alerts-minimal')) {
-                return e.target.parentNode.children[0].children[0].value
-            } else {
-                return null;
-            }
-        }
+        const InputElement = e.target.parentNode.children[0].children[0];
 
-        const GetQuantity = (e) => {
-            if (e.target.parentNode.classList.contains('employee-password')) {
-                return null;
-            } else if (e.target.parentNode.classList.contains('admin-password')) {
-                return null;
-            } else {
-                return e.target.parentNode.children[0].children[0].value;
-            }
-        }
-
-        const GetUsername = (e) => {
-            if (e.target.parentNode.classList.contains('alerts-minimal')) {
-                return null;
-            } else {
-                return e.target.parentNode.classList[0].split('-')[0]
-            }
-        }
-
-        const Save = {
-            main: {
-                target: e.target.parentNode.classList[0].split('-')[0],
-                action: e.target.parentNode.classList[0].split('-')[1],
-                type: e.target.parentNode.classList[0],
-                value: e.target.parentNode.children[0].children[0].value
-            },
-            informations: {
-                username: GetUsername(e),
-                password: GetPassword(e),
-                quantity: GetQuantity(e)
-            },
-            about: {
-                date: Date.now(),
-                url: document.location.href
-            }
-        }
-
-        if (Save.main.value.length <= 0 || Save.main.value === -1) {
-            e.target.parentNode.children[0].children[0].style.backgroundColor = 'rgb(241,178,178)';
+        if (InputElement.value.length <= 0) {
+            InputElement.classList.add('void-input');
             popUp('uncompleted-data');
-            setTimeout(() => {
-                e.target.parentNode.children[0].children[0].style.backgroundColor = 'white';
-            }, 1625)
             return false;
         }
 
-        // Utilisation de fetch pour tester le principe des requêtes en JS
-            fetch(`../../ajax/apply-input-settings.php`, {
-                method: 'POST',
-                header: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(Save),
-            }).then((response) => response.json()
-            ).then((array) => {
+        InputElement.classList.remove('void-input');
 
-                const [ Type, Target, Null, Status, Final ] = array[0];
+        const _DATA_SAVE_ = {
+            target: e.target.parentNode.classList[0].split('-')[0],
+            action: e.target.parentNode.classList[0].split('-')[1],
+            __database__: e.target.parentNode.attributes[0].value,
+            __table__: e.target.parentNode.attributes[1].value,
+            value: e.target.parentNode.children[0].children[0].value
+        }
 
-                consoleLog('Requête effectuée, état de la réponse : ' + Status, 's');
-
-            if (!Null) {
-                switch (Type) {
-                    case 'password':
-                        if (!Status) {
-                            if (!Final) {
-                                consoleLog('Mot de passe du compte '+ Target +' changé avec succès.', 's');
+        $.ajax({
+            type: "POST",
+            url: `../../ajax/apply-input-settings.php`,
+            data: { _DATA_SAVE_ },
+            success: (save) => {
+                console.log(save)
+                const [Value, Action] = JSON.parse(save);
+                switch (Value) {
+                    case false:
+                        consoleLog('Valeur envoyée vide', 'e');
+                        popUp('uncompleted-data');
+                        break;
+                    case null:
+                        consoleLog("Valeur identique à l'ancienne.", 'e');
+                        switch (Action) {
+                            case 'password':
+                                popUp('same-password');
+                                break;
+                            case 'minimal':
+                                popUp('same-level');
+                                break;
+                            default:
+                                popUp('success')
+                                break;
+                        }
+                        break;
+                    case true:
+                        consoleLog("Changement effectué", 'e');
+                        switch (Action) {
+                            case 'password':
                                 popUp('update-password');
-                            } else if (Final) {
-                                consoleLog('Le mot de passe ne correspond pas aux critères demandés');
-                                popUp('password-incorrect');
-                            } else {
-                                consoleLog('Une erreur est survenue dans la réponse du fetch.', 'e');
-                                popUp('contact-admin');
-                            }
-                        } else if (Status) {
-                            consoleLog('Le mot de passe du compte '+ Target +' est identique à votre ancien...', 'e');
-                            popUp('same-password');
-                        } else {
-                            consoleLog('Une erreur est survenue dans la réponse du fetch.', 'e');
-                            popUp('contact-admin');
+                                break;
+                            case 'minimal':
+                                popUp('update-level');
+                                break;
+                            default:
+                                popUp('success');
+                                break;
                         }
                         break;
-                    case 'alerts':
-                        if (!Status) {
-                            popUp('update-alert-minimum');
-                        } else if (Status) {
-                            consoleLog("Niveau d'alerte identique au précédent.", 'e');
-                            popUp('update-alert-failed');
-                        } else {
-                            consoleLog('Une erreur est survenue dans la réponse du fetch.', 'e');
-                            popUp('contact-admin');
+                    case 'none':
+                        consoleLog("La valeur entrée ne correspond pas aux critères demandés", 'e');
+                        switch (Action) {
+                            default:
+                                popUp('value-not-corresponding');
+                                break;
                         }
                         break;
+                    default:
+                        popUp('contact-admin')
                 }
-            } else {
-                popUp('uncompleted-data');
-            }
-            }).catch((e) => {
-                consoleLog('Une erreur est survenue lors de la tentative de fetch.', 'e');
-                console.log(e);
+            },
+            error: () => {
                 popUp('contact-admin');
-            });
+            },
+        });
+
     }
 }

@@ -15,19 +15,19 @@ include 'src/php/functions.php';
 
 <body>
 
-    <?php include 'src/php/include/component/form.php'; ?>
+<?php include 'src/php/include/component/form.php'; ?>
 
-    <div class="contain-send-message"></div>
+<div class="contain-send-message"></div>
 
-    <div class="about-user">
+<div class="about-user">
 
-        <div class="contain-asset-name"> <?= getAssetName(); ?> </div>
-        <div class="contain-date"> <?= getFormatDate(); ?> </div>
+    <div class="contain-asset-name"> <?= getAssetName(); ?> </div>
+    <div class="contain-date"> <?= getFormatDate(); ?> </div>
 
-    </div>
+</div>
 
-    <script src='./src/js/jquery-3.6.0.min.js'></script>
-    <script src='src/js/main/index.js' type="module"></script>
+<script src='./src/js/jquery-3.6.0.min.js'></script>
+<script src='src/js/main/index.js' type="module"></script>
 
 </body>
 

@@ -474,6 +474,10 @@ label[for="form-id"], label[for="form-pass"] {
   box-shadow: 0 1px #ffb234;
 }
 
+.void-input {
+  background-color: #efcaca !important;
+}
+
 .password-eye {
   position: relative;
   margin-left: -33px;

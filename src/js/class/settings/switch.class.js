@@ -22,7 +22,7 @@ export class Switch {
 
                     //const Element = document.querySelector('.' + el['nom']);
                     const Element = document.querySelector('[data-front-id="' + el['id']  + '"]');
-                    console.log(Element);
+                    //console.log(Element);
 
                     if (Element.classList.contains('contain-switch')) {
                         const Children = Element.children[0].children[0].classList;

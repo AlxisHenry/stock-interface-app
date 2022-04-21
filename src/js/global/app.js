@@ -66,20 +66,20 @@ export function popUp(type) {
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup update-password\"><i class=\"fa-solid fa-pop-up fa-check\"></i>Mot de passe mis à jour avec succès.</div>\n");
             SetPopupColor('e', 'rgb(164,246,126)');
             break;
-        case 'update-alert-minimum':
+        case 'update-level':
             containMessage.innerHTML = '';
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup update-alert-minimum\"><i class=\"fa-solid fa-pop-up fa-check\"></i>Seuil d'alerte mis à jour.</div>\n");
             SetPopupColor('e', 'rgb(164,246,126)');
             break;
-        case 'update-alert-failed':
+        case 'same-level':
             containMessage.innerHTML = '';
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup update-alert-minimum\"><i class=\"fa-solid fa-pop-up fa-circle-exclamation\"></i>Seuil d'alerte identique à l'ancien.</div>\n");
             SetPopupColor('e', 'rgb(255,78,120)');
             break;
-        case 'password-incorrect':
+        case 'value-not-corresponding':
             containMessage.innerHTML = '';
-            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup update-alert-minimum\"><i class=\"fa-solid fa-pop-up fa-circle-exclamation\"></i>Le mot de passe ne correspond pas aux critères.</div>\n");
-            SetPopupColor('e', 'rgb(211,107,107)');
+            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup value-not-corresponding\"><i class=\"fa-solid fa-pop-up fa-circle-exclamation\"></i>La valeur ne correspond pas aux critères.</div>\n");
+            SetPopupColor('e', 'rgb(182,101,229)');
             break;
         case 'clean':
             containMessage.innerHTML = '';
