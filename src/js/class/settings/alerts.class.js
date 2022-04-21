@@ -1,4 +1,5 @@
 import {Switch} from "./switch.class.js";
+import {popUp} from "../../global/app.js";
 
 export class Alerts extends Switch {
 
@@ -19,11 +20,25 @@ export class Alerts extends Switch {
 
     ShowAlerts() {
 
-        const Parent = document.querySelector('.alerts');
+        $.ajax({
+            type: "GET",
+            url: `../../ajax/init-front-informations.php`,
+            data: { format: 'array', return: ['asset', 'date', 'count-alert']},
+            success: function (informations) {
 
-        const Element = `<div class="alert-indication" title="Nombre d'alertes">8</div>`;
+                const Informations = JSON.parse(informations);
 
-        Parent.insertAdjacentHTML('beforeend', Element);
+                const Parent = document.querySelector('.alerts');
+
+                const Element = `<div class="alert-indication" title="Nombre d'alertes"><span>${Informations.count}</span></div>`;
+
+                Parent.insertAdjacentHTML('beforeend', Element);
+
+            },
+            error: function () {
+                popUp('contact-admin');
+            },
+        });
 
     }
 

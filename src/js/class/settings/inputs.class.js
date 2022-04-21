@@ -92,6 +92,35 @@ export class Inputs extends Switch {
                                 break;
                             case 'minimal':
                                 popUp('update-level');
+                                $.ajax({
+                                    type: "GET",
+                                    url: `../../ajax/init-front-informations.php`,
+                                    data: { format: 'array', return: ['asset', 'date', 'count-alert']},
+                                    success: function (informations) {
+
+                                        const Informations = JSON.parse(informations);
+
+                                        if (!Informations.countState) {
+                                            return false;
+                                        }
+
+                                        if (Informations.count !== 0) {
+                                            if (document.querySelector('.alert-indication')) {
+                                                document.querySelector('.alert-indication').children[0].innerHTML = Informations.count;
+                                            } else {
+                                                const Parent = document.querySelector('.alerts');
+                                                const Element = `<div class="alert-indication" title="Nombre d'alertes"><span>${Informations.count}</span></div>`;
+                                                Parent.insertAdjacentHTML('beforeend', Element);
+                                            }
+                                        } else {
+                                            document.querySelector('.alert-indication').remove();
+                                        }
+
+                                    },
+                                    error: function () {
+                                        popUp('contact-admin');
+                                    },
+                                });
                                 break;
                             default:
                                 popUp('success');

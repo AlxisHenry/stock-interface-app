@@ -1,1 +1,7 @@
-<div class="alert-indication" title="Alertes">8</div>
+
+<?php
+
+    if (GetCountOfAlerts() != 0) {
+        echo '<div class="alert-indication" title="Alertes"><span> ' . GetCountOfAlerts() . '</span></div>';
+    }
+

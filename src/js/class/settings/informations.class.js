@@ -26,8 +26,8 @@ export class Informations extends Switch {
     ShowInformations() {
         $.ajax({
             type: "GET",
-            url: `../../ajax/init-asset-date.php`,
-            data: { format: 'array', return: ['asset', 'date']},
+            url: `../../ajax/init-front-informations.php`,
+            data: { format: 'array', return: ['asset', 'date', 'count-alert']},
             success: function (informations) {
 
                 const Informations = JSON.parse(informations);

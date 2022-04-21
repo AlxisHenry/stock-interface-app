@@ -453,16 +453,20 @@ label[for="form-id"], label[for="form-pass"] {
   background-color: red;
   width: 30px;
   height: 30px;
-  margin-left: 60px;
+  margin-left: 45px;
   border-radius: 50%;
-  color: white;
+  font-family: var(--nav-family);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 3px;
+}
+
+.alert-indication span {
+  color: white;
   text-align: center;
   font-size: 16px;
-  letter-spacing: 0;
-  font-family: var(--nav-family);
+  letter-spacing: 1px;
 }
 
 .contain-settings input {

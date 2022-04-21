@@ -87,3 +87,9 @@ function FormatLastConnection():string {
 }
 
 /* Globals functions -- END */
+
+function GetCountOfAlerts() {
+    $_ALERT_SEUIL = Alertes_OBJECT_(1, 'id')->getSeuil();
+    $COUNT_ALERT = Connection()->query("SELECT COUNT(*) AS Alertes FROM `articles` WHERE `quantityStock` < $_ALERT_SEUIL");
+    return $COUNT_ALERT->fetch()[0];
+}
