@@ -111,3 +111,14 @@ function SetPopupColor(type, color) {
     PopUp.style.border = `solid ${color}`;
 
 }
+
+export function CapsLock(e) {
+    let caps = e.getModifierState && e.getModifierState( 'CapsLock' );
+
+    if (caps) {
+        document.querySelector('.caps-lock-indicator').style.visibility = 'visible';
+    } else if (!caps) {
+        document.querySelector('.caps-lock-indicator').style.visibility = 'hidden';
+    }
+
+}

@@ -16,6 +16,7 @@ if ($TYPE === 'login') {
                     echo json_encode(array(
                         [Access_OBJECT_($TARGET, 'username')->getUsername(), 'true', $TARGET]
                     ));
+                    include '../sessions/login-session.php';
                 } else {
                     echo json_encode(array([Access_OBJECT_($TARGET, 'username')->getUsername(), 'false', $TARGET]));
                 }
@@ -25,6 +26,7 @@ if ($TYPE === 'login') {
         } elseif (Access_OBJECT_($TARGET, 'username')->getType() === 'dev') {
             if (Access_OBJECT_($TARGET, 'username')->getPassword() === $PASSWORD) {
                 echo json_encode(array([Access_OBJECT_($TARGET, 'username')->getUsername(), 'true', $TARGET]));
+                include '../sessions/login-session.php';
             } else {
                 echo json_encode(array([Access_OBJECT_($TARGET, 'username')->getUsername(), 'false', $TARGET]));
             }
@@ -37,6 +39,7 @@ if ($TYPE === 'login') {
 } elseif ($TYPE === 'view') {
 
     if (Front_OBJECT_('2', 'id')->getState()) {
+        include '../sessions/login-session.php';
         echo "true";
     } elseif (!Front_OBJECT_('2', 'id')->getState()) {
         echo "false";

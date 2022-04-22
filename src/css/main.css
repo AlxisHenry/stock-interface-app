@@ -54,7 +54,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  height: 450px;
+  height: 500px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -107,13 +107,42 @@ label[for="form-id"], label[for="form-pass"] {
   color: white;
 }
 
+.caps-lock-indicator {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 3px;
+  height: 20px;
+  color: black;
+  font-size: 14px;
+  font-family: var(--form-family);
+  letter-spacing: 0;
+  font-weight: bold;
+  visibility: visible;
+}
+
+.caps-lock-indicator span {
+  color: orange;
+  font-weight: bold;
+  font-family: var(--form-family);
+  letter-spacing: 0;
+  font-size: 14px;
+  margin-left: 3px;
+  margin-right: 3px;
+  text-decoration: underline;
+}
+
+.caps-lock-indicator span:hover {
+  cursor: pointer;
+}
+
 .btn-primary {
   position: relative;
   left: 25%;
   width: 50%;
   margin-bottom: 30px;
   border-radius: 5px;
-  margin-top: 30px;
+  margin-top: 28px;
   padding: 8px;
   color: white;
   text-align: center;

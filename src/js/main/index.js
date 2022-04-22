@@ -1,9 +1,13 @@
 import { Users } from "../class/users.class.js";
-import { popUp } from "../global/app.js";
+import {CapsLock, popUp} from "../global/app.js";
 
 window.addEventListener('load', () =>  {
 
     popUp('clean');
+
+    window.addEventListener("keydown",  (e) => {
+        CapsLock(e);
+    })
 
     document.querySelector(".submit-admin-panel").addEventListener('click', () => {
         setTimeout(() => { new Users().Login(); }, 75);
