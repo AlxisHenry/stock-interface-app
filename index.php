@@ -2,6 +2,9 @@
 <html>
 <?php
 include 'src/php/functions.php';
+session_destroy();
+session_start();
+include 'src/php/sessions/load-session.php';
 ?>
 <head>
     <meta charset='utf-8'>

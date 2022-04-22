@@ -1,8 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
+include 'sessions/main-session.php';
 include 'configuration/database-connexion.php';
 include 'get_class_object.php';
 
@@ -86,10 +84,33 @@ function FormatLastConnection():string {
 
 }
 
+function getBrowser():string
+{
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'Opera') || strpos($_SERVER['HTTP_USER_AGENT'], 'OPR/')) return 'Opera';
+    elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Edge')) return 'Edge';
+    elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) return 'Chrome';
+    elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari')) return 'Safari';
+    elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox')) return 'Firefox';
+    elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') || strpos($_SERVER['HTTP_USER_AGENT'], 'Trident/7')) return 'Internet Explorer';
+
+    return 'Not find...';
+}
+
+function getOs(): string
+{
+    $tab = array('Windows NT 10.0; Win64; x64', 'Windows NT 7.0', 'MacOS', 'Linux');
+    foreach($tab as $os){
+        if(stripos($_SERVER['HTTP_USER_AGENT'], $os))
+            return $os;
+    }
+    return 'Not find...';
+}
+
+
 /* Globals functions -- END */
 
 function GetCountOfAlerts() {
     $_ALERT_SEUIL = Alertes_OBJECT_(1, 'id')->getSeuil();
-    $COUNT_ALERT = Connection()->query("SELECT COUNT(*) AS Alertes FROM `articles` WHERE `quantityStock` < $_ALERT_SEUIL");
+    $COUNT_ALERT = Connection()->query("SELECT COUNT(*) AS Alertes FROM `articles` WHERE `quantityStock` <= $_ALERT_SEUIL");
     return $COUNT_ALERT->fetch()[0];
 }

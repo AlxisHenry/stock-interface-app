@@ -16,11 +16,14 @@
             <label for="form-pass">Votre mot de passe</label>
         </div>
 
+        <div class="caps-lock-indicator">Touche <span> MAJ </span> activée.</div>
+
         <a class="redirect-admin">
             <button type="submit" class="btn btn-primary submit-admin-panel">Me connecter</button>
         </a>
 
     </div>
+
 
     <div class="employee-session">
 
