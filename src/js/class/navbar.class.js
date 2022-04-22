@@ -33,8 +33,7 @@ export class Navbar {
     DisconnectUser() {
         consoleLog('Vous avez été déconnecté !', 's');
         setTimeout(() => {
-            location.replace('../../../index.php');
-        }, 800)
+            location.replace('../../../../../index.php');
+        }, 875);
     }
-
 }

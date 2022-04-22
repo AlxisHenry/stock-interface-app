@@ -15,10 +15,9 @@
     <hr class="nav-separator">
 
     <div class="contain-actions">
-        <!-- todo Relier au back-end ::: Pop up avec le nombres ? Si 0 = rien, sinon le nombres d'alertes ? -->
         <div class="features alerts"><a class="nav-redirection" href="./alerts.php?nav=alerts" title="Voir les alertes"><i class="nav-fa-icons fa-solid fa-bell"></i><span class="nav-span">Notifications</span></a>
                 <?php if(Front_OBJECT_(6, 'id')->getState()){ include '../component/alerts-indicator.php'; } ?>
         </div>
         <div class="features settings"><a class="nav-redirection" href="./settings.php?nav=settings" title="Voir les paramètres"><i class="nav-fa-icons fa-solid fa-gear"></i><span class="nav-span">Paramètres</span></a></div>
-        <div class="features disconnect"><a class="nav-redirection" href="#"><i class="nav-fa-icons fa-solid fa-right-from-bracket"></i><span title="Me déconnecter" class="nav-span">Me déconnecter</span></a></div>
+        <div class="features disconnect"><a class="nav-redirection"><i class="nav-fa-icons fa-solid fa-right-from-bracket"></i><span title="Me déconnecter" class="nav-span">Me déconnecter</span></a></div>
     </div>

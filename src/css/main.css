@@ -451,6 +451,10 @@ label[for="form-id"], label[for="form-pass"] {
   height: 544px;
 }
 
+.contain-actions .disconnect {
+  cursor: pointer;
+}
+
 .features {
   width: 100%;
   margin-top: 28px;
