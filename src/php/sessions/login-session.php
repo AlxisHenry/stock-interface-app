@@ -1,6 +1,6 @@
 <?php
 
-$_SESSION['login'] = array(
+$_SESSION['login'] = [
     "user" => null,
     "password" => null,
     "typeAccount" => null,
@@ -9,4 +9,4 @@ $_SESSION['login'] = array(
     "hostname" => getAssetName(),
     "browser" => getBrowser(),
     "system" => getOs(),
-);
+];

@@ -16,21 +16,21 @@ $QUERY_DATE_ = "UPDATE `front` SET `modification` = (SELECT NOW()) WHERE `id`=:e
 $QUERY_COUNT_ = "UPDATE `front` SET `count`=:newCount WHERE `id`=:element;";
 
 $cSTATE = Connection()->prepare($QUERY_STATE_);
-$cSTATE->execute(array(
+$cSTATE->execute([
     ':newState' => $newState,
     ':element' => $ELEMENT
-));
+]);
 
 $cDATE = Connection()->prepare($QUERY_DATE_);
-$cDATE->execute(array(
+$cDATE->execute([
     ':element' => $ELEMENT
-));
+]);
 
 $cCOUNT = Connection()->prepare($QUERY_COUNT_);
-$cCOUNT->execute(array(
+$cCOUNT->execute([
     ':newCount' => $newCount,
     ':element' => $ELEMENT
-));
+]);
 
 $cSTATE->closeCursor();
 $cDATE->closeCursor();

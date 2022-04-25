@@ -28,10 +28,10 @@
             if (strlen($__VALUE__) > 4) {
                 $QUERY_RESET_PASSWORD = "UPDATE `access` SET `password`=:newPassword WHERE `id`=:id";
                 $qPASSWORD = Connection()->prepare($QUERY_RESET_PASSWORD);
-                $qPASSWORD->execute(array(
+                $qPASSWORD->execute([
                     ':newPassword' => $__VALUE__,
                     ':id' => $__DATABASE__
-                ));
+                ]);
                 $qPASSWORD->closeCursor();
                 return json_encode([true, $__ACTION__]);
             } else {
@@ -44,10 +44,10 @@
             if ($__VALUE__ >= 0 && $__VALUE__ < 100) {
                 $QUERY_RESET_PASSWORD = "UPDATE `alertes` SET `seuil`=:newSeuil WHERE `id`=:id";
                 $qPASSWORD = Connection()->prepare($QUERY_RESET_PASSWORD);
-                $qPASSWORD->execute(array(
+                $qPASSWORD->execute([
                     ':newSeuil' => $__VALUE__,
                     ':id' => $__DATABASE__
-                ));
+                ]);
                 $qPASSWORD->closeCursor();
                 return json_encode([true, $__ACTION__]);
             } else {

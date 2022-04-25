@@ -60,7 +60,7 @@ export class Users {
           popUp('error-connexion');
           return false;
         }
-        switch (LoginInformations[0][1]) {
+        switch (LoginInformations[1]) {
           case 'true':
             popUp('validation');
             consoleLog('VerifyUsersPermissions() :: Connexion success', 's');

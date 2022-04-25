@@ -1,8 +1,8 @@
 <?php
 
-$_SESSION['load'] = array(
+$_SESSION['load'] = [
     "timestamp" => time(),
     "hostname" => getAssetName(),
     "browser" => getBrowser(),
     "system" => getOs(),
-);
+];

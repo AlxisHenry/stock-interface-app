@@ -107,25 +107,9 @@ class Logs
         $this->system = $system;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastActivity()
-    {
-        return $this->lastActivity;
-    }
-
-    /**
-     * @param mixed $lastActivity
-     */
-    public function setLastActivity($lastActivity): void
-    {
-        $this->lastActivity = $lastActivity;
-    }
-
     public function Insert() {
 
-        $REQUEST = "INSERT INTO `logs` (user, date, asset, browser, system) VALUES (:user, (SELECT NOW()), :asset, :browser, :system );";
+        $REQUEST = "INSERT INTO `logs` (user, date, asset, browser, os) VALUES (:user, (SELECT NOW()), :asset, :browser, :system );";
         $QUERY = Connection()->prepare($REQUEST);
         $QUERY->execute([
             ':user' => Access_OBJECT_(GetSession('login', 'user'), 'username')->getId(),
