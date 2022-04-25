@@ -64,23 +64,11 @@ export class Users {
           case 'true':
             popUp('validation');
             consoleLog('VerifyUsersPermissions() :: Connexion success', 's');
-            $.ajax({
-              type: "POST",
-              url: './src/php/website-access/logs.php',
-              data: {
-                target: LoginInformations[0][2],
-                id: null,
-                pass: null,
-                type : 'logs',
-              },
-              success: function () {
-                consoleLog('Update logs. target: login.', 's');
-                setTimeout(() => {
-                  document.querySelector('.redirect-admin').setAttribute('href','./src/php/include/views/dashboard.php?nav=mvmt');
-                  document.querySelector('.redirect-admin').click();
-                }, 1725);
-              }
-            })
+            consoleLog('Update logs. target: login.', 's');
+            setTimeout(() => {
+              document.querySelector('.redirect-admin').setAttribute('href','./src/php/include/views/dashboard.php?nav=mvmt');
+              document.querySelector('.redirect-admin').click();
+            }, 1725);
             break;
           case "disabled":
             popUp('actually-disabled');
@@ -111,24 +99,12 @@ export class Users {
                 pass: null,
                 type: 'view' },
         success: function (access) {
+          console.log(access)
           if (access === 'false') {
             consoleLog(`Success ajax :: Employee Dashboard status on ${access} !`, 's');
             popUp('actually-disabled');
           } else if (access === 'true') {
             consoleLog(`Success ajax :: Employee Dashboard status on ${access} !`, 's');
-            $.ajax({
-              type: "POST",
-              url: './src/php/website-access/logs.php',
-              data: {
-                  target: 'employee',
-                  id: null,
-                  pass: null,
-                  type : 'logs',
-              },
-              success: function () {
-                consoleLog('Update logs. target: employee.', 's');
-              }
-            })
             popUp('authorization');
             consoleLog('Redirect to dashboard. target: employee.', 's');
             setTimeout(() => {

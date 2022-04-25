@@ -46,7 +46,6 @@ function GetSession(string $session, string $attr):string|int {
             'hostname' => $_SESSION['login']['hostname'],
             'browser' => $_SESSION['login']['browser'],
             'system' => $_SESSION['login']['system'],
-            'lastActivity' => $_SESSION['login']['history'],
             default => false,
         },
         default => false,

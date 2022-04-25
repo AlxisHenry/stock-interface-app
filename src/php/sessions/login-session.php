@@ -9,5 +9,4 @@ $_SESSION['login'] = array(
     "hostname" => getAssetName(),
     "browser" => getBrowser(),
     "system" => getOs(),
-    "lastActivity" => null,
 );
