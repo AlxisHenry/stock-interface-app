@@ -98,7 +98,7 @@ function getBrowser():string
 
 function getOs(): string
 {
-    $tab = array('Windows NT 10.0; Win64; x64', 'Windows NT 7.0', 'MacOS', 'Linux');
+    $tab = ['Windows NT 10.0; Win64; x64', 'Windows NT 7.0', 'MacOS', 'Linux'];
     foreach($tab as $os){
         if(stripos($_SERVER['HTTP_USER_AGENT'], $os))
             return $os;
@@ -112,4 +112,35 @@ function GetCountOfAlerts() {
     $_ALERT_SEUIL = Alertes_OBJECT_(1, 'id')->getSeuil();
     $COUNT_ALERT = Connection()->query("SELECT COUNT(*) AS Alertes FROM `articles` WHERE `quantityStock` <= $_ALERT_SEUIL");
     return $COUNT_ALERT->fetch()[0];
+}
+
+function GetStockInUrl(string $url):Articles|bool {
+    $TEST_URL = (bool)strpos($url, '&id=');
+
+    if (!$TEST_URL) return false;
+
+    $EntryUrl = $url;
+    $id = explode('&', $EntryUrl);
+    $id_value = intval((explode('=', $id[1]))[1]);
+
+    if (!$id_value) return false;
+    if ($id_value < 0) return false;
+
+    $ArticlesRow = Connection()->query('SELECT COUNT(*) AS ArticleRow FROM `articles`');
+
+    if ($id_value > $ArticlesRow->fetch()[0]) return false;
+
+    $ARTICLE = Articles_OBJECT_($id_value, 'id');
+
+    $ArticlesRow->closeCursor();
+
+    return $ARTICLE;
+
+}
+
+function InitializeStockEntry():Articles|string {
+
+    $CHECK_ARTICLE = GetStockInUrl($_SERVER['REQUEST_URI']);
+    return !$CHECK_ARTICLE ? '' : $CHECK_ARTICLE;
+
 }

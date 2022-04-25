@@ -747,7 +747,11 @@ table tr:nth-child(odd){
 .searchbar::placeholder {
   text-align: start;
   font-family: var(--nav-family);
-  letter-spacing: 0px;
+  letter-spacing: 0;
+}
+
+.column-0 {
+  display: none;
 }
 
 @media screen and (max-width: 1450px ){
@@ -773,6 +777,23 @@ table tr:nth-child(odd){
   align-items: center;
 }
 
-
 .entry-stock-section .stock-action-form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
 }
+
+.entry-stock-section .stock-action-form div label:not(.add-new-article) {
+  display: flex;
+  flex-direction: column;
+}
+
+.entry-stock-section .stock-action-form div {
+  margin-top: 20px;
+}
+
+.entry-stock-section .stock-action-form input[type='submit'] {
+  margin-top: 20px;
+}
+
