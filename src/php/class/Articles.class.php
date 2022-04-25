@@ -2,17 +2,19 @@
 
 class Articles
 {
-
-    private $id;
-    private $famille;
-    private $nom;
-    private $commentaire;
-    private $code;
-    private $localisation;
-    private $dateCreation;
-    private $dateModification;
-    private $createUser;
-    private $editUser;
+    private mixed $id;
+    private mixed $famille;
+    private mixed $nom;
+    private mixed $quantityStock;
+    private mixed $quantityTotal;
+    private mixed $quantityGiven;
+    private mixed $commentaire;
+    private mixed $code;
+    private mixed $localisation;
+    private mixed $dateCreation;
+    private mixed $dateModification;
+    private mixed $createUser;
+    private mixed $editUser;
 
     /**
      * @return mixed
@@ -60,6 +62,54 @@ class Articles
     public function setNom($nom): void
     {
         $this->nom = $nom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantityStock()
+    {
+        return $this->quantityStock;
+    }
+
+    /**
+     * @param mixed $quantityStock
+     */
+    public function setQuantityStock($quantityStock): void
+    {
+        $this->quantityStock = $quantityStock;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantityTotal()
+    {
+        return $this->quantityTotal;
+    }
+
+    /**
+     * @param mixed $quantityTotal
+     */
+    public function setQuantityTotal($quantityTotal): void
+    {
+        $this->quantityTotal = $quantityTotal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuantityGiven()
+    {
+        return $this->quantityGiven;
+    }
+
+    /**
+     * @param mixed $quantityGiven
+     */
+    public function setQuantityGiven($quantityGiven): void
+    {
+        $this->quantityGiven = $quantityGiven;
     }
 
     /**
@@ -169,9 +219,22 @@ class Articles
     /**
      * @param mixed $editUser
      */
+
     public function setEditUser($editUser): void
     {
         $this->editUser = $editUser;
+    }
+
+    public function Update() {
+
+    }
+
+    public function Insert() {
+
+    }
+
+    public function Delete() {
+
     }
 
 }

@@ -298,8 +298,6 @@ label[for="form-id"], label[for="form-pass"] {
   width: 80%;
   height: 100vh;
   overflow: auto;
-  display: flex;
-  align-items: center;
 }
 
 /* END -- Section*/
@@ -635,7 +633,7 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 .section .contain-settings-sections .fl {
-  width: 60%;
+  width: 50%;
   height: 350px;
   margin-left: 10px;
   margin-right: 10px;
@@ -765,3 +763,16 @@ table tr:nth-child(odd){
 }
 
 /* END -- Admin Panel - Visu. Stock */
+
+/* Entrée de stock */
+
+.entry-stock-section {
+  margin-left: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.entry-stock-section .stock-action-form {
+}

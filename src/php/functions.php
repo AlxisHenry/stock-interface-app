@@ -106,7 +106,6 @@ function getOs(): string
     return 'Not find...';
 }
 
-
 /* Globals functions -- END */
 
 function GetCountOfAlerts() {
