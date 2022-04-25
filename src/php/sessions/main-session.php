@@ -2,13 +2,28 @@
 
 session_start();
 
-function CheckSessionExist(string $session):bool {
+function CheckSessionExist():void {
 
-    if ($_SESSION[$session]) {
-        return true;
+    if (!$_SESSION['login']) {
+        header("Location: ../../../../index.php");
+        die();
     }
 
-    return false;
+}
+
+function CheckSessionAccount():void {
+
+    $ACCOUNT_TYPE = GetSession('login', 'typeAccount');
+
+    if ($ACCOUNT_TYPE !== 'view' && str_contains($_SERVER['REQUEST_URI'], 'view.php')) {
+        header("Location: ../../../../index.php");
+        die();
+    } elseif ($ACCOUNT_TYPE === 'admin' || $ACCOUNT_TYPE === 'dev') {
+        if (!(str_contains($_SERVER['REQUEST_URI'], '?nav='))) {
+            header("Location: ../../../../index.php");
+            die();
+        }
+    }
 
 }
 
