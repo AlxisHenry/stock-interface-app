@@ -5,8 +5,8 @@ export class c_Article {
     constructor() {
         this.UrlParamId = new URLSearchParams(window.location.search).get("id");
         this.UrlParamState = new URLSearchParams(window.location.search).get('st');
-        this._NewArticle = document.querySelector('.new-article');
-        this._ExistArticle = document.querySelector('.existing-article')
+        this._NewArticle = document.querySelector('.new');
+        this._ExistArticle = document.querySelector('.exist')
     }
 
     __Action__() {
@@ -15,7 +15,7 @@ export class c_Article {
 
         if (!isNaN(parseInt(_GetExistArticle))) {
 
-            document.querySelector('.form-x').classList.remove('invisible')
+            document.querySelector('.exit-article-focus').classList.remove('invisible')
 
             this._NewArticle.classList.remove('config-active-action')
             this._ExistArticle.classList.add('config-active-action')
@@ -26,7 +26,7 @@ export class c_Article {
                 FamilySelect.setAttribute('selected', true)
             }
 
-            const Name = document.querySelector('.article-nom-select').dataset.art
+            const Name = document.querySelector('.article-name-select').dataset.art
             const NameSelect = document.querySelector('.opt-name-' + Name)
             if (NameSelect) {
                 NameSelect.setAttribute('selected', true)
@@ -34,36 +34,36 @@ export class c_Article {
                 document.location.replace('config-articles.php?nav=c-article')
             }
 
-            document.querySelector('.submit-form-config-article-values').dataset.target = "update";
+            document.querySelector('.card-form-article-submit').dataset.target = "update";
 
             return false;
         } else if (this.UrlParamState) {
 
-            document.querySelector('.form-x').classList.add('invisible')
+            document.querySelector('.exit-article-focus').classList.add('invisible')
 
             this._NewArticle.classList.remove('config-active-action')
             this._ExistArticle.classList.add('config-active-action')
 
-            document.querySelector('.article-nom').classList.add('hidden')
-            document.querySelector('.article-nom-select').classList.remove('hidden')
-            document.querySelector('.article-default-quantity').setAttribute('disabled', true)
+            document.querySelector('.article-new-name').classList.add('hidden')
+            document.querySelector('.article-name-select').classList.remove('hidden')
+            document.querySelector('.article-quantity').setAttribute('disabled', true)
 
-            document.querySelector('.submit-form-config-article-values').dataset.target = "update";
+            document.querySelector('.card-form-article-submit').dataset.target = "update";
 
         } else {
-            document.querySelector('.form-x').classList.add('invisible')
+            document.querySelector('.exit-article-focus').classList.add('invisible')
 
             this._NewArticle.classList.add('config-active-action')
             this._ExistArticle.classList.remove('config-active-action')
 
-            document.querySelector('.submit-form-config-article-values').dataset.target = "insert";
+            document.querySelector('.card-form-article-submit').dataset.target = "insert";
         }
 
     }
 
     _NAV_NewArticle(e) {
 
-        if (this.UrlParamId) {
+        if (this.UrlParamId || this.UrlParamState) {
             document.location.replace('config-articles.php?nav=c-article')
         } else if (this._NewArticle.classList.contains('config-active-action')) {
             e.preventDefault()
@@ -73,10 +73,10 @@ export class c_Article {
         this._NewArticle.classList.add('config-active-action')
         this._ExistArticle.classList.remove('config-active-action')
 
-        document.querySelector('.form-x').classList.add('invisible')
-        document.querySelector('.article-nom').classList.remove('hidden')
-        document.querySelector('.article-nom-select').classList.add('hidden')
-        document.querySelector('.article-default-quantity').removeAttribute('disabled')
+        document.querySelector('.exit-article-focus').classList.add('invisible')
+        document.querySelector('.article-new-name').classList.remove('hidden')
+        document.querySelector('.article-name-select').classList.add('hidden')
+        document.querySelector('.article-quantity').removeAttribute('disabled')
 
     }
 
@@ -87,13 +87,13 @@ export class c_Article {
             return false;
         }
 
-        document.querySelector('.form-x').classList.add('invisible')
+        document.querySelector('.exit-article-focus').classList.add('invisible')
         this._NewArticle.classList.remove('config-active-action')
         this._ExistArticle.classList.add('config-active-action')
 
-        document.querySelector('.article-nom').classList.add('hidden')
-        document.querySelector('.article-nom-select').classList.remove('hidden')
-        document.querySelector('.article-default-quantity').setAttribute('disabled', true)
+        document.querySelector('.article-new-name').classList.add('hidden')
+        document.querySelector('.article-name-select').classList.remove('hidden')
+        document.querySelector('.article-quantity').setAttribute('disabled', true)
 
     }
 
@@ -102,12 +102,12 @@ export class c_Article {
     }
 
     ConfirmChange() {
-        const TargetAction = document.querySelector('.submit-form-config-article-values').dataset.target;
+        const TargetAction = document.querySelector('.card-form-article-submit').dataset.target;
 
         const Article_Data = {
-            nom: document.querySelector('.article-nom').value,
-            upnom: document.querySelector('.article-nom-select').value,
-            quantity: document.querySelector('.article-default-quantity').value,
+            nom: document.querySelector('.article-new-name').value,
+            upnom: document.querySelector('.article-name-select').value,
+            quantity: document.querySelector('.article-quantity').value,
             comment: document.querySelector('.article-commentary').value,
             family: document.querySelector('.article-family-select').value,
             code: document.querySelector('.article-code').value,
@@ -115,14 +115,16 @@ export class c_Article {
             type: TargetAction,
         }
 
+        console.log(Article_Data)
+
         if (Article_Data.nom < 1) {
             popUp('uncompleted-data')
-            document.querySelector('.article-nom').style.backgroundColor = '#ffa4a4';
-            setTimeout(() => { document.querySelector('.article-nom').style.backgroundColor = 'white' }, 1250)
+            document.querySelector('.article-new-name').style.backgroundColor = '#ffa4a4';
+            setTimeout(() => { document.querySelector('.article-new-name').style.backgroundColor = 'white' }, 1250)
             return false
         }
 
-        document.querySelector('.article-nom').style.backgroundColor = 'white'
+        document.querySelector('.article-new-name').style.backgroundColor = 'white'
         popUp('clean')
 
         console.table(Article_Data)
@@ -146,7 +148,6 @@ export class c_Article {
     Clear() {
         console.log('Clear');
         document.location.replace('config-articles.php?nav=c-article&st=true');
-
     }
 
 }

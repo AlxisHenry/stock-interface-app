@@ -2,77 +2,72 @@
     include '../templates/home.php';
 ?>
 
-<section class="section entry-stock-section">
+<section class="section form-section">
 
-    <div class="form-config-article">
+    <div class="form-section-card">
 
-    <form id="config-article">
+            <div class="card-action">
 
-            <div class="select-action-type">
-
-                <div class="new-article">
+                <div class="new">
                     Nouvel article
                 </div>
 
-                <div class="existing-article">
+                <div class="exist">
                     Article existant
                 </div>
 
             </div>
 
-            <div class="form-config-article-inputs">
-                <i class="form-x fa-solid fa-pop-up fa-xmark invisible"></i>
-            <div class="research-article">
+        <i class="exit-article-focus fa-solid fa-xmark invisible"></i>
 
-                <label class="db-research-article"> Nom de l'article
+            <div class="card-form-article">
 
-                 <input name="name" type="text" class="article-nom" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getNom() .'"' ?> required >
+                <div class="form-primary-article">
 
-                    <select name="name" class="article-nom-select hidden" <?= InitializeStockEntry() === '' ? '' : ' data-art="' . InitializeStockEntry()->getId() . '"'?>>
-                        <?= GetArticlesList(); ?>
-                    </select>
+                    <label class="form-label"> Nom de l'article
 
-                </label>
+                        <input name="name" type="text" class="form-input article-new-name" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getNom() .'"' ?> required >
+
+                        <select name="name" class="form-select article-name-select hidden" <?= InitializeStockEntry() === '' ? '' : ' data-art="' . InitializeStockEntry()->getId() . '"'?>>
+                            <?= GetArticlesList(); ?>
+                        </select>
+
+                    </label>
+
+                    <label class="form-label"> Famille de l'article
+                        <select name="family" class="form-select article-family-select" <?= InitializeStockEntry() === '' ? '' : ' data-family="' . InitializeStockEntry()->getFamille() . '"'?>>
+                            <?= GetFamilyList(); ?>
+                        </select>
+                    </label>
+
+                    <label class="form-label""> Quantité assignée
+
+                        <input name="quantity" type="number" class="form-input article-quantity" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityStock() . '" disabled' ?>>
+
+                    </label>
+
+                </div>
+
+                <div class="form-about-article">
+
+                    <label class="form-label"> Localisation dans le stock
+                        <input name="localisation" type="text" class="form-input article-localisation"  <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getLocalisation() .'"' ?>>
+                    </label>
+
+                    <label class="form-label"> Commentaire
+                        <input name="commentary" type="text" class="form-input article-commentary" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCommentaire() .'"'?>>
+                    </label>
+
+
+                    <label class="form-label"> Code correspondant
+                        <input name="code" type="text" class="form-input article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?>>
+                    </label>
+
+                </div>
 
             </div>
 
-            <div class="action-on-article">
-
-                <label class="article-quantity-label"> Quantité assignée
-
-                    <input name="quantity" type="number" class="article-default-quantity" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityStock() . '" disabled' ?>>
-
-                </label>
-
-            </div>
-
-            <div class="about-article">
-
-                <label class="article-commentary-label"> Commentaire
-                    <input name="commentary" type="text" class="article-commentary" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCommentaire() .'"'?>>
-                </label>
-
-                <label class="article-family-label"> Famille de l'article
-                    <select name="family" class="article-family-select" <?= InitializeStockEntry() === '' ? '' : ' data-family="' . InitializeStockEntry()->getFamille() . '"'?>>
-                        <?= GetFamilyList(); ?>
-                    </select>
-                </label>
-
-                <label class="article-code-label"> Code correspondant
-                    <input name="code" type="text" class="article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?>>
-                </label>
-
-                <label class="article-localisation-label"> Localisation dans le stock
-                    <input name="localisation" type="text" class="article-localisation"  <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getLocalisation() .'"' ?>>
-                </label>
-
-            </div>
-
-            </div>
-
-    </form>
-
-        <input type="submit" data-target="" value="Enregistrer" class="submit-form-config-article-values">
+        <input type="submit" data-target="" value="Enregistrer" class="form-submit card-form-article-submit">
 
     </div>
 

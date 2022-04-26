@@ -768,53 +768,50 @@ table tr:nth-child(odd){
 
 /* END -- Admin Panel - Visu. Stock */
 
-/* Entrée de stock */
+/* Section Main From Card */
 
-.entry-stock-section {
-  margin-left: 260px;
+.form-section {
+  margin-left: 275px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.entry-stock-section .form-config-article {
+.form-section .form-section-card {
+  margin-top: 60px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 600px;
-  height: 700px;
+  width: 80%;
+  height: 80%;
   background-color: #fff;
   box-shadow: 1px 1px 1px 1px #ffdbbe;
   border-radius: 10px;
 }
 
-#config-article {
-  width: 100%;
-  height: 80%;
-}
-
-.entry-stock-section .form-config-article #config-article .select-action-type {
+.form-section .form-section-card .card-action {
   border-bottom: solid 1px;
   width: 100%;
-  height: 160px;
+  height: 200px;
   display: flex;
   flex-direction: row;
 }
 
-.entry-stock-section .form-config-article .select-action-type .new-article,
-.entry-stock-section .form-config-article .select-action-type .existing-article {
+.form-section .form-section-card .card-action .new,
+.form-section .form-section-card .card-action .exist {
   font-size: 22px;
   font-family: var(--form-family);
   color: gray;
 }
 
-.entry-stock-section .form-config-article .select-action-type .new-article:hover,
-.entry-stock-section .form-config-article .select-action-type .existing-article:hover {
+.form-section .form-section-card .card-action .new:hover,
+.form-section .form-section-card .card-action .exist:hover {
   cursor: pointer;
   color: black;
 }
 
-.entry-stock-section .form-config-article .select-action-type .new-article {
+.form-section .form-section-card .card-action .new {
   width: 50%;
   height: 100%;
   margin-top: 0;
@@ -824,89 +821,80 @@ table tr:nth-child(odd){
   align-items: center;
 }
 
-.entry-stock-section .form-config-article .select-action-type .existing-article {
+.form-section .form-section-card .card-action .exist {
   width: 50%;
   height: 100%;
   margin-top: 0;
-
   display: flex;
   justify-content: center;
   align-items: center;
   border-left: solid 1px;
 }
 
-.entry-stock-section .form-config-article .form-config-article-inputs {
+/* END - Section Main From Card */
 
-  margin-top: 30px;
-
+.card-form-article {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 50%;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
-.entry-stock-section .form-config-article .form-config-article-inputs div,
-.entry-stock-section .form-config-article .form-config-article-inputs div label {
+.form-primary-article, .form-about-article {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-
 }
 
-.research-article {
-  margin-top: -20px;
-  letter-spacing: 0;
+.form-primary-article {
+  margin-right: 85px;
+}
+
+.form-about-article {
+  margin-left: 85px;
+}
+
+.form-label {
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
   font-family: var(--form-family);
-}
-
-.entry-stock-section .form-config-article .form-config-article-inputs div {
-  font-size: 14px;
   letter-spacing: 0;
-  font-family: var(--form-family);
+  margin-bottom: 35px;
 }
 
-.about-article label {
-  margin-top: 15px;
-}
-
-.action-on-article label {
-  margin-top: 15px;
-}
-
-.entry-stock-section .form-config-article .form-config-article-inputs div label input {
-  padding: 4px;
-  margin-top: 2px;
-  width: auto;
-  height: 18px;
-}
-.entry-stock-section .form-config-article .form-config-article-inputs div label select {
-  height: 30px;
+.form-input
+{
+  height: 21px;
   margin-top: 2px;
   width: auto;
   padding: 3px;
 }
 
-.article-nom-select {
+.form-select  {
+  padding: 4px;
+  margin-top: 2px;
+  width: auto;
+  height: 31px;
+}
+
+.ZZZ-nom-select {
   height: 30px;
   margin-top: 2px;
   padding-inline: 3px;
   width: 181px!important;
 }
 
-.entry-stock-section input[type="submit"] {
-
-  margin-top: 70px;
+.form-section-card input[type="submit"] {
   padding: 10px;
   border-radius: 5px;
-  background-color: transparent;
-  font-size: 16px;
+  font-size: 17px;
   font-family: var(--form-family);
   letter-spacing: 1px;
-
 }
 
-.entry-stock-section input[type="submit"]:hover {
+.form-section-card  input[type="submit"]:hover {
   cursor: pointer;
 }
 
@@ -916,13 +904,15 @@ table tr:nth-child(odd){
   text-decoration-color: orange;
 }
 
-.form-x {
+.exit-article-focus {
   font-size: 30px;
   position: relative;
-  margin-right: -500px;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  margin-left: -500px;
 }
 
-.form-x:hover {
+.exit-article-focus:hover {
   cursor: pointer;
   color: orange;
 }
