@@ -12,4 +12,8 @@ window.addEventListener('load', () => {
         new c_Article()._NAV_ExistArticle(e);
     })
 
+    document.querySelector('.article-nom-select').addEventListener('change', (e) => {
+        new c_Article().ExistArticleChange(e);
+    })
+
 })

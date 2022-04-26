@@ -100,7 +100,7 @@ export class Stock {
                        document.location.href = `./stock_out.php?nav=s-checkout&id=${article[1]}`;
                        break;
                    case 'edit':
-                       document.location.href = `./configs.php?nav=c-article&id=${article[1]}`;
+                       document.location.href = `./config-articles.php?nav=c-article&id=${article[1]}`;
                        break;
                }
            }, 525)

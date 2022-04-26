@@ -28,7 +28,7 @@ function Alertes_OBJECT_(string|int $value, string $by):Alertes {
     return $RESULT;
 }
 
-function Articles_OBJECT_(string|int $value, string $by):Articles {
+function Articles_OBJECT_(string|int $value, string $by):Articles|bool {
     $QUERY = getRequest($by, 'Articles');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);

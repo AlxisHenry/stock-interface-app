@@ -126,17 +126,14 @@ function GetStockInUrl(string $url):Articles|bool {
     if (!$id_value) return false;
     if ($id_value < 0) return false;
 
-    $ArticlesRow = Connection()->query('SELECT COUNT(*) AS ArticleRow FROM `articles`');
-
-    if ($id_value > $ArticlesRow->fetch()[0]) return false;
-
     $ARTICLE = Articles_OBJECT_($id_value, 'id');
 
-    $ArticlesRow->closeCursor();
+    if (!$ARTICLE) return false;
 
     return $ARTICLE;
 
 }
+
 
 function InitializeStockEntry():Articles|string {
 
@@ -150,7 +147,19 @@ function GetFamilyList():string {
     $LIST = [];
     $id = 1;
     while ($STOCK = $QUERY->fetch()) {
-        $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-". $STOCK['id'] ."' value='" . $id . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
+        $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-family-". $STOCK['id'] ."' value='" . $id . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
+        $id++;
+    }
+    $QUERY->closeCursor();
+    return implode(" ", $LIST);
+}
+
+function GetArticlesList():string {
+    $QUERY = Connection()->query('SELECT * FROM `articles`');
+    $LIST = ['<option selected>Sélectionnez un nom</option>'];
+    $id = 1;
+    while ($STOCK = $QUERY->fetch()) {
+        $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-name-". $STOCK['id'] ."' value='" . $id . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
         $id++;
     }
     $QUERY->closeCursor();

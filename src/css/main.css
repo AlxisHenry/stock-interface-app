@@ -861,7 +861,7 @@ table tr:nth-child(odd){
 
 .entry-stock-section .form-config-article .form-config-article-inputs div label input {
 
-  padding: 3px;
+  padding: 4px;
   margin-top: 2px;
   width: auto;
   height: 18px;
@@ -872,6 +872,13 @@ table tr:nth-child(odd){
   margin-top: 2px;
   width: auto;
   padding: 3px;
+}
+
+.article-nom-select {
+  height: 30px;
+  margin-top: 2px;
+  padding-inline: 3px;
+  width: 181px!important;
 }
 
 .entry-stock-section .form-config-article .form-config-article-inputs input[type="submit"] {
@@ -894,4 +901,8 @@ table tr:nth-child(odd){
   color: black!important;
   text-decoration: underline;
   text-decoration-color: orange;
+}
+
+.hidden {
+  display: none;
 }

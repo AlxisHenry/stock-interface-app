@@ -15,26 +15,24 @@ export class c_Article {
 
         if (!isNaN(parseInt(_GetExistArticle))) {
 
+            document.querySelector('.article-nom').classList.add('hidden')
+            document.querySelector('.article-nom-select').classList.remove('hidden')
+
             this._NewArticle.classList.remove('config-active-action')
             this._ExistArticle.classList.add('config-active-action')
 
             const Family = document.querySelector('.article-family-select').dataset.family
-            const FamilySelect = document.querySelector('.opt-' + Family)
+            const FamilySelect = document.querySelector('.opt-family-' + Family)
             if (FamilySelect) {
                 FamilySelect.setAttribute('selected', true)
             }
 
-            const _default_Article_Values = {
-                name: document.querySelector('.article-nom').value,
-                qte: document.querySelector('.article-default-quantity').value,
-                comment: document.querySelector('.article-commentary').value,
-                family: {
-                    id: document.querySelector('.article-family-select').value,
-                    name: document.querySelector('.article-family-select').options[document.querySelector('.article-family-select').value].dataset.name
-
-                },
-                code: document.querySelector('.article-default-quantity').value,
-                localisation: document.querySelector('.article-default-quantity').value,
+            const Name = document.querySelector('.article-nom-select').dataset.art
+            const NameSelect = document.querySelector('.opt-name-' + Name)
+            if (NameSelect) {
+                NameSelect.setAttribute('selected', true)
+            } else {
+                document.location.replace('config-articles.php?nav=c-article')
             }
 
             document.querySelector('.submit-form-config-article-values').dataset.target = "update";
@@ -61,6 +59,9 @@ export class c_Article {
         this._NewArticle.classList.add('config-active-action')
         this._ExistArticle.classList.remove('config-active-action')
 
+        document.querySelector('.article-nom').classList.remove('hidden')
+        document.querySelector('.article-nom-select').classList.add('hidden')
+
     }
 
     _NAV_ExistArticle(e) {
@@ -73,8 +74,14 @@ export class c_Article {
         this._NewArticle.classList.remove('config-active-action')
         this._ExistArticle.classList.add('config-active-action')
 
+        document.querySelector('.article-nom').classList.add('hidden')
+        document.querySelector('.article-nom-select').classList.remove('hidden')
+        document.querySelector('.article-default-quantity').setAttribute('disabled', true)
 
+    }
 
+    ExistArticleChange(e) {
+        document.location.replace('config-articles.php?nav=c-article&id=' + e.target.value )
     }
 
 }
