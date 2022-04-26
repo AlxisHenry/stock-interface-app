@@ -58,7 +58,7 @@
 
         </div>
 
-        <input type="submit" value="Enregistrer">
+        <input type="submit" data-target="" value="Enregistrer" class="submit-form-config-article-values">
 
         </div>
 

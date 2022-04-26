@@ -148,8 +148,10 @@ function InitializeStockEntry():Articles|string {
 function GetFamilyList():string {
     $QUERY = Connection()->query('SELECT * FROM `familles`');
     $LIST = [];
+    $id = 1;
     while ($STOCK = $QUERY->fetch()) {
-        $LIST[] = "<option class='opt-". $STOCK['id'] ."' value='" . $STOCK['id'] . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
+        $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-". $STOCK['id'] ."' value='" . $id . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
+        $id++;
     }
     $QUERY->closeCursor();
     return implode(" ", $LIST);

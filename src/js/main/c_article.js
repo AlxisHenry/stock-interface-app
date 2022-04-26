@@ -4,4 +4,12 @@ window.addEventListener('load', () => {
 
     new c_Article().__Action__()
 
+    document.querySelector('.new-article').addEventListener('click', (e) => {
+        new c_Article()._NAV_NewArticle(e);
+    })
+
+    document.querySelector('.existing-article').addEventListener('click', (e) => {
+        new c_Article()._NAV_ExistArticle(e);
+    })
+
 })

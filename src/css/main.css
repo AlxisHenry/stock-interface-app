@@ -800,13 +800,14 @@ table tr:nth-child(odd){
 .entry-stock-section .form-config-article .select-action-type .existing-article {
   font-size: 22px;
   font-family: var(--form-family);
+  color: gray;
 }
 
-  .entry-stock-section .form-config-article .select-action-type .new-article,
-  .entry-stock-section .form-config-article .select-action-type .existing-article {
-    font-size: 22px;
-    font-family: var(--form-family);
-  }
+.entry-stock-section .form-config-article .select-action-type .new-article:hover,
+.entry-stock-section .form-config-article .select-action-type .existing-article:hover {
+  cursor: pointer;
+  color: black;
+}
 
 .entry-stock-section .form-config-article .select-action-type .new-article {
   width: 50%;
@@ -890,7 +891,7 @@ table tr:nth-child(odd){
 }
 
 .config-active-action {
-  color: black;
+  color: black!important;
   text-decoration: underline;
   text-decoration-color: orange;
 }
