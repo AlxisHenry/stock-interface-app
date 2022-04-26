@@ -2,8 +2,8 @@
 
 include '../../functions.php';
 
-//todo CheckSessionExist();
-//todo CheckSessionAccount();
+CheckSessionExist();
+CheckSessionAccount();
 
 ?>
 <!DOCTYPE html>

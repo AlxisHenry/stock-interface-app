@@ -156,7 +156,7 @@ function GetFamilyList():string {
 
 function GetArticlesList():string {
     $QUERY = Connection()->query('SELECT * FROM `articles`');
-    $LIST = ['<option selected>Sélectionnez un nom</option>'];
+    $LIST = ['<option selected>Sélectionnez un article</option>'];
     $id = 1;
     while ($STOCK = $QUERY->fetch()) {
         $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-name-". $STOCK['id'] ."' value='" . $id . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";

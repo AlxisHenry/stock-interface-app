@@ -788,7 +788,12 @@ table tr:nth-child(odd){
   border-radius: 10px;
 }
 
-.entry-stock-section .form-config-article .select-action-type {
+#config-article {
+  width: 100%;
+  height: 80%;
+}
+
+.entry-stock-section .form-config-article #config-article .select-action-type {
   border-bottom: solid 1px;
   width: 100%;
   height: 160px;
@@ -842,30 +847,38 @@ table tr:nth-child(odd){
 
 .entry-stock-section .form-config-article .form-config-article-inputs div,
 .entry-stock-section .form-config-article .form-config-article-inputs div label {
-
   display: flex;
   justify-content: center;
   flex-direction: column;
 
 }
 
-.entry-stock-section .form-config-article .form-config-article-inputs div label {
+.research-article {
+  margin-top: -20px;
+  letter-spacing: 0;
+  font-size: 14px;
+  font-family: var(--form-family);
+}
 
-  margin-bottom: 6px;
-  margin-top: 15px;
+.entry-stock-section .form-config-article .form-config-article-inputs div {
   font-size: 14px;
   letter-spacing: 0;
   font-family: var(--form-family);
+}
 
+.about-article label {
+  margin-top: 15px;
+}
+
+.action-on-article label {
+  margin-top: 15px;
 }
 
 .entry-stock-section .form-config-article .form-config-article-inputs div label input {
-
   padding: 4px;
   margin-top: 2px;
   width: auto;
   height: 18px;
-
 }
 .entry-stock-section .form-config-article .form-config-article-inputs div label select {
   height: 30px;
@@ -881,9 +894,9 @@ table tr:nth-child(odd){
   width: 181px!important;
 }
 
-.entry-stock-section .form-config-article .form-config-article-inputs input[type="submit"] {
+.entry-stock-section input[type="submit"] {
 
-  margin-top: 20px;
+  margin-top: 70px;
   padding: 10px;
   border-radius: 5px;
   background-color: transparent;
@@ -893,7 +906,7 @@ table tr:nth-child(odd){
 
 }
 
-.entry-stock-section .form-config-article .form-config-article-inputs input[type="submit"]:hover {
+.entry-stock-section input[type="submit"]:hover {
   cursor: pointer;
 }
 
@@ -903,6 +916,21 @@ table tr:nth-child(odd){
   text-decoration-color: orange;
 }
 
+.form-x {
+  font-size: 30px;
+  position: relative;
+  margin-right: -500px;
+}
+
+.form-x:hover {
+  cursor: pointer;
+  color: orange;
+}
+
 .hidden {
   display: none;
+}
+
+.invisible {
+  visibility: hidden;
 }

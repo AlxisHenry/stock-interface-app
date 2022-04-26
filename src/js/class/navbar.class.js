@@ -10,7 +10,7 @@ export class Navbar {
     InitializeNavbarSelection() {
 
         if (this.AuthorizedPage.indexOf(this.option) === -1) {
-         //   todo location.replace('./dashboard.php?nav=mvmt');
+            location.replace('./dashboard.php?nav=mvmt');
         }
 
         const selection = document.querySelector(`.${this.option}`);

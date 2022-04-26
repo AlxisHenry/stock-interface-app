@@ -4,8 +4,9 @@
 
 <section class="section entry-stock-section">
 
-    <form method="POST">
-        <div class="form-config-article">
+    <div class="form-config-article">
+
+    <form id="config-article">
 
             <div class="select-action-type">
 
@@ -20,7 +21,7 @@
             </div>
 
             <div class="form-config-article-inputs">
-
+                <i class="form-x fa-solid fa-pop-up fa-xmark invisible"></i>
             <div class="research-article">
 
                 <label class="db-research-article"> Nom de l'article
@@ -67,12 +68,13 @@
 
             </div>
 
-            <input type="submit" data-target="" value="Enregistrer" class="submit-form-config-article-values">
-
             </div>
 
-        </div>
     </form>
+
+        <input type="submit" data-target="" value="Enregistrer" class="submit-form-config-article-values">
+
+    </div>
 
 </section>
 

@@ -225,25 +225,35 @@ class Articles
         $this->editUser = $editUser;
     }
 
-    public function Update() {
-
-    }
-
-    public function Insert($family, $name, $qteStock, $comment, $code, $localisation) {
-        $REQUEST = "INSERT INTO `articles` (famille, nom, quantityStock, quantityTotal, quantityGiven, commentaire, code, localisation, dateCreation, dateModification, createUser, editUser) 
-VALUES (:family, :name, :qteStock, :qteTotal, :qteGive, :comment, :code, :localisation, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
+    public function Update(int $family, string $comment, string $code, string $localisation, int $id):void {
+        $REQUEST = "UPDATE `articles` SET famille = :family, commentaire = :comment, code = :code, localisation = :localisation, dateModification = (SELECT NOW()), editUser = :editUser WHERE `id` = :id;";
         $QUERY = Connection()->prepare($REQUEST);
         $QUERY->execute([
-            ':family' => $family,
-            ':name' => $name,
-            ':qteStock' => $qteStock,
-            ':qteTotal' => $qteStock,
-            ':qteGive' => 0,
-            ':comment' => $comment,
-            ':code' => $code,
-            ':localisation' => $localisation,
-            ':createUser' => $_SESSION['login']['user'],
-            ':editUser' => $_SESSION['login']['user'],
+            'family' => $family,
+            'comment' => $comment,
+            'code' => $code,
+            'localisation' => $localisation,
+            'editUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+            'id' => $id
+        ]);
+        $QUERY->closeCursor();
+    }
+
+    public function Insert(int $family, string $name, int $qteStock, string $comment, string $code, string $localisation):void {
+        $REQUEST = "INSERT INTO `articles` (famille, nom, quantityStock, quantityTotal, quantityGiven, commentaire, code, localisation, dateCreation, dateModification, createUser, editUser) 
+        VALUES (:family, :name, :qteStock, :qteTotal, :qteGive, :comment, :code, :localisation, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            'family' => $family,
+            'name' => $name,
+            'qteStock' => $qteStock,
+            'qteTotal' => $qteStock,
+            'qteGive' => 0,
+            'comment' => $comment,
+            'code' => $code,
+            'localisation' => $localisation,
+            'createUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+            'editUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
         ]);
         $QUERY->closeCursor();
     }
