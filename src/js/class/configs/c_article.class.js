@@ -3,15 +3,15 @@ import {consoleLog, popUp} from "../../global/app.js";
 export class c_Article {
 
     constructor() {
-        this.UrlParam = new URLSearchParams(window.location.search).get("id");
+        this.UrlParamId = new URLSearchParams(window.location.search).get("id");
+        this.UrlParamState = new URLSearchParams(window.location.search).get('st');
         this._NewArticle = document.querySelector('.new-article');
         this._ExistArticle = document.querySelector('.existing-article')
-        this.Form = document.getElementById('config-article');
     }
 
     __Action__() {
 
-        const _GetExistArticle = this.UrlParam ? this.UrlParam : false
+        const _GetExistArticle = this.UrlParamId ? this.UrlParamId : false
 
         if (!isNaN(parseInt(_GetExistArticle))) {
 
@@ -37,20 +37,33 @@ export class c_Article {
             document.querySelector('.submit-form-config-article-values').dataset.target = "update";
 
             return false;
+        } else if (this.UrlParamState) {
+
+            document.querySelector('.form-x').classList.add('invisible')
+
+            this._NewArticle.classList.remove('config-active-action')
+            this._ExistArticle.classList.add('config-active-action')
+
+            document.querySelector('.article-nom').classList.add('hidden')
+            document.querySelector('.article-nom-select').classList.remove('hidden')
+            document.querySelector('.article-default-quantity').setAttribute('disabled', true)
+
+            document.querySelector('.submit-form-config-article-values').dataset.target = "update";
+
+        } else {
+            document.querySelector('.form-x').classList.add('invisible')
+
+            this._NewArticle.classList.add('config-active-action')
+            this._ExistArticle.classList.remove('config-active-action')
+
+            document.querySelector('.submit-form-config-article-values').dataset.target = "insert";
         }
-
-        document.querySelector('.form-x').classList.add('invisible')
-
-        this._NewArticle.classList.add('config-active-action')
-        this._ExistArticle.classList.remove('config-active-action')
-
-        document.querySelector('.submit-form-config-article-values').dataset.target = "insert";
 
     }
 
     _NAV_NewArticle(e) {
 
-        if (this.UrlParam) {
+        if (this.UrlParamId) {
             document.location.replace('config-articles.php?nav=c-article')
         } else if (this._NewArticle.classList.contains('config-active-action')) {
             e.preventDefault()
@@ -60,7 +73,7 @@ export class c_Article {
         this._NewArticle.classList.add('config-active-action')
         this._ExistArticle.classList.remove('config-active-action')
 
-        document.querySelector('.form-x').classList.add('hidden')
+        document.querySelector('.form-x').classList.add('invisible')
         document.querySelector('.article-nom').classList.remove('hidden')
         document.querySelector('.article-nom-select').classList.add('hidden')
         document.querySelector('.article-default-quantity').removeAttribute('disabled')
@@ -132,8 +145,8 @@ export class c_Article {
 
     Clear() {
         console.log('Clear');
-        document.location.replace('config-articles.php?nav=c-article');
-        document.querySelector('.existing-article').click();
+        document.location.replace('config-articles.php?nav=c-article&st=true');
+
     }
 
 }
