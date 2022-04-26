@@ -144,3 +144,14 @@ function InitializeStockEntry():Articles|string {
     return !$CHECK_ARTICLE ? '' : $CHECK_ARTICLE;
 
 }
+
+function GetFamilyList():string {
+    $QUERY = Connection()->query('SELECT * FROM `familles`');
+    $LIST = [];
+    while ($STOCK = $QUERY->fetch()) {
+        $LIST[] = "<option class='opt-". $STOCK['id'] ."' value='" . $STOCK['id'] . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
+    }
+    $QUERY->closeCursor();
+    return implode(" ", $LIST);
+}
+

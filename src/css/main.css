@@ -777,23 +777,120 @@ table tr:nth-child(odd){
   align-items: center;
 }
 
-.entry-stock-section .stock-action-form {
+.entry-stock-section .form-config-article {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   flex-direction: column;
+  width: 600px;
+  height: 700px;
+  background-color: #fff;
+  box-shadow: 1px 1px 1px 1px #ffdbbe;
+  border-radius: 10px;
 }
 
-.entry-stock-section .stock-action-form div label:not(.add-new-article) {
+.entry-stock-section .form-config-article .select-action-type {
+  border-bottom: solid 1px;
+  width: 100%;
+  height: 160px;
   display: flex;
+  flex-direction: row;
+}
+
+.entry-stock-section .form-config-article .select-action-type .new-article,
+.entry-stock-section .form-config-article .select-action-type .existing-article {
+  font-size: 22px;
+  font-family: var(--form-family);
+}
+
+  .entry-stock-section .form-config-article .select-action-type .new-article,
+  .entry-stock-section .form-config-article .select-action-type .existing-article {
+    font-size: 22px;
+    font-family: var(--form-family);
+  }
+
+.entry-stock-section .form-config-article .select-action-type .new-article {
+  width: 50%;
+  height: 100%;
+  margin-top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entry-stock-section .form-config-article .select-action-type .existing-article {
+  width: 50%;
+  height: 100%;
+  margin-top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: solid 1px;
+}
+
+.entry-stock-section .form-config-article .form-config-article-inputs {
+
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 
-.entry-stock-section .stock-action-form div {
-  margin-top: 20px;
+.entry-stock-section .form-config-article .form-config-article-inputs div,
+.entry-stock-section .form-config-article .form-config-article-inputs div label {
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
 }
 
-.entry-stock-section .stock-action-form input[type='submit'] {
-  margin-top: 20px;
+.entry-stock-section .form-config-article .form-config-article-inputs div label {
+
+  margin-bottom: 6px;
+  margin-top: 15px;
+  font-size: 14px;
+  letter-spacing: 0;
+  font-family: var(--form-family);
+
 }
 
+.entry-stock-section .form-config-article .form-config-article-inputs div label input {
+
+  padding: 3px;
+  margin-top: 2px;
+  width: auto;
+  height: 18px;
+
+}
+.entry-stock-section .form-config-article .form-config-article-inputs div label select {
+  height: 30px;
+  margin-top: 2px;
+  width: auto;
+  padding: 3px;
+}
+
+.entry-stock-section .form-config-article .form-config-article-inputs input[type="submit"] {
+
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 16px;
+  font-family: var(--form-family);
+  letter-spacing: 1px;
+
+}
+
+.entry-stock-section .form-config-article .form-config-article-inputs input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+.config-active-action {
+  color: black;
+  text-decoration: underline;
+  text-decoration-color: orange;
+}

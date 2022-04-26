@@ -229,8 +229,23 @@ class Articles
 
     }
 
-    public function Insert() {
-
+    public function Insert($family, $name, $qteStock, $comment, $code, $localisation) {
+        $REQUEST = "INSERT INTO `articles` (famille, nom, quantityStock, quantityTotal, quantityGiven, commentaire, code, localisation, dateCreation, dateModification, createUser, editUser) 
+VALUES (:family, :name, :qteStock, :qteTotal, :qteGive, :comment, :code, :localisation, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            ':family' => $family,
+            ':name' => $name,
+            ':qteStock' => $qteStock,
+            ':qteTotal' => $qteStock,
+            ':qteGive' => 0,
+            ':comment' => $comment,
+            ':code' => $code,
+            ':localisation' => $localisation,
+            ':createUser' => $_SESSION['login']['user'],
+            ':editUser' => $_SESSION['login']['user'],
+        ]);
+        $QUERY->closeCursor();
     }
 
     public function Delete() {

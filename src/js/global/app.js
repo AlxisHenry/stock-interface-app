@@ -115,10 +115,13 @@ function SetPopupColor(type, color) {
 export function CapsLock(e) {
     let caps = e.getModifierState && e.getModifierState( 'CapsLock' );
 
+    const CapsLockIndicator = document.querySelector('.caps-lock-indicator');
+
     if (caps) {
-        document.querySelector('.caps-lock-indicator').style.visibility = 'visible';
+        CapsLockIndicator.innerHTML = 'Touche <span> MAJ </span> activée.'
+        CapsLockIndicator.style.visibility = 'visible';
     } else if (!caps) {
-        document.querySelector('.caps-lock-indicator').style.visibility = 'hidden';
+        CapsLockIndicator.style.visibility = 'hidden';
     }
 
 }
