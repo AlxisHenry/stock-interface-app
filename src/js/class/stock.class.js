@@ -12,6 +12,8 @@ export class Stock {
 
        const ActionNodeList = [document.querySelectorAll('.entry'), document.querySelectorAll('.checkout'),  document.querySelectorAll('.edit')]
 
+        console.log(ActionNodeList)
+
         ActionNodeList.forEach(ActionType =>
             ActionType.forEach(Action => {
                 Action.addEventListener('mouseover', (e) => {

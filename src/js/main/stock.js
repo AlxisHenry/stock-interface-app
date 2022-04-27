@@ -6,12 +6,8 @@ window.addEventListener('load', () => {
         new Stock().RemoveLastColumn();
     }, 225);
 
-    //new Stock().ResponsiveColumns();
+    console.log('Abc')
     new Stock().InitializeStockTitles();
-
-    // window.addEventListener('resize', () => {
-    // new Stock().ResponsiveColumns();
-    //});
 
     document.querySelectorAll('.entry').forEach(Entry => Entry.addEventListener('click', (e) => {
         new Stock().ActionEntry(e);

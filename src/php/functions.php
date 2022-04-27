@@ -134,7 +134,6 @@ function GetStockInUrl(string $url):Articles|bool {
 
 }
 
-
 function InitializeStockEntry():Articles|string {
 
     $CHECK_ARTICLE = GetStockInUrl($_SERVER['REQUEST_URI']);
@@ -166,3 +165,9 @@ function GetArticlesList():string {
     return implode(" ", $LIST);
 }
 
+function GetMaxCount():int {
+
+    $QUERY = Connection()->query('SELECT MAX(id) FROM `articles`');
+    return intval($QUERY->fetch()[0]);
+
+}

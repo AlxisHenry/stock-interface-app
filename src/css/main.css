@@ -750,20 +750,11 @@ table tr:nth-child(odd){
   letter-spacing: 0;
 }
 
-.column-0 {
-  display: none;
-}
-
 @media screen and (max-width: 1450px ){
-  .column-0, .column-1, .column-3, .column-6 {
-    display: none;
-  }
 }
 
 @media screen and (max-width: 900px) {
-  .column-4, .column-5 {
-    display: none;
-  }
+
 }
 
 /* END -- Admin Panel - Visu. Stock */
