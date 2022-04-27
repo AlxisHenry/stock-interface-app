@@ -159,7 +159,7 @@ function GetArticlesList():string {
     $LIST = ['<option selected>Sélectionner un article</option>'];
     $id = 1;
     while ($STOCK = $QUERY->fetch()) {
-        $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-name-". $STOCK['id'] ."' value='" . $id . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
+        $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-name-". $STOCK['id'] ."' value='" . $STOCK["id"] . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";
         $id++;
     }
     $QUERY->closeCursor();

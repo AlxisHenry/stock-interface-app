@@ -46,6 +46,10 @@
 
                     </label>
 
+                    <label class="form-label"> Quantité minimale
+                        <input name="quantity" type="number" class="form-input article-quantity-minimal" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityMin() .'"' ?>>
+                    </label>
+
                 </div>
 
                 <div class="form-about-article">
@@ -63,11 +67,19 @@
                         <input name="code" type="text" class="form-input article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?>>
                     </label>
 
+                    <label class="form-label invisible"> Code correspondant
+                        <input name="code" type="text" class="form-input article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?>>
+                    </label>
+
                 </div>
+
 
             </div>
 
-        <input type="submit" data-target="" value="Enregistrer" class="form-submit card-form-article-submit">
+        <div class="submit-actions">
+            <input type="submit" data-target="" value="Enregistrer" class="form-submit card-form-article-submit">
+            <button class="exist-article-deleted delete-article hidden" data-target="delete">Supprimer</button>
+        </div>
 
     </div>
 

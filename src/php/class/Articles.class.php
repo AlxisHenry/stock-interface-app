@@ -8,6 +8,7 @@ class Articles
     private mixed $quantityStock;
     private mixed $quantityTotal;
     private mixed $quantityGiven;
+    private mixed $quantityMin;
     private mixed $commentaire;
     private mixed $code;
     private mixed $localisation;
@@ -16,6 +17,21 @@ class Articles
     private mixed $createUser;
     private mixed $editUser;
 
+    /**
+     * @return mixed
+     */
+    public function getQuantityMin(): mixed
+    {
+        return $this->quantityMin;
+    }
+
+    /**
+     * @param mixed $quantityMin
+     */
+    public function setQuantityMin(mixed $quantityMin): void
+    {
+        $this->quantityMin = $quantityMin;
+    }
     /**
      * @return mixed
      */
@@ -225,12 +241,14 @@ class Articles
         $this->editUser = $editUser;
     }
 
-    public function Update(int $family, string $comment, string $code, string $localisation, int $id):void {
-        $REQUEST = "UPDATE `articles` SET famille = :family, commentaire = :comment, code = :code, localisation = :localisation, dateModification = (SELECT NOW()), editUser = :editUser WHERE `id` = :id;";
+    public function Update(int $family,string $name, string $comment,int $qteMin ,string $code, string $localisation, int $id):void {
+        $REQUEST = "UPDATE `articles` SET famille = :family, nom = :name, commentaire = :comment, quantityMin = :qteMin, code = :code, localisation = :localisation, dateModification = (SELECT NOW()), editUser = :editUser WHERE `id` = :id;";
         $QUERY = Connection()->prepare($REQUEST);
         $QUERY->execute([
             'family' => $family,
+            'name' => $name,
             'comment' => $comment,
+            'qteMin' => $qteMin,
             'code' => $code,
             'localisation' => $localisation,
             'editUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
@@ -239,9 +257,9 @@ class Articles
         $QUERY->closeCursor();
     }
 
-    public function Insert(int $family, string $name, int $qteStock, string $comment, string $code, string $localisation):void {
-        $REQUEST = "INSERT INTO `articles` (famille, nom, quantityStock, quantityTotal, quantityGiven, commentaire, code, localisation, dateCreation, dateModification, createUser, editUser) 
-        VALUES (:family, :name, :qteStock, :qteTotal, :qteGive, :comment, :code, :localisation, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
+    public function Insert(int $family, string $name, int $qteStock, int $qteMin, string $comment, string $code, string $localisation):void {
+        $REQUEST = "INSERT INTO `articles` (famille, nom, quantityStock, quantityTotal, quantityGiven, quantityMin ,commentaire, code, localisation, dateCreation, dateModification, createUser, editUser) 
+        VALUES (:family, :name, :qteStock, :qteTotal, :qteGive,:qteMin ,:comment, :code, :localisation, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
         $QUERY = Connection()->prepare($REQUEST);
         $QUERY->execute([
             'family' => $family,
@@ -249,6 +267,7 @@ class Articles
             'qteStock' => $qteStock,
             'qteTotal' => $qteStock,
             'qteGive' => 0,
+            'qteMin' => $qteMin,
             'comment' => $comment,
             'code' => $code,
             'localisation' => $localisation,
@@ -258,8 +277,13 @@ class Articles
         $QUERY->closeCursor();
     }
 
-    public function Delete() {
-
+    public function Delete(int $id) {
+        $REQUEST = "DELETE FROM `articles` WHERE id = :id";
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            'id' => $id,
+        ]);
+        $QUERY->closeCursor();
     }
 
 }

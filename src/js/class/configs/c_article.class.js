@@ -34,6 +34,7 @@ export class c_Article {
                 document.location.replace('config-articles.php?nav=c-article')
             }
 
+            document.querySelector('.exist-article-deleted').style.display = 'block';
             document.querySelector('.card-form-article-submit').dataset.target = "update";
 
             return false;
@@ -87,6 +88,8 @@ export class c_Article {
             return false;
         }
 
+        document.location.replace('config-articles.php?nav=c-article&st=true');
+
         document.querySelector('.exit-article-focus').classList.add('invisible')
         this._NewArticle.classList.remove('config-active-action')
         this._ExistArticle.classList.add('config-active-action')
@@ -98,7 +101,7 @@ export class c_Article {
     }
 
     ExistArticleChange(e) {
-        document.location.replace('config-articles.php?nav=c-article&id=' + e.target.value )
+        document.location.replace('config-articles.php?nav=c-article&id=' + e.target.value)
     }
 
     ConfirmChange() {
@@ -106,8 +109,9 @@ export class c_Article {
 
         const Article_Data = {
             nom: document.querySelector('.article-new-name').value,
-            upnom: document.querySelector('.article-name-select').value,
+            id: document.querySelector('.article-name-select').value,
             quantity: document.querySelector('.article-quantity').value,
+            quantityMin: document.querySelector('.article-quantity-minimal').value,
             comment: document.querySelector('.article-commentary').value,
             family: document.querySelector('.article-family-select').value,
             code: document.querySelector('.article-code').value,
@@ -126,8 +130,6 @@ export class c_Article {
 
         document.querySelector('.article-new-name').style.backgroundColor = 'white'
         popUp('clean')
-
-        console.table(Article_Data)
 
         $.ajax({
             type: "POST",
@@ -148,6 +150,42 @@ export class c_Article {
     Clear() {
         console.log('Clear');
         document.location.replace('config-articles.php?nav=c-article&st=true');
+    }
+
+    Delete() {
+
+        const TargetAction = document.querySelector('.exist-article-deleted').dataset.target
+        console.log(document.querySelector('.article-name-select').value)
+
+        const Article_Data = {
+            nom: null,
+            id: document.querySelector('.article-name-select').value,
+            quantity: null,
+            quantityMin: null,
+            comment: null,
+            family: null,
+            code: null,
+            localisation: null,
+            type: TargetAction,
+        }
+
+        $.ajax({
+            type: "POST",
+            url: `../../ajax/config-article.php`,
+            data: { Article_Data},
+            success: function (rep) {
+                consoleLog('Mise à jour effectuée.', 's');
+                console.table(rep)
+                popUp('success')
+
+                document.location.replace('config-articles.php?nav=c-article&st=true');
+
+            },
+            error: function () {
+                popUp('contact-admin');
+            },
+        });
+
     }
 
 }

@@ -784,7 +784,7 @@ table tr:nth-child(odd){
   align-items: center;
   flex-direction: column;
   width: 80%;
-  height: 80%;
+  height: 85%;
   background-color: #fff;
   box-shadow: 1px 1px 1px 1px #ffdbbe;
   border-radius: 10px;
@@ -793,7 +793,7 @@ table tr:nth-child(odd){
 .form-section .form-section-card .card-action {
   border-bottom: solid 1px;
   width: 100%;
-  height: 200px;
+  height: 110px;
   display: flex;
   flex-direction: row;
 }
@@ -834,6 +834,7 @@ table tr:nth-child(odd){
 /* END - Section Main From Card */
 
 .card-form-article {
+  margin-top: 50px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -878,17 +879,10 @@ table tr:nth-child(odd){
   width: auto;
   height: 31px;
 }
-
-.ZZZ-nom-select {
-  height: 30px;
-  margin-top: 2px;
-  padding-inline: 3px;
-  width: 181px!important;
-}
-
 .form-section-card input[type="submit"] {
   padding: 10px;
   border-radius: 5px;
+  width: 121px;
   font-size: 17px;
   font-family: var(--form-family);
   letter-spacing: 1px;
@@ -915,6 +909,25 @@ table tr:nth-child(odd){
 .exit-article-focus:hover {
   cursor: pointer;
   color: orange;
+}
+
+.submit-actions {
+  margin: 40px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.exist-article-deleted {
+  margin-left: 60px;
+  height: 50px;
+  width: 122px;
+  border-radius: 5px;
+  font-size: 17px;
+  font-family: var(--form-family);
+  letter-spacing: 1px;
 }
 
 .hidden {
