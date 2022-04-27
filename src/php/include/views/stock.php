@@ -47,9 +47,9 @@
                 echo "<td class='column-5 column-values'>".$STOCK->getCode()."</td>";
                 echo "<td class='column-6 column-values'>".$STOCK->getLocalisation()."</td>";
                 echo "<td class='column-7 column-values'>".$FORMAT_DATE."</td>";
-                echo "<td class='column-8 column-values action'><i title='' class='fa-solid fa-plus action entry'></i></td>";
-                echo "<td class='column-9 column-values action'><i title='' class='fa-solid fa-minus action checkout'></td>";
-                echo "<td class='column-10 column-values action'><i title='' class='fa-solid fa-pen-clip action edit'></i></td>";
+                echo "<td class='column-8 column-values action'><a href='./stock_in.php?nav=s-entry&id=".$STOCK->getId()."'><i title='Entrée de stock pour ".$STOCK->getNom()."' class='fa-solid fa-plus action entry'></i></a></td>";
+                echo "<td class='column-9 column-values action'><a href='./stock_out.php?nav=s-checkout&id=".$STOCK->getId()."'><i title='Sortie de stock pour ".$STOCK->getNom()."' class='fa-solid fa-minus action checkout'></a></td>";
+                echo "<td class='column-10 column-values action'><a href='./config-articles.php?nav=c-article&id=".$STOCK->getId()."'><i title='Editer ".$STOCK->getNom()."' class='fa-solid fa-pen-clip action edit'></i></a></td>";
                 echo "</tr>\n";
                 echo "<tr class='row-$i row-values'>";
                 $i++;
