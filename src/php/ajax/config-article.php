@@ -17,8 +17,10 @@ $type = $ARTICLE['type'];
 
 if ($type === 'insert') {
     $__Article__->Insert($family, $name, $qteStock, $qteMin, $comment, $code, $localisation);
+    echo json_encode(['insert', $name]);
 } elseif ($type === 'update') {
     $__Article__->Update($family, $name, $comment, $qteMin, $code, $localisation, $id);
+    echo json_encode(['update', $name]);
 } elseif ($type === 'delete') {
     $__Article__->Delete($id);
 }

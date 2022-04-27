@@ -134,11 +134,15 @@ export class c_Article {
         $.ajax({
             type: "POST",
             url: `../../ajax/config-article.php`,
-            data: { Article_Data},
-            success: function (rep) {
+            data: { Article_Data },
+            success: function (Article_Status) {
                 consoleLog('Mise à jour effectuée.', 's');
-                console.table(rep)
-                popUp('success')
+                const Result = JSON.parse(Article_Status)
+                if (Result[0] === 'insert') {
+                    popUp('new-article')
+                } else {
+                    popUp('success')
+                }
             },
             error: function () {
                  popUp('contact-admin');
