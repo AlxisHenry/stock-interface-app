@@ -6,7 +6,6 @@ window.addEventListener('load', () => {
         new Stock().RemoveLastColumn();
     }, 225);
 
-    console.log('Abc')
     new Stock().InitializeStockTitles();
 
     document.querySelectorAll('.entry').forEach(Entry => Entry.addEventListener('click', (e) => {
