@@ -24,7 +24,7 @@ while ($STOCK = $GET_STOCK->fetch()) {
             <td class='column-2 column-values'>".$STOCK['nom']."</td>
             <td class='column-2 column-values'>".$STOCK['quantityStock']."</td>
             <td class='column-3 column-values'>".$STOCK['commentaire']."</td>
-            <td class='column-4 column-values'>".$STOCK['code']."</td>
+            <td class='column-4 column-values hidden'>".$STOCK['code']."</td>
             <td class='column-5 column-values'>".$STOCK['localisation']."</td>
             <td class='column-6 column-values'>".$FORMAT_DATE."</td>
             <td class='column-7 column-values action'><a class='redirect-entry' href='./stock_in.php?nav=s-entry&id=".$STOCK['id']."'><i title='Entrée de stock pour ".$STOCK['nom']."' class='fa-solid fa-plus action entry'></i></a></td>

@@ -29,8 +29,8 @@ window.addEventListener('load', () => {
         new c_Article().Clear();
     })
 
-    document.querySelector('.exist-article-deleted').addEventListener('click', () => {
-        new c_Article().Delete();
+    document.querySelector('.exist-article-deleted').addEventListener('click', (e) => {
+        new c_Article().Delete(e);
     })
 
 

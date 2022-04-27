@@ -152,40 +152,49 @@ export class c_Article {
         document.location.replace('config-articles.php?nav=c-article&st=true');
     }
 
-    Delete() {
+    Delete(e) {
 
-        const TargetAction = document.querySelector('.exist-article-deleted').dataset.target
-        console.log(document.querySelector('.article-name-select').value)
+        const Validation = confirm("Vous êtes sur le point de supprimer l'article ")
 
-        const Article_Data = {
-            nom: null,
-            id: document.querySelector('.article-name-select').value,
-            quantity: null,
-            quantityMin: null,
-            comment: null,
-            family: null,
-            code: null,
-            localisation: null,
-            type: TargetAction,
+        if (Validation) {
+
+            const TargetAction = document.querySelector('.exist-article-deleted').dataset.target
+            console.log(document.querySelector('.article-name-select').value)
+
+            const Article_Data = {
+                nom: null,
+                id: document.querySelector('.article-name-select').value,
+                quantity: null,
+                quantityMin: null,
+                comment: null,
+                family: null,
+                code: null,
+                localisation: null,
+                type: TargetAction,
+            }
+
+            $.ajax({
+                type: "POST",
+                url: `../../ajax/config-article.php`,
+                data: { Article_Data},
+                success: function (rep) {
+                    consoleLog('Mise à jour effectuée.', 's');
+                    console.table(rep)
+                    popUp('success')
+
+                    document.location.replace('config-articles.php?nav=c-article&st=true');
+
+                },
+                error: function () {
+                    popUp('contact-admin');
+                },
+            });
+
+        } else {
+            e.preventDefault()
         }
 
-        $.ajax({
-            type: "POST",
-            url: `../../ajax/config-article.php`,
-            data: { Article_Data},
-            success: function (rep) {
-                consoleLog('Mise à jour effectuée.', 's');
-                console.table(rep)
-                popUp('success')
-
-                document.location.replace('config-articles.php?nav=c-article&st=true');
-
-            },
-            error: function () {
-                popUp('contact-admin');
-            },
-        });
-
     }
+
 
 }

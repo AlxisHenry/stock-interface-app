@@ -860,16 +860,19 @@ table tr:nth-child(odd){
 {
   height: 21px;
   margin-top: 2px;
-  width: auto;
+  width: 190px;
+  max-width: 190px;
   padding: 3px;
 }
 
 .form-select  {
   padding: 4px;
   margin-top: 2px;
-  width: auto;
+  width: 200px;
+  max-width: 200px;
   height: 31px;
 }
+
 .form-section-card input[type="submit"] {
   padding: 10px;
   border-radius: 5px;
@@ -881,6 +884,7 @@ table tr:nth-child(odd){
 
 .form-section-card  input[type="submit"]:hover {
   cursor: pointer;
+  filter: saturate(1.5);
 }
 
 .config-active-action {
@@ -919,6 +923,11 @@ table tr:nth-child(odd){
   font-size: 17px;
   font-family: var(--form-family);
   letter-spacing: 1px;
+}
+
+.exist-article-deleted:hover {
+  cursor: pointer;
+  filter: saturate(1.5);
 }
 
 .hidden {
