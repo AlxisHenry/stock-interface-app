@@ -924,7 +924,7 @@ table tr:nth-child(odd){
   position: relative;
   margin-top: 20px;
   margin-bottom: -10px;
-  margin-left: -500px;
+  margin-left: -470px;
 }
 
 .exit-article-focus:hover {
@@ -969,6 +969,10 @@ table tr:nth-child(odd){
   .form-primary-article {
     margin-right: 50px;
   }
+  .exit-article-focus {
+    top: 0;
+    left: 18px;
+  }
 }
 
 @media screen and (max-width: 1000px ) {
@@ -977,6 +981,16 @@ table tr:nth-child(odd){
   }
   .form-primary-article {
     margin-right: 20px;
+  }
+  .exit-article-focus {
+    top: 0;
+    left: 38px ;
+  }
+}
+
+@media screen and (max-height: 740px) {
+  .form-section .form-section-card {
+    height: 700px
   }
 }
 
