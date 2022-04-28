@@ -671,6 +671,17 @@ label[for="form-id"], label[for="form-pass"] {
   font-family: var(--nav-family);
 }
 
+@media screen and (max-width: 1000px) {
+  .section .contain-settings-sections {
+    margin-left: -40px;
+  }
+  .section .contain-settings-sections .fl {
+    width: 80%;
+  }
+}
+
+/* todo: À partir de 1000 pixels environ, menu burger permettant une meilleur utilisation du site */
+
 /* END -- Admin Panel - Settings */
 
 /* Admin Panel - Visu. Stock */
@@ -761,11 +772,17 @@ table tr:nth-child(odd){
 }
 
 @media screen and (max-width: 1000px) {
-  .column-6  {
+  .column-7 {
     display: none;
   }
   .table-visu-stock {
     margin-left: -80px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .column-6 {
+    display: none;
   }
 }
 
@@ -965,7 +982,6 @@ table tr:nth-child(odd){
 
 .hidden {
   display: none;
-
 }
 
 .invisible {

@@ -12,13 +12,17 @@
 
             <?php
 
-            $FIELD = array('Famille', 'Nom', 'Quantité', 'Commentaire','Localisation', 'Dernière modification');
+            $FIELD = array('ID', 'Famille', 'Nom', 'Quantité', 'Commentaire', 'Code' , 'Localisation', 'Dernière modification');
             $i = 0;
 
             echo '<tr class="row-0 row-values">';
 
             foreach ($FIELD as $TR) {
-                echo "<th class='column-$i column-title'>$TR</th>\n";
+                if ($TR === 'ID' || $TR === 'Code') {
+                    echo "<th class='column-$i column-title hidden'>$TR</th>\n";
+                } else {
+                    echo "<th class='column-$i column-title'>$TR</th>\n";
+                }
                 $i++;
             }
 

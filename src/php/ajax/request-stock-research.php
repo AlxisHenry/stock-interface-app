@@ -22,14 +22,14 @@ while ($STOCK = $GET_STOCK->fetch()) {
             <td class='column-0 column-values hidden'>".$STOCK['id']."</td>
             <td class='column-1 column-values'>".$STOCK['Famille']."</td>
             <td class='column-2 column-values'>".$STOCK['nom']."</td>
-            <td class='column-2 column-values'>".$STOCK['quantityStock']."</td>
-            <td class='column-3 column-values'>".$STOCK['commentaire']."</td>
-            <td class='column-4 column-values hidden'>".$STOCK['code']."</td>
-            <td class='column-5 column-values'>".$STOCK['localisation']."</td>
-            <td class='column-6 column-values'>".$FORMAT_DATE."</td>
-            <td class='column-7 column-values action'><a class='redirect-entry' href='./stock_in.php?nav=s-entry&id=".$STOCK['id']."'><i title='Entrée de stock pour ".$STOCK['nom']."' class='fa-solid fa-plus action entry'></i></a></td>
-            <td class='column-8 column-values action'><a class='redirect-out' href='./stock_out.php?nav=s-checkout&id=".$STOCK['id']."'><i title='Sortie de stocc pour ".$STOCK['nom']."' class='fa-solid fa-minus action checkout'></a></td>
-            <td class='column-9 column-values action'><a class='redirect-edit' href='./config-articles.php?nav=c-article&id=".$STOCK['id']."'><i title='Editer ".$STOCK['nom']."' class='fa-solid fa-pen-clip action edit'></i></a></td>
+            <td class='column-3 column-values'>".$STOCK['quantityStock']."</td>
+            <td class='column-4 column-values'>".$STOCK['commentaire']."</td>
+            <td class='column-5 column-values hidden'>".$STOCK['code']."</td>
+            <td class='column-6 column-values'>".$STOCK['localisation']."</td>
+            <td class='column-7 column-values'>".$FORMAT_DATE."</td>
+            <td class='column-8 column-values action'><a class='redirect-entry' href='./stock_in.php?nav=s-entry&id=".$STOCK['id']."'><i title='Entrée de stock pour ".$STOCK['nom']."' class='fa-solid fa-plus action entry'></i></a></td>
+            <td class='column-9 column-values action'><a class='redirect-out' href='./stock_out.php?nav=s-checkout&id=".$STOCK['id']."'><i title='Sortie de stocc pour ".$STOCK['nom']."' class='fa-solid fa-minus action checkout'></a></td>
+            <td class='column-10 column-values action'><a class='redirect-edit' href='./config-articles.php?nav=c-article&id=".$STOCK['id']."'><i title='Editer ".$STOCK['nom']."' class='fa-solid fa-pen-clip action edit'></i></a></td>
             </tr>\n</tr><tr class='row-". ($i + 1) . " row-values'>";
     $i = $i + 2;
 }
