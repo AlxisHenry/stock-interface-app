@@ -9,10 +9,12 @@ include '../templates/home.php';
         <div class="card-action">
 
             <div class="new">
-                Nouvel Utilisateur
+                <div class="refresh-database">
+                    <i class="fa-solid fa-rotate"></i> <span> Rafraîchir la liste</span>
+                </div>
             </div>
 
-            <div class="exist">
+            <div class="exist config-active-action">
                 Utilisateur Existant
             </div>
 
@@ -22,7 +24,7 @@ include '../templates/home.php';
 
 </section>
 
-<script type="module" src="../../../js/main/.js"></script>
+<script type="module" src="../../../js/main/c_users.js"></script>
 
 </body>
 </html>

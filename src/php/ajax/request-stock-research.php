@@ -33,3 +33,5 @@ while ($STOCK = $GET_STOCK->fetch()) {
             </tr>\n</tr><tr class='row-". ($i + 1) . " row-values'>";
     $i = $i + 2;
 }
+
+$GET_STOCK->closeCursor();

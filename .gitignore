@@ -17,3 +17,5 @@
 /src/php/configuration/sql/imports/Articles.import.sql
 /src/php/configuration/sql/imports/Familles.import.sql
 /src/php/configuration/sql/imports/Front.import.sql
+
+/src/php/users.csv

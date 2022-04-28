@@ -994,6 +994,37 @@ table tr:nth-child(odd){
   }
 }
 
+.refresh-database {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.refresh-database:hover span{
+  text-decoration: underline;
+  text-decoration-color: orange;
+  cursor: pointer;
+}
+
+.fa-rotate {
+  margin-right: 16px;
+}
+
+.fa-rotate-db-animation {
+  animation: RefreshUserList 2.4s ease-in-out;
+  color: orange;
+}
+
+@keyframes RefreshUserList {
+  0% {
+    transform: rotate(0);
+  } 100% {
+    transform: rotate(360deg);
+  }
+}
+
 .hidden {
   display: none;
 }

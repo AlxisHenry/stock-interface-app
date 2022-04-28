@@ -95,7 +95,7 @@ function Mouvements_OBJECT_(string|int $value, string $by):Mouvements {
     return $RESULT;
 }
 
-function Utilisateurs_OBJECT_(string|int $value, string $by):Utilisateurs {
+function Utilisateurs_OBJECT_(string|int $value, string $by):Utilisateurs|bool {
     $QUERY = getRequest($by, 'Utilisateurs');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -191,8 +191,14 @@ function getRequest(string|int $by, string $table):string {
             default => "SELECT * FROM `mouvements` WHERE `id`=:value",
         },
         'Utilisateurs' => match ($by) {
+            'etablissement' => "SELECT * FROM `utilisateurs` WHERE `etablissement`=:value",
+            'matricule' => "SELECT * FROM `utilisateurs` WHERE `matricule`=:value",
             'nom' => "SELECT * FROM `utilisateurs` WHERE `nom`=:value",
+            'prenom' => "SELECT * FROM `utilisateurs` WHERE `prenom`=:value",
             'centreDeCout' => "SELECT * FROM `utilisateurs` WHERE `centreDeCout`=:value",
+            'centreAffection' => "SELECT * FROM `utilisateurs` WHERE `centreAffection`=:value",
+            'dateCreation' => "SELECT * FROM `utilisateurs` WHERE `dateCreation`=:value",
+            'dateModification' => "SELECT * FROM `utilisateurs` WHERE `dateModification`=:value",
             default => "SELECT * FROM `utilisateurs` WHERE `id`=:value",
         },
         default => false,
