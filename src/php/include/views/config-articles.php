@@ -47,7 +47,7 @@
                     </label>
 
                     <label class="form-label"> Quantité minimale
-                        <input name="quantity" type="number" class="form-input article-quantity-minimal" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityMin() .'"' ?>>
+                        <input name="quantity" type="number" class="form-input article-quantity-minimal" <?= InitializeStockEntry() === '' ? '' : ' value="' . (InitializeStockEntry()->getQuantityMin() <= 0 ? null : InitializeStockEntry()->getQuantityMin()) .'"'. (InitializeStockEntry()->getQuantityMin() === -1 ? " disabled" : ' ') ?>>
                     </label>
 
                 </div>
@@ -62,17 +62,15 @@
                         <input name="commentary" type="text" class="form-input article-commentary" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCommentaire() .'"'?>>
                     </label>
 
-
                     <label class="form-label"> Code correspondant
                         <input name="code" type="text" class="form-input article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?>>
                     </label>
 
-                    <label class="form-label invisible"> Code correspondant
-                        <input name="code" type="text" class="form-input article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?>>
+                    <label class="form-label"> Désactiver les alertes
+                        <input name="code" type="checkbox" class="form-input article-alert-state" <?= InitializeStockEntry() === '' ? '' : (intval(InitializeStockEntry()->getQuantityMin()) === -1 ? 'checked' :  '' ) ?> >
                     </label>
 
                 </div>
-
 
             </div>
 

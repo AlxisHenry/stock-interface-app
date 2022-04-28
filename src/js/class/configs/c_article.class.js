@@ -106,12 +106,14 @@ export class c_Article {
 
     ConfirmChange() {
         const TargetAction = document.querySelector('.card-form-article-submit').dataset.target;
+        const quantityStatus = document.querySelector('.article-alert-state').checked;
+        const quantityMin = quantityStatus ? -1 : document.querySelector('.article-quantity-minimal').value
 
         const Article_Data = {
             nom: document.querySelector('.article-new-name').value,
             id: document.querySelector('.article-name-select').value,
             quantity: document.querySelector('.article-quantity').value,
-            quantityMin: document.querySelector('.article-quantity-minimal').value,
+            quantityMin: quantityMin,
             comment: document.querySelector('.article-commentary').value,
             family: document.querySelector('.article-family-select').value,
             code: document.querySelector('.article-code').value,
@@ -200,5 +202,14 @@ export class c_Article {
 
     }
 
+    Checkbox (e) {
+
+        const Status = e.target.checked
+
+        document.querySelector('.article-quantity-minimal').toggleAttribute('disabled')
+
+
+
+    }
 
 }

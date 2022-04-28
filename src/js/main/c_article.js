@@ -33,5 +33,9 @@ window.addEventListener('load', () => {
         new c_Article().Delete(e);
     })
 
+    document.querySelector('.article-alert-state').addEventListener('click', (e) => {
+        new c_Article().Checkbox(e);
+    })
+
 
 })

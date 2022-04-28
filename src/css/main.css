@@ -785,6 +785,8 @@ table tr:nth-child(odd){
   border-bottom: solid 1px;
   width: 100%;
   height: 110px;
+  min-height: 110px;
+  max-height: 110px;
   display: flex;
   flex-direction: row;
 }
@@ -806,7 +808,6 @@ table tr:nth-child(odd){
   width: 50%;
   height: 100%;
   margin-top: 0;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -907,7 +908,7 @@ table tr:nth-child(odd){
 }
 
 .submit-actions {
-  margin: 40px;
+  margin-top: 25px;
   width: 100%;
   height: auto;
   display: flex;
@@ -918,16 +919,20 @@ table tr:nth-child(odd){
 .exist-article-deleted {
   margin-left: 60px;
   height: 50px;
-  width: 122px;
+  width: 121px;
   border-radius: 5px;
   font-size: 17px;
   font-family: var(--form-family);
   letter-spacing: 1px;
+  max-width: 121px;
 }
 
 .exist-article-deleted:hover {
   cursor: pointer;
   filter: saturate(1.5);
+}
+
+.article-alert-state {
 }
 
 .hidden {
