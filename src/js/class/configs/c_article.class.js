@@ -12,6 +12,7 @@ export class c_Article {
     __Action__() {
 
         const _GetExistArticle = this.UrlParamId ? this.UrlParamId : false
+        localStorage.removeItem('value')
 
         if (!isNaN(parseInt(_GetExistArticle))) {
 
@@ -188,6 +189,7 @@ export class c_Article {
                     console.table(rep)
                     popUp('success')
 
+                    localStorage.removeItem('value')
                     document.location.replace('config-articles.php?nav=c-article&st=true');
 
                 },
@@ -205,10 +207,21 @@ export class c_Article {
     Checkbox (e) {
 
         const Status = e.target.checked
+        const QTE_MIN = (value) => {
+            if (value) {
+                localStorage.setItem('value', value)
+                console.log(localStorage.getItem('value'))
+            }
+        }
 
+        QTE_MIN(document.querySelector('.article-quantity-minimal').value)
         document.querySelector('.article-quantity-minimal').toggleAttribute('disabled')
 
-
+        if (!Status) {
+            document.querySelector('.article-quantity-minimal').value = localStorage.getItem('value')
+        } else {
+            document.querySelector('.article-quantity-minimal').value = ''
+        }
 
     }
 
