@@ -74,15 +74,16 @@ include '../templates/home.php';
             }
 
             $rows = GetPagesCount()[1];
-            (int)$min = (($page - 1) * $page);
+            (int)$min = (($page - 1) * $rows);
 
             $QUERY = "SELECT * FROM `utilisateurs` LIMIT $min, $rows ";
 
             $RESULT = Connection()->query($QUERY);
 
+            $i=1;
             while ($DATA = $RESULT->fetch()) {
 
-                echo '<div class="main-user-row">
+                echo '<div class="main-user-row user-row'.$i.' user'.$DATA[0].'">
 
                         <div class="matricule">
                             <span> ' . $DATA[2] . ' </span>
@@ -101,6 +102,8 @@ include '../templates/home.php';
                         </div>
 
                     </div>';
+
+                $i++;
 
             }
 
