@@ -21,12 +21,18 @@ include '../templates/home.php';
         </div>
 
         <?php
-        if (Utilisateurs_OBJECT_('00006655', 'matricule')) {
+
+        $TEST_DB_EXIST = Connection()->prepare('SELECT * FROM `utilisateurs`');
+        $TEST_DB_EXIST->execute();
+
+        if ($TEST_DB_EXIST->fetchColumn()) {
             include '../component/all-users.php';
         }
         else {
             include '../component/users-not-found.php';
         }
+
+        $TEST_DB_EXIST->closeCursor();
         ?>
 
     </div>

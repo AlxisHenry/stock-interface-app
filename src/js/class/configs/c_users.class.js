@@ -147,7 +147,6 @@ export class c_Users {
             console.log(document.querySelector('.page-separator'), document.querySelector('.page-separator-bottom'))
             document.querySelector('.page-separator').style.width = Width
             document.querySelector('.page-separator-bottom').style.width = Width
-            console.log(Width)
         }
 
     }
