@@ -34,13 +34,16 @@ export class c_Users {
 
     InitializePage() {
 
-        document.querySelectorAll('.page').forEach(removeActive => {
-            removeActive.classList.remove('active-page');
-        })
+        if (document.querySelectorAll('.page')) {
+            document.querySelectorAll('.page').forEach(removeActive => {
+                removeActive.classList.remove('active-page');
+            })
 
-        this.PageIndicator.forEach(indicator => {
-            indicator.classList.add('active-page')
-        })
+            this.PageIndicator.forEach(indicator => {
+                indicator.classList.add('active-page')
+            })
+
+        }
 
     }
 
@@ -134,6 +137,18 @@ export class c_Users {
                 consoleLog("Une erreur est survenue durant le rafraîchissement de la base de données (Ajax request failed).", 'e');
             },
         });
+
+    }
+
+    InitializeBar() {
+        if (document.querySelector('.move-pages .calcul-width')) {
+            const Links = document.querySelectorAll('.move-pages .calcul-width')
+            const Width = Math.ceil((32.91 + (31.8 * (Links.length - 1)))).toLocaleString() + 'px'
+            console.log(document.querySelector('.page-separator'), document.querySelector('.page-separator-bottom'))
+            document.querySelector('.page-separator').style.width = Width
+            document.querySelector('.page-separator-bottom').style.width = Width
+            console.log(Width)
+        }
 
     }
 

@@ -1069,19 +1069,16 @@ table tr:nth-child(odd){
 .user-section .form-section-card .move-pages a .active-page {
   font-size: 16px;
   color: orange;
+  font-weight: bold;
 }
 
 .page-separator {
-  max-width: 280px;
-  width: 280px;
   height: 1px;
   border-top: solid 1px black;
   margin-top: -25px;
 }
 
 .page-separator-bottom {
-  max-width: 280px;
-  width: 280px;
   height: 1px;
   border-bottom: solid 1px black;
   margin-top: 25px;
@@ -1170,6 +1167,25 @@ table tr:nth-child(odd){
   .main-user-row .c_cout {
     border-right: none;
   }
+}
+
+.users-not-found-in-database {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 220px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.users-not-found-in-database h1 {
+  font-size: 38px;
+}
+
+.users-not-found-in-database h1, .users-not-found-in-database h2 {
+  font-size: 32px;
+  font-family: var(--form-family);
 }
 
 .hidden {

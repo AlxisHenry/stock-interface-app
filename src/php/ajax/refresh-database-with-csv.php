@@ -65,5 +65,6 @@ if (($handle = fopen("users.csv", "r")) !== FALSE) {
 	}
 
 	fclose($handle);
+    die();
 
 }
