@@ -22,27 +22,31 @@ if (($handle = fopen("users.csv", "r")) !== FALSE) {
 
 		if(Utilisateurs_OBJECT_($matricule, 'matricule') === false) {
 			$Users->Insert($etablissement, $matricule, $nom, $prenom, $centreDeCout, $centreAffection);
-		} elseif(Utilisateurs_OBJECT_($matricule, 'matricule')->getMatricule() === $matricule) {
+		} else {
 
-			$Info = Utilisateurs_OBJECT_($matricule, 'matricule');			
+            $Update = false;
+
+			$Info = Utilisateurs_OBJECT_($matricule, 'matricule');
 
 			if ($Info->getEtablissement() !== $etablissement) {
 				$Info->setEtablissement($etablissement);
 				$Update = true;
-			} elseif ($Info->getNom() !== $nom) {
+			}
+            if ($Info->getNom() !== $nom) {
 				$Info->setNom($nom);
 				$Update = true;
-			} elseif ($Info->getPrenom() !== $prenom) {
+			}
+            if ($Info->getPrenom() !== $prenom) {
 				$Info ->setPrenom($prenom);
 				$Update = true;
-			} elseif ($Info->getCentreDeCout() !== $centreDeCout) {
+			}
+            if ($Info->getCentreDeCout() !== $centreDeCout) {
 				$Info->setCentreDeCout($centreDeCout);
 				$Update = true;
-			} elseif ($Info->getCentreAffection() !== $centreAffection) {
+			}
+            if ($Info->getCentreAffection() !== $centreAffection) {
 				$Info->setCentreAffection($centreAffection);
 				$Update = true;
-			} else {
-				$Update = false;
 			}
 
 			if ($Update) {
