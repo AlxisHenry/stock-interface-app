@@ -47,7 +47,49 @@ export class c_Users {
     Research(e) {
         const Value = e.target.value
 
-        if (Value.length < 3) {
+        if (Value.length < 2) {
+            console.log('Ajax')
+            $.ajax({
+                type: "POST",
+                url: `../../ajax/init_actual_page.php`,
+                data: {page: this.Pages},
+                success: function (init_this_page) {
+
+                    const UsersElements = init_this_page;
+                    console.log(UsersElements)
+
+                     const Title = `<div class="main-user-row">
+                                    <div class="main-user-title matricule">
+                                        <span> Matricule </span>
+                                    </div>
+                    
+                                    <div class="main-user-title identity">
+                                        <span>  Identité </span>
+                                    </div>
+                    
+                                    <div class="main-user-title c_cout">
+                                        <span>  Centre de coût </span>
+                                    </div>
+                    
+                                    <div class="main-user-title c_affection">
+                                        <span>  Lieu d'affection </span>
+                                    </div>
+                                    </div>`
+
+                    const ResearchElement = document.querySelector('.pages-contain-users');
+
+                    ResearchElement.innerHTML = ''
+                    ResearchElement.insertAdjacentHTML('beforeend', Title)
+                    ResearchElement.insertAdjacentHTML('beforeend', UsersElements)
+
+                    document.querySelector('.page-separator-bottom').classList.remove('invisible')
+                    document.querySelectorAll('.move-pages')[1].classList.remove('invisible')
+                },
+                error: function () {
+                    popUp('contact-admin')
+                    consoleLog("Une erreur est survenue durant le rafraîchissement de la base de données (Ajax request failed).", 'e');
+                },
+            });
             return false;
         }
 
@@ -77,12 +119,14 @@ export class c_Users {
                 </div>
                 </div>`
 
-                const PlaceElement = document.querySelector('.pages-contain-users')
+                const ResearchElement = document.querySelector('.pages-contain-users');
 
-                PlaceElement.innerHTML = ''
-                PlaceElement.insertAdjacentHTML('beforeend', Title)
-                PlaceElement.insertAdjacentHTML('beforeend', UsersElements)
+                ResearchElement.innerHTML = ''
+                ResearchElement.insertAdjacentHTML('beforeend', Title)
+                ResearchElement.insertAdjacentHTML('beforeend', UsersElements)
 
+                document.querySelector('.page-separator-bottom').classList.add('invisible')
+                document.querySelectorAll('.move-pages')[1].classList.add('invisible')
 
             },
             error: function () {
