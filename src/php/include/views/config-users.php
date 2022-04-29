@@ -89,7 +89,7 @@ include '../templates/home.php';
                         </div>
         
                         <div class="identity">
-                            <span>  ' . $DATA[3] . ',' . $DATA[4] . ' </span>
+                            <span>  ' . $DATA[3] . ', ' . $DATA[4][0] . '' . strtolower(substr($DATA[4], 1,strlen($DATA[4]))) . '</span>
                         </div>
         
                         <div class="c_cout">
