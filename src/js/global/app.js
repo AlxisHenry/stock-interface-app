@@ -86,6 +86,11 @@ export function popUp(type) {
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup new-article\"><i class=\"fa-solid fa-pop-up fa-check\"></i>L'article a été créé avec succès.</div>\n");
             SetPopupColor('e', 'rgb(187,252,187)');
             break;
+        case 'update-users':
+            containMessage.innerHTML = '';
+            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup update-users\"><i class=\"fa-solid fa-pop-up fa-check\"></i>La base de données se met à jour...</div>\n");
+            SetPopupColor('e', 'rgb(187,252,187)');
+            break;
         case 'clean':
             containMessage.innerHTML = '';
             break;

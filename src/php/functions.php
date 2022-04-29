@@ -172,7 +172,8 @@ function GetMaxCount():int {
 
 }
 
-function GetPagesCount():int {
+function GetPagesCount():array {
     $COUNT_ROWS = Connection()->query("SELECT COUNT(*) AS Lignes FROM `utilisateurs`");
-    return ceil(($COUNT_ROWS->fetch()[0]) / 50);
+    $perPage = 50;
+    return [ceil(($COUNT_ROWS->fetch()[0]) / $perPage), $perPage];
 }

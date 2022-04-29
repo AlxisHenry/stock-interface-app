@@ -14,6 +14,7 @@ export class c_Users {
             type: "POST",
             url: `../../ajax/refresh-database-with-csv.php`,
             success: function (refresh) {
+                popUp('update-users');
             },
             error: function () {
                 popUp('contact-admin')
@@ -24,20 +25,13 @@ export class c_Users {
         setTimeout(() => {
             document.querySelector('.fa-rotate').classList.remove('fa-rotate-db-animation');
             document.querySelector('.refresh-database span').style.color = 'gray';
+            setTimeout( () => {
+                document.location.replace('config-users.php?nav=c-users&p=' + this.Pages)
+            }, 125)
         }, 3000)
     }
 
     InitializePage() {
-
-        if (!this.Pages) {
-            document.location.replace('config-users.php?nav=c-users&p=1')
-            return false;
-        }
-
-        if (!this.PageIndicator) {
-            document.location.replace('config-users.php?nav=c-users&p=1')
-            return false;
-        }
 
         document.querySelectorAll('.page').forEach(removeActive => {
             removeActive.classList.remove('active-page');

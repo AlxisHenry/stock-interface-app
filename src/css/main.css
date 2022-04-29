@@ -1032,12 +1032,17 @@ table tr:nth-child(odd){
 }
 
 .user-section {
-    height: 1000px;
+    height: 100vh;
+    overflow: scroll;
 }
-
+.user-section .form-section-card{
+  margin-top: 100px;
+  height: 5000px;
+}
 .user-section .form-section-card .move-pages {
     width: 100%;
     height: 100px;
+    min-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1059,6 +1064,61 @@ table tr:nth-child(odd){
 .user-section .form-section-card .move-pages a .active-page {
   font-size: 16px;
   color: orange;
+}
+
+.page-separator {
+  max-width: 280px;
+  width: 280px;
+  height: 1px;
+  border-top: solid 1px black;
+  margin-top: -25px;
+}
+
+.pages-contain-users {
+  height: 4750px;
+  margin-top: 25px;
+  width: 100%;
+}
+
+.main-user-row {
+  margin-top: 35px;
+  width: 100%;
+  align-items: center;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+}
+
+.main-user-row div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-user-row div span {
+  font-size: 16px;
+  color: black;
+}
+
+.main-user-row .matricule {
+  width: 15%;
+  border-right: solid 1px black;
+}
+
+.main-user-row .identity {
+  width: 20%;
+  border-right: solid 1px black;
+
+}
+
+.main-user-row .c_cout {
+  width: 20%;
+  border-right: solid 1px black;
+}
+
+.main-user-row .c_affection {
+  width: 30%;
 }
 
 .hidden {
