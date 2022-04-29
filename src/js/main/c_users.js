@@ -8,4 +8,8 @@ window.addEventListener('load', () => {
         new c_Users().RefreshDatabase()
     })
 
+    document.querySelector('.user-searchbar-input').addEventListener('keyup', (e) => {
+        new c_Users().Research(e)
+    })
+
 })

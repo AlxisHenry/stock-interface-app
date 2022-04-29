@@ -10,6 +10,7 @@ export class c_Users {
     RefreshDatabase() {
         document.querySelector('.fa-rotate').classList.add('fa-rotate-db-animation');
         document.querySelector('.refresh-database span').style.color = 'black';
+
         $.ajax({
             type: "POST",
             url: `../../ajax/refresh-database-with-csv.php`,
@@ -42,4 +43,54 @@ export class c_Users {
         })
 
     }
+
+    Research(e) {
+        const Value = e.target.value
+
+        if (Value.length < 3) {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: `../../ajax/request-user-research.php`,
+            data: {Value: Value},
+            success: function (users) {
+
+                const UsersElements = users;
+
+                const Title = `<div class="main-user-row">
+                <div class="main-user-title matricule">
+                    <span> Matricule </span>
+                </div>
+
+                <div class="main-user-title identity">
+                    <span>  Identité </span>
+                </div>
+
+                <div class="main-user-title c_cout">
+                    <span>  Centre de coût </span>
+                </div>
+
+                <div class="main-user-title c_affection">
+                    <span>  Lieu d'affection </span>
+                </div>
+                </div>`
+
+                const PlaceElement = document.querySelector('.pages-contain-users')
+
+                PlaceElement.innerHTML = ''
+                PlaceElement.insertAdjacentHTML('beforeend', Title)
+                PlaceElement.insertAdjacentHTML('beforeend', UsersElements)
+
+
+            },
+            error: function () {
+                popUp('contact-admin')
+                consoleLog("Une erreur est survenue durant le rafraîchissement de la base de données (Ajax request failed).", 'e');
+            },
+        });
+
+    }
+
 }
