@@ -810,7 +810,6 @@ table tr:nth-child(odd){
   align-items: center;
   flex-direction: column;
   width: 80%;
-  height: 85%;
   background-color: #fff;
   box-shadow: 1px 1px 1px 1px #ffdbbe;
   border-radius: 10px;
@@ -859,6 +858,10 @@ table tr:nth-child(odd){
 }
 
 /* END - Section Main From Card */
+
+.article-section .form-section-card {
+  height: 85%;
+}
 
 .card-form-article {
   margin-top: 50px;
@@ -1037,7 +1040,6 @@ table tr:nth-child(odd){
 }
 .user-section .form-section-card{
   margin-top: 100px;
-  height: 5000px;
 }
 .user-section .form-section-card .move-pages {
     width: 100%;
@@ -1074,14 +1076,36 @@ table tr:nth-child(odd){
   margin-top: -25px;
 }
 
+.page-separator-bottom {
+  max-width: 280px;
+  width: 280px;
+  height: 1px;
+  border-bottom: solid 1px black;
+  margin-bottom: -25px;
+}
+
+.user-searchbar {
+  margin-top: 20px;
+  height: 60px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-searchbar-input {
+  width: auto;
+  height: 30px;
+  border-radius: 5px;
+}
+
 .pages-contain-users {
-  height: 4750px;
-  margin-top: 25px;
+  margin-top: 15px;
   width: 100%;
 }
 
 .main-user-row {
-  margin-top: 35px;
+  margin-bottom: 20px;
   width: 100%;
   align-items: center;
   height: 60px;
@@ -1102,29 +1126,52 @@ table tr:nth-child(odd){
 }
 
 .main-user-row .matricule {
-  width: 15%;
+  flex: 1;
   border-right: solid 1px black;
 }
 
 .main-user-row .identity {
-  width: 20%;
+  justify-content: start;
+  flex: 1.5;
   border-right: solid 1px black;
+}
 
+.main-user-row .identity span {
+  margin-left: 20px;
 }
 
 .main-user-row .c_cout {
-  width: 20%;
+  flex: 1;
   border-right: solid 1px black;
 }
 
 .main-user-row .c_affection {
-  width: 30%;
+  flex: 1.5;
+}
+
+.main-user-row .main-user-title {
+  justify-content: center;
+  border-right: none;
+}
+
+.main-user-row .main-user-title span {
+  color: black;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 1150px) {
+  .main-user-row .c_affection {
+      display: none;
+  }
+  .main-user-row .c_cout {
+    border-right: none;
+  }
 }
 
 .hidden {
-  display: none;
+  display: none!important;
 }
 
 .invisible {
-  visibility: hidden;
+  visibility: hidden!important;
 }

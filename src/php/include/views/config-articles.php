@@ -2,7 +2,7 @@
     include '../templates/home.php';
 ?>
 
-<section class="section form-section">
+<section class="section form-section article-section">
 
     <div class="form-section-card">
 

@@ -4,7 +4,7 @@ export class c_Users {
 
     constructor() {
         this.Pages = new URLSearchParams(window.location.search).get('p')
-        this.PageIndicator = document.querySelector('.to-page-' + this.Pages)
+        this.PageIndicator = document.querySelectorAll('.to-page-' + this.Pages)
     }
 
     RefreshDatabase() {
@@ -37,8 +37,9 @@ export class c_Users {
             removeActive.classList.remove('active-page');
         })
 
-        this.PageIndicator.classList.add('active-page')
+        this.PageIndicator.forEach(indicator => {
+            indicator.classList.add('active-page')
+        })
 
     }
-
 }

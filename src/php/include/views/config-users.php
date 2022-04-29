@@ -39,8 +39,31 @@ include '../templates/home.php';
 
         <div class="page-separator"></div>
 
+        <div class="user-searchbar">
+            <input class="user-searchbar-input"  placeholder="Rechercher un utilisateur" type="search">
+        </div>
+
         <div class="pages-contain-users">
 
+            <div class="main-user-row">
+
+                <div class="main-user-title matricule">
+                    <span> Matricule </span>
+                </div>
+
+                <div class="main-user-title identity">
+                    <span>  Identité </span>
+                </div>
+
+                <div class="main-user-title c_cout">
+                    <span>  Centre de coût </span>
+                </div>
+
+                <div class="main-user-title c_affection">
+                    <span>  Lieu d'affection </span>
+                </div>
+
+            </div>
             <?php
 
             $page = intval($_GET['p']);
@@ -50,8 +73,8 @@ include '../templates/home.php';
                 die();
             }
 
-            (int)$min = (($page - 1) * 50);
             $rows = GetPagesCount()[1];
+            (int)$min = (($page - 1) * $page);
 
             $QUERY = "SELECT * FROM `utilisateurs` LIMIT $min, $rows ";
 
@@ -82,6 +105,22 @@ include '../templates/home.php';
             }
 
             $RESULT->closeCursor();
+
+            ?>
+
+        </div>
+
+        <div class="page-separator-bottom"></div>
+
+        <div class="move-pages">
+
+            <?php
+
+            $nb_pages = GetPagesCount()[0];
+
+            for ($i = 1; $i < ($nb_pages + 1); $i++) {
+                echo '<a href="?nav=c-users&p='.$i.'"> <span class="page to-page-'.$i.' active-page">'.$i.'</span> </a>';
+            }
 
             ?>
 
