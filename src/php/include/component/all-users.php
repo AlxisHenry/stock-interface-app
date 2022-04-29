@@ -1,4 +1,8 @@
-<div class="move-pages">
+<div class="user-searchbar">
+    <input class="user-searchbar-input"  placeholder="Rechercher un utilisateur" type="search">
+</div>
+
+<div class="move-pages mvp-top">
 
     <?php
 
@@ -14,10 +18,6 @@
 </div>
 
 <div class="page-separator"></div>
-
-<div class="user-searchbar">
-    <input class="user-searchbar-input"  placeholder="Rechercher un utilisateur" type="search">
-</div>
 
 <div class="pages-contain-users">
 
