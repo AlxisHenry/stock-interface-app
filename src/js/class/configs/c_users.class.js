@@ -3,7 +3,8 @@ import {consoleLog, popUp} from "../../global/app.js";
 export class c_Users {
 
     constructor() {
-
+        this.Pages = new URLSearchParams(window.location.search).get('p')
+        this.PageIndicator = document.querySelector('.to-page-' + this.Pages)
     }
 
     RefreshDatabase() {
@@ -26,5 +27,24 @@ export class c_Users {
         }, 3000)
     }
 
+    InitializePage() {
+
+        if (!this.Pages) {
+            document.location.replace('config-users.php?nav=c-users&p=1')
+            return false;
+        }
+
+        if (!this.PageIndicator) {
+            document.location.replace('config-users.php?nav=c-users&p=1')
+            return false;
+        }
+
+        document.querySelectorAll('.page').forEach(removeActive => {
+            removeActive.classList.remove('active-page');
+        })
+
+        this.PageIndicator.classList.add('active-page')
+
+    }
 
 }

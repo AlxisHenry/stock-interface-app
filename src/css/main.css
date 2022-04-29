@@ -615,6 +615,12 @@ label[for="form-id"], label[for="form-pass"] {
   }
 }
 
+@media screen and (max-height: 630px) {
+  .contain-users-informations {
+    display: none;
+  }
+}
+
 /* END -- Asset Name & Last Connexion Date */
 
 /* END -- Global */
@@ -988,7 +994,7 @@ table tr:nth-child(odd){
   }
 }
 
-@media screen and (max-height: 740px) {
+@media screen and (max-height: 630px) {
   .form-section .form-section-card {
     height: 700px
   }
@@ -1023,6 +1029,36 @@ table tr:nth-child(odd){
   } 100% {
     transform: rotate(360deg);
   }
+}
+
+.user-section {
+    height: 1000px;
+}
+
+.user-section .form-section-card .move-pages {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.user-section .form-section-card .move-pages span {
+    font-size: 14px;
+    margin-left: 12px;
+    margin-right: 12px;
+    color: gray;
+}
+
+.user-section .form-section-card .move-pages a {
+  text-decoration: none;
+}
+
+.user-section .form-section-card .move-pages a .active-page {
+  font-size: 16px;
+  color: orange;
 }
 
 .hidden {
