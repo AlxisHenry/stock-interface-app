@@ -122,7 +122,7 @@ export class c_Family {
     Delete(e) {
 
 
-        const Confirm = confirm("Vous êtes sur le point de supprimer la famille ! Les articles seront déplacés dans la famille Autre... ")
+        const Confirm = confirm("Vous êtes sur le point de supprimer la famille ! Les articles n'auront plus de famille... ")
 
         if (Confirm) {
 

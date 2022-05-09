@@ -14,7 +14,10 @@ export class c_Article {
         const _GetExistArticle = this.UrlParamId ? this.UrlParamId : false
         localStorage.removeItem('value')
 
+        console.log(_GetExistArticle)
+
         if (!isNaN(parseInt(_GetExistArticle))) {
+            console.log(_GetExistArticle)
 
             document.querySelector('.exit-article-focus').classList.remove('invisible')
 
