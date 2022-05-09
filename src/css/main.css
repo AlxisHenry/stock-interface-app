@@ -813,6 +813,7 @@ table tr:nth-child(odd){
   background-color: #fff;
   box-shadow: 1px 1px 1px 1px #ffdbbe;
   border-radius: 10px;
+  min-height: 800px;
 }
 
 .form-section .form-section-card .card-action {
@@ -1188,6 +1189,39 @@ table tr:nth-child(odd){
   font-family: var(--form-family);
 }
 
+/* Family */
+
+.family_section .form-section-card .card-form-family {
+  margin-top: 150px;
+}
+
+.family_section .form-section-card .card-form-family .form-new-family .form-label .new-family-name {
+  height: 21px;
+  margin-top: 2px;
+  width: 190px;
+  max-width: 190px;
+  padding: 3px;
+}
+
+.family_section .form-section-card .card-form-family .form-new-family .form-label .new-family-comment {
+  height: 21px;
+  margin-top: 2px;
+  width: 190px;
+  max-width: 190px;
+  padding: 3px;
+}
+
+.family_section .form-section-card .card-form-family .form-edit-family .form-label .new-family-comment {
+  height: 21px;
+  margin-top: 2px;
+  width: 190px;
+  max-width: 190px;
+  padding: 3px;
+}
+
+
+  /* END - Family */
+
 .hidden {
   display: none!important;
 }
@@ -1195,3 +1229,4 @@ table tr:nth-child(odd){
 .invisible {
   visibility: hidden!important;
 }
+

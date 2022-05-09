@@ -51,7 +51,6 @@ export class c_Users {
         const Value = e.target.value
 
         if (Value.length < 2) {
-            console.log('Ajax')
             $.ajax({
                 type: "POST",
                 url: `../../ajax/init_actual_page.php`,
@@ -59,7 +58,6 @@ export class c_Users {
                 success: function (init_this_page) {
 
                     const UsersElements = init_this_page;
-                    console.log(UsersElements)
 
                      const Title = `<div class="main-user-row">
                                     <div class="main-user-title matricule">
@@ -144,7 +142,6 @@ export class c_Users {
         if (document.querySelector('.move-pages .calcul-width')) {
             const Links = document.querySelectorAll('.move-pages .calcul-width')
             const Width = Math.ceil((32.91 + (31.8 * (Links.length - 1)))).toLocaleString() + 'px'
-            console.log(document.querySelector('.page-separator'), document.querySelector('.page-separator-bottom'))
             document.querySelector('.page-separator').style.width = Width
             document.querySelector('.page-separator-bottom').style.width = Width
         }

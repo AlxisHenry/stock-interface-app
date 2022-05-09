@@ -177,3 +177,30 @@ function GetPagesCount():array {
     $perPage = 50;
     return [ceil(($COUNT_ROWS->fetch()[0]) / $perPage), $perPage];
 }
+
+function GetFamily(string $url):Familles|bool {
+    $FAMILY_URL = (bool)strpos($url, '&id=');
+
+    if (!$FAMILY_URL) return false;
+
+    $EntryUrl = $url;
+    $id = explode('&', $EntryUrl);
+    $id_value = intval((explode('=', $id[1]))[1]);
+
+    if (!$id_value) return false;
+    if ($id_value < 0) return false;
+
+    $FAMILY = Familles_OBJECT_($id_value, 'id');
+
+    if (!$FAMILY) return false;
+
+    return $FAMILY;
+
+}
+
+function InitializeFamily():Familles|string {
+
+    $CHECK_FAMILY = GetFamily($_SERVER['REQUEST_URI']);
+    return !$CHECK_FAMILY ? '' : $CHECK_FAMILY;
+
+}

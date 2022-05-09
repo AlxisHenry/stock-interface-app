@@ -50,7 +50,7 @@ function Centres_OBJECT_(string|int $value, string $by):Centres {
     return $RESULT;
 }
 
-function Familles_OBJECT_(string|int $value, string $by):Familles {
+function Familles_OBJECT_(string|int $value, string $by):Familles|bool {
     $QUERY = getRequest($by, 'Familles');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
