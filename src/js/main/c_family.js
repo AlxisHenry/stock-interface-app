@@ -17,7 +17,16 @@ window.addEventListener('load', () => {
         new c_Family().ExistFamilyChange(e)
     })
 
+    document.querySelector('.exit-article-focus').addEventListener('click', () => {
+        new c_Family().Clear()
+    })
 
+    document.querySelector('.card-form-family-submit').addEventListener('click', (e) => {
+        new c_Family().ConfirmChange();
+    })
 
+    document.querySelector('.exist-family-deleted').addEventListener('click', (e) => {
+        new c_Family().Delete(e)
+    })
 
 })

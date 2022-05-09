@@ -122,6 +122,38 @@ class Familles
         $this->editUser = $editUser;
     }
 
+    public function Update(string $name, string $comment, int $id):void {
+        $REQUEST = "UPDATE `familles` SET nom = :name, commentaire = :comment, dateModification = (SELECT NOW()), editUser = :editUser WHERE `id` = :id;";
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            'name' => $name,
+            'comment' => $comment,
+            'editUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+            'id' => $id
+        ]);
+        $QUERY->closeCursor();
+    }
 
+    public function Insert(string $name, string $comment):void {
+        $REQUEST = "INSERT INTO `familles` (nom, comment, dateCreation, dateModification, createUser, editUser) 
+        VALUES (:name, :comment, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            'name' => $name,
+            'comment' => $comment,
+            'createUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+            'editUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+        ]);
+        $QUERY->closeCursor();
+    }
+
+    public function Delete(int $id) {
+        $REQUEST = "DELETE FROM `familles` WHERE id = :id";
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            'id' => $id,
+        ]);
+        $QUERY->closeCursor();
+    }
 
 }

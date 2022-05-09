@@ -1192,7 +1192,7 @@ table tr:nth-child(odd){
 /* Family */
 
 .family_section .form-section-card .card-form-family {
-  margin-top: 150px;
+  margin-top: 135px;
 }
 
 .family_section .form-section-card .card-form-family .form-new-family .form-label .new-family-name {
@@ -1219,6 +1219,22 @@ table tr:nth-child(odd){
   padding: 3px;
 }
 
+.family_section .form-section-card .submit-actions .delete-family {
+    margin-left: 60px;
+    height: 50px;
+    width: 121px;
+    border-radius: 5px;
+    font-size: 17px;
+    font-family: var(--form-family);
+    letter-spacing: 1px;
+    max-width: 121px;
+
+}
+
+  .family_section .form-section-card .submit-actions .delete-family:hover {
+    cursor: pointer;
+    filter: saturate(1.5);
+  }
 
   /* END - Family */
 

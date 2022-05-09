@@ -35,7 +35,7 @@ export class c_Article {
                 document.location.replace('config-articles.php?nav=c-article')
             }
 
-            document.querySelector('.exist-article-deleted').style.display = 'block';
+            document.querySelector('.exist-article-deleted').classList.remove('hidden')
             document.querySelector('.card-form-article-submit').dataset.target = "update";
 
             return false;

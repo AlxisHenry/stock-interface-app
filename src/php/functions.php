@@ -143,7 +143,7 @@ function InitializeStockEntry():Articles|string {
 
 function GetFamilyList():string {
     $QUERY = Connection()->query('SELECT * FROM `familles`');
-    $LIST = [];
+    $LIST = ["<option value='null' selected>Choisissez une famille</option>"];
     $id = 1;
     while ($STOCK = $QUERY->fetch()) {
         $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-family-". $STOCK['id'] ."' value='" . $id . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . "</option>\n";

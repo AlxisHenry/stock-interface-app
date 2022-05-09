@@ -1,6 +1,5 @@
 <?php
 include '../templates/home.php';
-ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 ?>
 
 <section class="section form-section family_section">
@@ -19,6 +18,8 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
 
         </div>
 
+        <i class="exit-article-focus fa-solid fa-xmark invisible"></i>
+
         <div class="card-form-family">
 
             <div class="form-new-family">
@@ -27,8 +28,8 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
                     <input name="family-name" class="new-family-name" <?= InitializeFamily() === '' ? '' : ' value="' . InitializeFamily()->getNom() . '"'?>">
                 </label>
 
-                <label class="form-label"> Ajouter un commentaire
-                    <input name="family-comment" class="new-family-comment">
+                <label class="form-label"> À propos de la famille
+                    <input name="family-comment" class="new-family-comment" <?= InitializeFamily() === '' ? '' : ' value="' . InitializeFamily()->getCommentaire() . '"'?>>
                 </label>
 
             </div>
@@ -36,13 +37,13 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
             <div class="form-edit-family hidden">
 
                 <label class="form-label"> Nom de la famille
-                    <select name="name" class="form-select family-name-select">
+                    <select name="name" class="form-select family-name-select" <?= InitializeFamily() === '' ? '' : ' data-family="' . InitializeFamily()->getId() . '"'?>>
                         <?= GetFamilyList(); ?>
                     </select>
                 </label>
 
                 <label class="form-label"> À propos de la famille
-                    <input name="family-comment" class="new-family-comment">
+                    <input name="family-comment" class="new-family-comment" <?= InitializeFamily() === '' ? '' : ' value="' . InitializeFamily()->getCommentaire() . '"'?>>
                 </label>
 
             </div>
@@ -52,7 +53,6 @@ ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_report
         <div class="submit-actions">
 
             <input type="submit" data-target="" value="Enregistrer" class="form-submit card-form-family-submit">
-
             <button class="exist-family-deleted delete-family hidden" data-target="delete">Supprimer</button>
 
         </div>
