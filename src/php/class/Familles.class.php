@@ -135,7 +135,7 @@ class Familles
     }
 
     public function Insert(string $name, string $comment):void {
-        $REQUEST = "INSERT INTO `familles` (nom, comment, dateCreation, dateModification, createUser, editUser) 
+        $REQUEST = "INSERT INTO `familles` (nom, commentaire, dateCreation, dateModification, createUser, editUser) 
         VALUES (:name, :comment, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
         $QUERY = Connection()->prepare($REQUEST);
         $QUERY->execute([
@@ -148,6 +148,14 @@ class Familles
     }
 
     public function Delete(int $id) {
+
+        $ARTICLES_IN_THIS_FAMILY = "UPDATE `articles` SET `famille` = 0 WHERE `famille` = :idFamily";
+        $QUERY = Connection()->prepare($ARTICLES_IN_THIS_FAMILY);
+        $QUERY->execute([
+            'idFamily' => $id
+        ]);
+        $QUERY->closeCursor();
+
         $REQUEST = "DELETE FROM `familles` WHERE id = :id";
         $QUERY = Connection()->prepare($REQUEST);
         $QUERY->execute([

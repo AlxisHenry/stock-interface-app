@@ -13,21 +13,26 @@ export class c_Family {
 
         const _GetExistArticle = this.UrlParamId ? this.UrlParamId : false
 
-        console.log(this._NewFamily, this._ExistFamily)
-
         if (!isNaN(parseInt(_GetExistArticle))) {
             this._NewFamily.classList.remove('config-active-action')
             this._ExistFamily.classList.add('config-active-action')
             document.querySelector('.exit-article-focus').classList.remove('invisible')
             document.querySelector('.delete-family').classList.remove('hidden')
+            document.querySelector('.family-name-select').children[0].removeAttribute('selected')
+            document.querySelector('.opt-family-' + _GetExistArticle).setAttribute('selected', true)
+            document.querySelector('.card-form-family-submit').dataset.target = 'update'
         } else if (this.UrlParamState) {
             this._NewFamily.classList.remove('config-active-action')
             this._ExistFamily.classList.add('config-active-action')
             document.querySelector('.form-edit-family').classList.remove('hidden')
-            document.querySelector('.form-new-family').classList.add('hidden')
+            document.querySelector('.new-family-name').classList.add('hidden')
+            document.querySelector('.new-family-name').parentNode.classList.add('hidden')
+            document.querySelector('.card-form-family-submit').dataset.target = 'update'
         } else {
             document.querySelector('.form-edit-family').classList.add('hidden')
-            document.querySelector('.form-new-family').classList.remove('hidden')
+            document.querySelector('.new-family-name').classList.remove('hidden')
+            document.querySelector('.new-family-name').parentNode.classList.remove('hidden')
+            document.querySelector('.card-form-family-submit').dataset.target = 'insert'
         }
     }
 
@@ -39,6 +44,8 @@ export class c_Family {
             e.preventDefault()
             return false;
         }
+
+        document.querySelector('.card-form-family-submit').dataset.target = 'insert'
 
         this._NewFamily.classList.add('config-active-action')
         this._ExistFamily.classList.remove('config-active-action')
@@ -53,12 +60,14 @@ export class c_Family {
         }
 
         document.location.replace('config-familles.php?nav=c-famille&st=true');
+        document.querySelector('.card-form-family-submit').dataset.target = 'update'
 
         this._NewFamily.classList.remove('config-active-action')
         this._ExistFamily.classList.add('config-active-action')
 
         document.querySelector('.form-edit-family').classList.remove('hidden')
-        document.querySelector('.form-new-family').classList.add('hidden')
+        document.querySelector('.new-family-name').classList.add('hidden')
+        document.querySelector('.new-family-name').parentNode.classList.add('hidden')
 
     }
 
@@ -72,23 +81,41 @@ export class c_Family {
     }
 
     ConfirmChange() {
-        const TargetAction = document.querySelector('.card-form-article-submit').dataset.target;
-        const quantityStatus = document.querySelector('.article-alert-state').checked;
-        const quantityMin = quantityStatus ? -1 : document.querySelector('.article-quantity-minimal').value
 
-        const Article_Data = {
-            nom: document.querySelector('.article-new-name').value,
-            id: document.querySelector('.article-name-select').value,
-            quantity: document.querySelector('.article-quantity').value,
-            quantityMin: quantityMin,
-            comment: document.querySelector('.article-commentary').value,
-            family: document.querySelector('.article-family-select').value,
-            code: document.querySelector('.article-code').value,
-            localisation: document.querySelector('.article-localisation').value,
+        const TargetAction = document.querySelector('.card-form-family-submit').dataset.target ?? false;
+
+        if (!TargetAction) {
+            popUp('uncompleted-data')
+            return false
+        }
+
+        const FAMILLE_DATA = {
+            id: document.querySelector('.family-name-select').value ?? 0,
+            nom: document.querySelector('.new-family-name').value,
+            comment: document.querySelector('.new-family-comment').value,
             type: TargetAction,
         }
 
-        console.log(Article_Data)
+        if (FAMILLE_DATA.nom.length < 1) {
+            popUp('uncompleted-data')
+            return false
+        }
+
+        popUp('clean')
+
+        console.log(FAMILLE_DATA)
+        $.ajax({
+            type: "POST",
+            url: `../../ajax/config-famille.php`,
+            data: { FAMILLE_DATA },
+            success: function (Famille_Status) {
+                console.log(Famille_Status)
+                consoleLog('Mise à jour effectuée.', 's');
+            },
+            error: function () {
+                popUp('contact-admin');
+            },
+        });
 
     }
 

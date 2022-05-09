@@ -22,24 +22,21 @@ include '../templates/home.php';
 
         <div class="card-form-family">
 
-            <div class="form-new-family">
-
-                <label class="form-label"> Nom de la famille
-                    <input name="family-name" class="new-family-name" <?= InitializeFamily() === '' ? '' : ' value="' . InitializeFamily()->getNom() . '"'?>">
-                </label>
-
-                <label class="form-label"> À propos de la famille
-                    <input name="family-comment" class="new-family-comment" <?= InitializeFamily() === '' ? '' : ' value="' . InitializeFamily()->getCommentaire() . '"'?>>
-                </label>
-
-            </div>
-
             <div class="form-edit-family hidden">
 
                 <label class="form-label"> Nom de la famille
                     <select name="name" class="form-select family-name-select" <?= InitializeFamily() === '' ? '' : ' data-family="' . InitializeFamily()->getId() . '"'?>>
                         <?= GetFamilyList(); ?>
                     </select>
+                </label>
+
+            </div>
+
+
+            <div class="form-new-family">
+
+                <label class="form-label"> Nom de la famille
+                    <input name="family-name" class="new-family-name" <?= InitializeFamily() === '' ? '' : ' value="' . InitializeFamily()->getNom() . '"'?>">
                 </label>
 
                 <label class="form-label"> À propos de la famille
