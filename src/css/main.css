@@ -686,8 +686,6 @@ label[for="form-id"], label[for="form-pass"] {
   }
 }
 
-/* todo: À partir de 1000 pixels environ, menu burger permettant une meilleur utilisation du site */
-
 /* END -- Admin Panel - Settings */
 
 /* Admin Panel - Visu. Stock */
@@ -748,6 +746,7 @@ th, td {
   left: 380px;
   z-index: 99;
 }
+
 table tr:nth-child(odd){
  border: outset;
 }
@@ -892,8 +891,7 @@ table tr:nth-child(odd){
   margin-bottom: 35px;
 }
 
-.form-input
-{
+.form-input {
   height: 21px;
   margin-top: 2px;
   width: 190px;
@@ -1054,7 +1052,6 @@ table tr:nth-child(odd){
     align-items: center;
     flex-direction: row;
 }
-
 
 .user-section .form-section-card .move-pages span {
     font-size: 14px;
@@ -1228,15 +1225,48 @@ table tr:nth-child(odd){
     font-family: var(--form-family);
     letter-spacing: 1px;
     max-width: 121px;
-
 }
 
-  .family_section .form-section-card .submit-actions .delete-family:hover {
-    cursor: pointer;
-    filter: saturate(1.5);
-  }
+.family_section .form-section-card .submit-actions .delete-family:hover {
+  cursor: pointer;
+  filter: saturate(1.5);
+}
 
-  /* END - Family */
+/* Menu Burger */
+
+@media screen and (max-width: 840px) {
+  .section {
+    width: 100%;
+    margin-left: 0;
+    }
+  .features-navigation {
+    margin-left: -400px;
+  }
+  .table-visu-stock {
+    margin-left: 0;
+    width: 100%;
+  }
+  .form-section .form-section-card {
+    width: 95%;
+    height: 1200px;
+  }
+  .section .contain-settings-sections {
+    margin-left: 0;
+  }
+  .section .contain-settings-sections .fl {
+    width: 90%;
+  }
+  .search-articles {
+    left: 80px;
+  }
+  .card-form-article {
+    flex-direction: column;
+    margin: 180px;
+  }
+}
+
+/* END - Burger */
+/* END - Family */
 
 .hidden {
   display: none!important;
