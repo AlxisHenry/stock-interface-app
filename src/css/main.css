@@ -813,7 +813,7 @@ table tr:nth-child(odd){
   background-color: #fff;
   box-shadow: 1px 1px 1px 1px #ffdbbe;
   border-radius: 10px;
-  min-height: 800px;
+  min-height: 620px;
 }
 
 .form-section .form-section-card .card-action {
@@ -1041,7 +1041,7 @@ table tr:nth-child(odd){
 }
 
 .user-section .form-section-card{
-  margin-top: 100px;
+  margin-top: 80px;
   min-height: 2000px;
 }
 
