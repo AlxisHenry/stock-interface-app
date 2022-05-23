@@ -15,4 +15,6 @@ export class stock_out extends Stock {
     }
 
 
+
+
 }

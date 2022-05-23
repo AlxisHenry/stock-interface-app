@@ -724,6 +724,8 @@ label[for="form-id"], label[for="form-pass"] {
 }
 
 .table-visu-stock {
+  border-spacing:0; /* Removes the cell spacing via CSS */
+  border-collapse: collapse;  /* Optional - if you don't want to have double border where cells touch */
   margin-top: 160px;
   max-width: 80%;
   width: 90%;
@@ -771,10 +773,6 @@ th, td {
   top: 14px;
   left: 380px;
   z-index: 99;
-}
-
-table tr:nth-child(odd){
- border: outset;
 }
 
 .searchbar {
@@ -1313,3 +1311,6 @@ table tr:nth-child(odd){
   visibility: hidden!important;
 }
 
+tr:nth-child(even) {
+  background-color: #fff9e3;
+}
