@@ -5,6 +5,8 @@ export class Navbar {
     constructor() {
         this.option = new URLSearchParams(window.location.search).get("nav");
         this.AuthorizedPage = ['c-users' ,'c-article' , 'c-ccout', 'c-famille', 's-entry', 's-checkout', 'visu', 'alerts', 'settings', 'mvmt'];
+        this.down = 'menu-burger-transition-element-down'
+        this.up = 'menu-burger-transition-element-up'
     };
 
     InitializeNavbarSelection() {
@@ -35,5 +37,39 @@ export class Navbar {
         setTimeout(() => {
             location.replace('../../../../../index.php');
         }, 875);
+    }
+
+    BurgerOn() {
+
+        const ElementToShow = document.querySelector('.features-navigation')
+        const MenuElementUp = document.querySelector('.fa-bars')
+
+        if (!ElementToShow) {
+            return false
+        }
+
+        MenuElementUp.classList.remove('fa-bars')
+        MenuElementUp.classList.add('hide-burger')
+        MenuElementUp.classList.add('fa-xmark')
+        ElementToShow.classList.remove(this.down)
+        ElementToShow.classList.add(this.up)
+
+    }
+
+    BurgerOff() {
+
+        const ElementToHide = document.querySelector('.features-navigation')
+        const MenuElementDown = document.querySelector('.hide-burger')
+
+        if (!ElementToHide) {
+            return false
+        }
+
+        MenuElementDown.classList.remove('hide-burger')
+        MenuElementDown.classList.remove('fa-xmark')
+        MenuElementDown.classList.add('fa-bars')
+        ElementToHide.classList.remove(this.up)
+        ElementToHide.classList.add(this.down)
+
     }
 }

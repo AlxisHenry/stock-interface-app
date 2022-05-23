@@ -578,6 +578,32 @@ label[for="form-id"], label[for="form-pass"] {
   border-radius: 5px;
 }
 
+.menu-burger-transition-element-up {
+  animation: BurgerTransitionUp 1s forwards;
+}
+
+.menu-burger-transition-element-down {
+  animation: BurgerTransitionDown 1s forwards;
+}
+
+@keyframes BurgerTransitionUp {
+  0% {
+    margin-left: -400px;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+
+@keyframes BurgerTransitionDown {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -400px;
+  }
+}
+
 .host {
   width: 255px;
   text-align: center;
@@ -1232,6 +1258,12 @@ table tr:nth-child(odd){
   filter: saturate(1.5);
 }
 
+/* START - Stock Entry */
+
+
+
+/* END - Stock Entry */
+
 /* Menu Burger */
 
 @media screen and (max-width: 840px) {
@@ -1263,6 +1295,11 @@ table tr:nth-child(odd){
     flex-direction: column;
     margin: 180px;
   }
+
+  .contain-users-informations .menu-burger {
+    display: block;
+  }
+
 }
 
 /* END - Burger */
