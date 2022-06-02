@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <?php
 include 'src/php/functions.php';
 session_destroy();
@@ -23,9 +23,6 @@ include 'src/php/sessions/load-session.php';
 <div class="contain-send-message"></div>
 
 <div class="about-user">
-
-    <div class="contain-asset-name"> <?= getAssetName(); ?> </div>
-    <div class="contain-date"> <?= getFormatDate(); ?> </div>
 
 </div>
 
