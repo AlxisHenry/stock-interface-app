@@ -1,0 +1,7 @@
+<?php
+
+function Connection() {
+
+    return new PDO('mysql:host=localhost;dbname=test','alexis','alexis');
+
+}
