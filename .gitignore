@@ -3,6 +3,7 @@
 .sqlite
 .log
 .idea
+/src/php/ajax/users.csv.real
 
 # Ignore database & configuration files
 
