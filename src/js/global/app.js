@@ -1,4 +1,10 @@
-export function consoleLog(message, type) {
+export const debug = (status) => {
+    if (!status) {
+        console.log = () => {}
+    }
+}
+
+export const consoleLog = (message, type) => {
     switch (type) {
         case 's':
             const Success = 'font-size: 15px; color: green; text-decoration: underline;';
@@ -16,7 +22,7 @@ export function consoleLog(message, type) {
     }
 }
 
-export function popUp(type) {
+export const popUp = (type) => {
 
     const containMessage = document.querySelector('.contain-send-message');
 
@@ -113,16 +119,15 @@ export function popUp(type) {
 
 }
 
-function SetPopupColor(type, color) {
+const SetPopupColor = (type, color) => {
 
     const PopUp = document.querySelector('.popup');
-
     PopUp.style.backgroundColor = color;
     PopUp.style.border = `solid ${color}`;
 
 }
 
-export function CapsLock(e) {
+export const CapsLock = (e) => {
     let caps = e.getModifierState && e.getModifierState( 'CapsLock' );
 
     const CapsLockIndicator = document.querySelector('.caps-lock-indicator');
