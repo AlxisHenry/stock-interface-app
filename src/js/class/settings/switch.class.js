@@ -40,7 +40,23 @@ export class Switch {
                         }
                     }
 
-                   Element.title = 'Dernière modification le ' + el['modification'];
+                    const FormatDate = {
+                        mdy: {
+                            year: el['modification'].split(' ')[0].split('-')[0],
+                            months: el['modification'].split(' ')[0].split('-')[1],
+                            days: el['modification'].split(' ')[0].split('-')[2]
+                        },
+                        hms: el['modification'].split(' ')[1].slice(0,5)
+                    }
+
+                    const FullDate = [
+                        FormatDate.mdy.days + '/' + FormatDate.mdy.months + '/' + FormatDate.mdy.year,
+                        FormatDate.hms
+                    ]
+
+                    const FormattedDate = FullDate.join(' à ')
+
+                    Element.title = 'Dernière modification le ' + FormattedDate;
 
                 });
 
