@@ -13,6 +13,8 @@
     function Validity($__VALUE__, $__ACTION__, $__DATABASE__):string
     {
 
+        $__ACCESS__ = new Access();
+        $__ALERTS__ = new Alertes();
         $currentPassword = Access_OBJECT_($__DATABASE__, 'id')->getPassword();
         $currentLevel = Alertes_OBJECT_($__DATABASE__, 'id')->getSeuil();
 
@@ -26,13 +28,11 @@
         // Test Password
         if ((($__VALUE__ != $currentPassword) && $__ACTION__ === 'password')) {
             if (strlen($__VALUE__) > 4) {
-                $QUERY_RESET_PASSWORD = "UPDATE `access` SET `password`=:newPassword WHERE `id`=:id";
-                $qPASSWORD = Connection()->prepare($QUERY_RESET_PASSWORD);
-                $qPASSWORD->execute([
-                    ':newPassword' => $__VALUE__,
-                    ':id' => $__DATABASE__
-                ]);
-                $qPASSWORD->closeCursor();
+                $__ACCESS__->UpdatePassword(
+                    $__VALUE__,
+                    $_SESSION['login']['id'],
+                    Access_OBJECT_($__DATABASE__, 'id')->getId()
+                );
                 return json_encode([true, $__ACTION__]);
             } else {
                 return json_encode(['none', $__ACTION__]);
@@ -42,13 +42,10 @@
         // Test Alerts
         if ((($__VALUE__ != $currentLevel) && $__ACTION__ === 'minimal')) {
             if ($__VALUE__ >= 0 && $__VALUE__ < 100) {
-                $QUERY_RESET_PASSWORD = "UPDATE `alertes` SET `seuil`=:newSeuil WHERE `id`=:id";
-                $qPASSWORD = Connection()->prepare($QUERY_RESET_PASSWORD);
-                $qPASSWORD->execute([
-                    ':newSeuil' => $__VALUE__,
-                    ':id' => $__DATABASE__
-                ]);
-                $qPASSWORD->closeCursor();
+                $__ALERTS__->UpdateThreshold(
+                    $__VALUE__,
+                    Access_OBJECT_($__DATABASE__, 'id')->getId()
+                );
                 return json_encode([true, $__ACTION__]);
             } else {
                 return json_encode(['none', $__ACTION__]);
