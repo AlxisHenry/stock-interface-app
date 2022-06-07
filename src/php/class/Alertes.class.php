@@ -10,6 +10,16 @@ class Alertes
     private $seuil;
     private $seuilModification;
 
+    public function UpdateThreshold(int $threshold, int $id) {
+        $REQUEST = 'UPDATE `alertes` SET seuil = :threshold, seuilModification = (SELECT NOW()) WHERE `id` = :id';
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            'threshold' => $threshold,
+            'id' => $id
+        ]);
+        $QUERY->closeCursor();
+    }
+
     /**
      * @return mixed
      */
