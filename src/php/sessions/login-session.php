@@ -1,6 +1,7 @@
 <?php
 
 $_SESSION['login'] = [
+    "id" => null,
     "user" => null,
     "password" => null,
     "typeAccount" => null,
