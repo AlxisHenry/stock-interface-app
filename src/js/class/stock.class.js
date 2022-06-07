@@ -3,6 +3,7 @@ import {consoleLog} from "../global/app.js";
 export class Stock {
 
     constructor() {
+        this.UrlParamId = new URLSearchParams(window.location.search).get("id");
         this.Searchbar = document.querySelector('.searchbar');
     };
 

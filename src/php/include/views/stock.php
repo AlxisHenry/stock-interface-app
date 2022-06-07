@@ -44,11 +44,10 @@
                 $STOCK = Articles_OBJECT_($id, 'id');
 
                 if ($STOCK) {
-                    $STOCK->setFamille($STOCK->getFamille() === 0 ? 'Non attribué' : Familles_OBJECT_($STOCK->getFamille(), 'id')->getNom());
                     $date = $STOCK->getDateModification();
                     $FORMAT_DATE = date('d/m/Y, H:i', strtotime($date));
                     echo "<td class='column-0 column-values hidden'>".$STOCK->getId()."</td>";
-                    echo "<td class='column-1 column-values'>". $STOCK->getFamille() ."</td>";
+                    echo "<td class='column-1 column-values'>". Familles_OBJECT_($STOCK->getFamille(), 'id')->getNom() ."</td>";
                     echo "<td class='column-2 column-values'>".$STOCK->getNom()."</td>";
                     echo "<td class='column-3 column-values'>".$STOCK->getQuantityStock()."</td>";
                     echo "<td class='column-4 column-values'>".$STOCK->getCommentaire()."</td>";
