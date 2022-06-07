@@ -97,6 +97,16 @@ export const popUp = (type) => {
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup update-users\"><i class=\"fa-solid fa-pop-up fa-check\"></i>La base de données se met à jour...</div>\n");
             SetPopupColor('e', 'rgb(187,252,187)');
             break;
+        case 'in/out-done':
+            containMessage.innerHTML = '';
+            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup in-out-done\"><i class=\"fa-solid fa-pop-up fa-check\"></i>Le mouvement a été enregistré avec succès !</div>\n");
+            SetPopupColor('e', 'rgb(128,255,128)');
+            break;
+        case 'invalid-quantity':
+            containMessage.innerHTML = '';
+            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup invalid-quantity\"><i class=\"fa-solid fa-pop-up fa-circle-exclamation\"></i>Quantité renseignée invalide !</div>\n");
+            SetPopupColor('e', 'rgb(227,114,119)');
+            break;
         case 'clean':
             containMessage.innerHTML = '';
             break;
