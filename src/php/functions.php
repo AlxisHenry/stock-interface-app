@@ -173,6 +173,18 @@ function GetArticlesList():string {
     return implode(" ", $LIST);
 }
 
+function GetUsersList():string {
+    $QUERY = Connection()->query('SELECT * FROM `utilisateurs`');
+    $LIST = ['<option disabled selected value>Sélectionner un utilisateur</option>'];
+    $id = 1;
+    while ($STOCK = $QUERY->fetch()) {
+        $LIST[] = "<option data-name='". $STOCK['nom'] ."' class='opt-name-". $STOCK['id'] ."' value='" . $STOCK["id"] . "' data-id='" . $STOCK["id"] . "'>" . $STOCK['nom'] . ' ' . $STOCK['prenom'] . "</option>\n";
+        $id++;
+    }
+    $QUERY->closeCursor();
+    return implode(" ", $LIST);
+}
+
 function GetMaxCount():int {
 
     $QUERY = Connection()->query('SELECT MAX(id) FROM `articles`');
