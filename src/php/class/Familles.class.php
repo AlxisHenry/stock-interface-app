@@ -149,7 +149,7 @@ class Familles
 
     public function Delete(int $id) {
 
-        $ARTICLES_IN_THIS_FAMILY = "UPDATE `articles` SET `famille` = 0 WHERE `famille` = :idFamily";
+        $ARTICLES_IN_THIS_FAMILY = "UPDATE `articles` SET `famille` = 1 WHERE `famille` = :idFamily";
         $QUERY = Connection()->prepare($ARTICLES_IN_THIS_FAMILY);
         $QUERY->execute([
             'idFamily' => $id

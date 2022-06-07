@@ -6,6 +6,7 @@ class Mouvements
     private $dateMouvement;
     private $creator;
     private $type;
+    private $order;
     private $quantite;
     private $article;
     private $users;
@@ -15,6 +16,32 @@ class Mouvements
     private $dateModification;
     private $createUser;
     private $editUser;
+
+    public function New(string $type, string $order, int $qte, int $article, int $users, string $centreDeCout, string $commentaire):void {
+        $REQUEST = "INSERT INTO `mouvements` (dateMouvement, creator, type, orderNumber, quantite, article, users, centreDeCout, commentaire, dateCreation, dateModification, createUser, editUser) VALUES ((SELECT NOW()), :creator, :type, :orderNumber, :qte ,:article ,:users, :centreDeCout, :commentaire, (SELECT NOW()) , (SELECT NOW()), :createUser,:editUser);";
+        $QUERY = Connection()->prepare($REQUEST);
+        $QUERY->execute([
+            'creator' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+            'type' => $type,
+            'orderNumber' => $order,
+            'qte' => $qte,
+            'article' => $article,
+            'users' => $users,
+            'centreDeCout' => $centreDeCout,
+            'commentaire' => $commentaire,
+            'createUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+            'editUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
+        ]);
+        $QUERY->closeCursor();
+    }
+
+    public function Delete():void {
+
+    }
+
+    public function Update():void {
+
+    }
 
     /**
      * @return mixed
@@ -222,6 +249,22 @@ class Mouvements
     public function setEditUser($editUser): void
     {
         $this->editUser = $editUser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param mixed $order
+     */
+    public function setOrder($order): void
+    {
+        $this->order = $order;
     }
 
 
