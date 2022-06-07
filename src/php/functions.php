@@ -6,6 +6,14 @@ include 'get_class_object.php';
 
 /* Globals functions */
 
+function datetime(): DateTime
+{
+    $datetime = new DateTime();
+    $timezone = new DateTimeZone('Europe/Amsterdam');
+    $datetime->setTimezone($timezone);
+    return $datetime;
+}
+
 function getAssetName():string
 {
     return strtoupper(explode('.', gethostbyaddr($_SERVER['REMOTE_ADDR']))[0]);
