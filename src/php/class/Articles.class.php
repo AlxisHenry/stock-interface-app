@@ -241,11 +241,12 @@ class Articles
         $this->editUser = $editUser;
     }
 
-    public function UpdateStock(int $qteStock, int $qteTotal, int $id):void {
-        $REQUEST = "UPDATE `articles` SET quantityStock = :qteStock, quantityTotal = :qteTotal, dateModification = (SELECT NOW()), editUser = :editUser WHERE `id` = :id;";
+    public function UpdateStock(int $qteStock, int $qteTotal,int $qteGiven, int $id):void {
+        $REQUEST = "UPDATE `articles` SET quantityStock = :qteStock, quantityGiven = :qteGiven, quantityTotal = :qteTotal, dateModification = (SELECT NOW()), editUser = :editUser WHERE `id` = :id;";
         $QUERY = Connection()->prepare($REQUEST);
         $QUERY->execute([
             'qteStock' => $qteStock,
+            'qteGiven' => $qteGiven,
             'qteTotal' => $qteTotal,
             'editUser' => Access_OBJECT_($_SESSION['login']['user'], 'username')->getId(),
             'id' => $id
