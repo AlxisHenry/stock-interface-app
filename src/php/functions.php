@@ -185,9 +185,9 @@ function GetUsersList():string {
     return implode(" ", $LIST);
 }
 
-function GetMaxCount():int {
+function GetMaxCount(string $from):int {
 
-    $QUERY = Connection()->query('SELECT MAX(id) FROM `articles`');
+    $QUERY = Connection()->query("SELECT MAX(id) FROM $from");
     return intval($QUERY->fetch()[0]);
 
 }
