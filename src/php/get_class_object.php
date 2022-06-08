@@ -84,7 +84,7 @@ function Logs_OBJECT_(string|int $value, string $by):Logs {
     return $RESULT;
 }
 
-function Mouvements_OBJECT_(string|int $value, string $by):Mouvements {
+function Mouvements_OBJECT_(string|int $value, string $by):Mouvements|bool {
     $QUERY = getRequest($by, 'Mouvements');
     $QUERY = Connection()->prepare($QUERY);
     $QUERY->bindValue(':value', $value, PDO::PARAM_STR|PDO::PARAM_INT);
@@ -179,6 +179,7 @@ function getRequest(string|int $by, string $table):string {
             'dateMouvement' => "SELECT * FROM `mouvements` WHERE `dateMouvement`=:value",
             'creator' => "SELECT * FROM `mouvements` WHERE `creator`=:value",
             'type' => "SELECT * FROM `mouvements` WHERE `type`=:value",
+            'orderNumber' => "SELECT * FROM `mouvements` WHERE `orderNumber`=:value",
             'quantite' => "SELECT * FROM `mouvements` WHERE `quantite`=:value",
             'article' => "SELECT * FROM `mouvements` WHERE `article`=:value",
             'users' => "SELECT * FROM `mouvements` WHERE `users`=:value",
