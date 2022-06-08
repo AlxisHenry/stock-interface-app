@@ -39,7 +39,7 @@
 
             $i = 2;
 
-            for ($id = 0; $id <= GetMaxCount() ; $id++) {
+            for ($id = 0; $id <= GetMaxCount('articles') ; $id++) {
 
                 $STOCK = Articles_OBJECT_($id, 'id');
 
