@@ -1,4 +1,4 @@
-import {consoleLog, popUp} from "../../global/app.js";
+import {consoleLog, popUp, popUpCustom} from "../../global/app.js";
 import {Stock} from "../stock.class.js";
 
 export class stock_out extends Stock {
@@ -7,7 +7,7 @@ export class stock_out extends Stock {
         super()
     }
 
-    Submit() {
+    Submit(tabularData) {
 
         const values = {
             article: document.querySelector('.article-name-select').dataset.art,
@@ -17,12 +17,17 @@ export class stock_out extends Stock {
             commentary: document.querySelector('.about-entry').value
         }
 
+        let CheckNegative = values.qty.toLocaleString()
+
         if (!values.article || !values.qty) {
             popUp('uncompleted-data')
-            return false;
+            return false
         } else if (isNaN(values.qty)) {
             popUp('invalid-quantity')
-            return false;
+            return false
+        } else if (CheckNegative.includes('-')) {
+            popUpCustom('error-signe', `Ne pas insérer de signe -  dans la quantité`, 's', 'rgb(203,78,105)')
+            return false
         }
 
         console.log(values)
@@ -32,11 +37,19 @@ export class stock_out extends Stock {
             url: `../../ajax/stock-action.php`,
             data: { values: values, type: 'out' },
             success: (re) => {
-                popUp('in/out-done')
-                console.log(re)
+                let Status = JSON.parse(re)[3]
+                let RestQuantity = JSON.parse(re)[1] === 0 ? "d'articles" : `que ${JSON.parse(re)[1]} article(s)`
+                let Name = JSON.parse(re)[0]
+                console.table(re)
+                console.log(Status, RestQuantity, Name)
+                if (Status) {
+                    popUp('in/out-done')
+                } else {
+                    popUpCustom('error-checkout', `${Name}, n'a plus ${RestQuantity} disponible(s).`, 's', 'rgb(255,78,120)')
+                }
             },
             error: (err) => {
-                console.log(err)
+                popUp('contact-admin')
                 consoleLog("Une erreur est survenue durant l'entrée de stock (Ajax request failed).", 'e')
             },
         });

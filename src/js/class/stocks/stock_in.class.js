@@ -1,4 +1,4 @@
-import {consoleLog, popUp} from "../../global/app.js";
+import {consoleLog, popUp, popUpCustom} from "../../global/app.js";
 import {Stock} from "../stock.class.js";
 
 export class stock_in extends Stock {
@@ -17,12 +17,17 @@ export class stock_in extends Stock {
             commentary: document.querySelector('.about-entry').value
         }
 
+        let CheckNegative = values.qty.toLocaleString()
+
         if (!values.article || !values.qty) {
             popUp('uncompleted-data')
-            return false;
+            return false
         } else if (isNaN(values.qty)) {
             popUp('invalid-quantity')
-            return false;
+            return false
+        } else if (CheckNegative.includes('-')) {
+            popUpCustom('error-signe', `Ne pas insérer de signe -  dans la quantité`, 's', 'rgb(203,78,105)')
+            return false
         }
 
         console.log(values)
@@ -36,7 +41,7 @@ export class stock_in extends Stock {
                 console.log(re)
             },
             error: (err) => {
-                console.log(err)
+                popUp('contact-admin')
                 consoleLog("Une erreur est survenue durant l'entrée de stock (Ajax request failed).", 'e')
             },
         });
