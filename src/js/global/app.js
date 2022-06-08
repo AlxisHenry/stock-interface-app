@@ -129,6 +129,23 @@ export const popUp = (type) => {
 
 }
 
+export const popUpCustom = (name, content, type, color) => {
+    const containMessage = document.querySelector('.contain-send-message');
+    containMessage.innerHTML = '';
+    containMessage.insertAdjacentHTML( 'beforeEnd', `<div class="s-message popup ${name}"> <i class="fa-regular fa-pop-up fa-circle-check"></i>${content}</div>\n`);
+    SetPopupColor(type, color);
+
+    setTimeout( () => {
+
+        containMessage.classList.remove('reverseBump');
+        containMessage.classList.add('reverseBump');
+
+        setTimeout( () => {  containMessage.innerHTML = ''; containMessage.classList.remove('reverseBump'); }, 400)
+
+    }, 2000);
+
+}
+
 const SetPopupColor = (type, color) => {
 
     const PopUp = document.querySelector('.popup');
