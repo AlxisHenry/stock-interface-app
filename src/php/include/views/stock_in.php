@@ -80,8 +80,8 @@ include '../templates/home.php';
                     <input name="code" type="text" class="form-input article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?> disabled>
                 </label>
 
-                <label class="form-label"> Quantité minimale attribuée
-                    <input name="localisation" type="text" class="form-input article-localisation"  <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityMin() .'"' ?> disabled>
+                <label class="form-label"> Quantité en stock
+                    <input name="localisation" type="text" class="form-input article-localisation"  <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityStock() .'"' ?> disabled>
                 </label>
 
             </div>

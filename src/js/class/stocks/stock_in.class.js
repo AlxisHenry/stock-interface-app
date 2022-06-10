@@ -22,7 +22,10 @@ export class stock_in extends Stock {
         if (!values.article || !values.qty) {
             popUp('uncompleted-data')
             return false
-        } else if (isNaN(values.qty)) {
+        } else if (!values.cc) {
+            popUp('no-user-to-checkout')
+            return false
+        } else if (isNaN(values.qty) || parseInt(values.qty) === 0) {
             popUp('invalid-quantity')
             return false
         } else if (CheckNegative.includes('-')) {

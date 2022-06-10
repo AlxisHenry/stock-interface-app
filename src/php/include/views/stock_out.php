@@ -44,19 +44,19 @@ include '../templates/home.php';
 
                 <label class="form-label""> Quantité assignée
 
-                    <input name="quantity-to-add" type="text" class="form-input article-quantity-to-add">
+                    <input name="quantity-to-checkout" type="text" class="form-input article-quantity-to-checkout">
 
                 </label>
 
-                <label class="form-label""> Commentaire important
+                <label class="form-label""> À propos de la sortie
 
-                    <input name="command-order" type="text" class="form-input command-order">
+                    <input name="about-checkout" type="text" class="form-input about-checkout">
 
                 </label>
 
-                <label class="form-label"> Autres commentaires
+                <label class="form-label"> Quantité restante
 
-                    <input name="about-entry" type="text" class="form-input about-entry">
+                    <input name="quantity-rest" type="text" class="form-input quantity-rest" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityStock() .'"' ?> disabled>
 
                 </label>
 
@@ -80,8 +80,8 @@ include '../templates/home.php';
                     <input name="code" type="text" class="form-input article-code" <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getCode() . '"' ?> disabled>
                 </label>
 
-                <label class="form-label"> Quantité minimale attribuée
-                    <input name="localisation" type="text" class="form-input article-localisation"  <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityMin() .'"' ?> disabled>
+                <label class="form-label"> Quantité totale
+                    <input name="localisation" type="text" class="form-input article-localisation"  <?= InitializeStockEntry() === '' ? '' : ' value="' . InitializeStockEntry()->getQuantityTotal() .'"' ?> disabled>
                 </label>
 
             </div>

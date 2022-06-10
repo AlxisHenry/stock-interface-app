@@ -7,22 +7,26 @@ export class stock_out extends Stock {
         super()
     }
 
-    Submit(tabularData) {
+    Submit() {
 
         const values = {
             article: document.querySelector('.article-name-select').dataset.art,
             cc: document.querySelector('.ccout-target').value,
-            qty: document.querySelector('.article-quantity-to-add').value,
-            order: document.querySelector('.command-order').value,
-            commentary: document.querySelector('.about-entry').value
+            qty: document.querySelector('.article-quantity-to-checkout').value,
+            commentary: document.querySelector('.about-checkout').value
         }
+
+        console.log(values.cc)
 
         let CheckNegative = values.qty.toLocaleString()
 
         if (!values.article || !values.qty) {
             popUp('uncompleted-data')
             return false
-        } else if (isNaN(values.qty)) {
+        } else if (!values.cc) {
+            popUp('no-user-to-checkout')
+            return false
+        } else if (isNaN(values.qty) || parseInt(values.qty) === 0) {
             popUp('invalid-quantity')
             return false
         } else if (CheckNegative.includes('-')) {
@@ -40,8 +44,6 @@ export class stock_out extends Stock {
                 let Status = JSON.parse(re)[3]
                 let RestQuantity = JSON.parse(re)[1] === 0 ? "d'articles" : `que ${JSON.parse(re)[1]} article(s)`
                 let Name = JSON.parse(re)[0]
-                console.table(re)
-                console.log(Status, RestQuantity, Name)
                 if (Status) {
                     popUp('in/out-done')
                 } else {

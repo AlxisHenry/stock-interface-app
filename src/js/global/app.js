@@ -107,6 +107,11 @@ export const popUp = (type) => {
             containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup invalid-quantity\"><i class=\"fa-solid fa-pop-up fa-circle-exclamation\"></i>Quantité renseignée invalide !</div>\n");
             SetPopupColor('e', 'rgb(227,114,119)');
             break;
+        case 'no-user-to-checkout':
+            containMessage.innerHTML = '';
+            containMessage.insertAdjacentHTML( 'beforeEnd', "<div class=\"s-message popup no-user-to-checkout\"><i class=\"fa-solid fa-pop-up fa-circle-exclamation\"></i>Aucun utilisateur n'a été renseigné !</div>\n");
+            SetPopupColor('e', 'rgb(255,16,38)');
+            break;
         case 'clean':
             containMessage.innerHTML = '';
             break;
