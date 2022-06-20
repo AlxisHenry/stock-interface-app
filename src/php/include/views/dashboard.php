@@ -76,7 +76,7 @@ include '../templates/home.php';
             $FORMAT_DATE = $STOCK['dateMouvement'];
             $FORMAT_TYPE = $STOCK['type'] === 's' ? 'Sortie' : 'Entrée';
             echo "
-                    <tr class='row-$i row-values'>
+                    <tr class='row-$i row-values ". ($STOCK['type'] === 's' ? 'red-row' : 'green-row') ."'>
                     <td class='column-0 column-values hidden'>".$STOCK['id']."</td>
                     <td class='column-1 column-values'>".$FORMAT_DATE."</td>
                     <td class='column-2 column-values'>".$STOCK['username']."</td>

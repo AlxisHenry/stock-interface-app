@@ -1314,3 +1314,11 @@ th, td {
 tr:nth-child(even) {
   background-color: #fff9e3;
 }
+
+.green-row {
+  background-color: #abffab !important;
+}
+
+.red-row {
+  background-color: #ffa5a5 !important;
+}
