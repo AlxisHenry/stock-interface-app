@@ -117,9 +117,51 @@ function getOs(): string
 /* Globals functions -- END */
 
 function GetCountOfAlerts() {
-    $_ALERT_SEUIL = Alertes_OBJECT_(1, 'id')->getSeuil();
-    $COUNT_ALERT = Connection()->query("SELECT COUNT(*) AS Alertes FROM `articles` WHERE `quantityStock` <= $_ALERT_SEUIL");
-    return $COUNT_ALERT->fetch()[0];
+    /*
+     * Cette fonction va retourner le nombre d'articles étant sous le seuil minimal
+     */
+
+    $counts = [
+        'undefined' => ReturnCountOfArticles('undefined','=', 0) ?? '',
+        'active' => ReturnCountOfArticles('active', '>', 0) ?? ''
+    ];
+
+    return intval($counts['undefined']) + intval($counts['active']);
+
+}
+
+function ReturnCountOfArticles(string $status, string $op, int $number) {
+
+    $request = '';
+    $global_threshold = Alertes_OBJECT_(1, 'id')->getSeuil();
+
+    switch ($status) {
+        case 'undefined':
+            $request = Connection()->query('SELECT COUNT(*) as Alertes FROM `articles` WHERE articles.quantityMin = 0 AND articles.quantityStock < '.$global_threshold.';');
+            break;
+        case 'active':
+            $request = Connection()->query('SELECT COUNT(*) as Alertes FROM `articles` WHERE  articles.quantityStock < articles.quantityMin;');
+            break;
+        default:
+            break;
+    }
+
+    return $request->fetch()[0];
+
+}
+
+function GetAllMinArticles() {
+    $all = [];
+    $null = false;
+    $global_threshold = Alertes_OBJECT_(1, 'id')->getSeuil();
+    $get_by_global_threshold = Connection()->query('SELECT * FROM `articles` WHERE articles.quantityMin = 0 AND articles.quantityStock < '.$global_threshold.';');
+    $get_by_custom_threshold = Connection()->query('SELECT * FROM `articles` WHERE  articles.quantityStock < articles.quantityMin;');
+
+    foreach($get_by_custom_threshold->fetchAll() as $y) {
+        in_array($y, $all) ? ($null = true) : ($all[] = $y);
+    }
+
+    return $all;
 }
 
 function GetStockInUrl(string $url):Articles|bool {
