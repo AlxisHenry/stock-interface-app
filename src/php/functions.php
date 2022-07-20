@@ -192,7 +192,7 @@ function InitializeStockEntry():Articles|string {
 }
 
 function GetFamilyList():string {
-    $QUERY = Connection()->query('SELECT * FROM `familles`');
+    $QUERY = Connection()->query('SELECT * FROM `familles` ORDER BY nom;');
     $LIST = ["<option value='null' selected>Choisissez une famille</option>"];
     $id = 1;
     while ($STOCK = $QUERY->fetch()) {
@@ -204,7 +204,7 @@ function GetFamilyList():string {
 }
 
 function GetArticlesList():string {
-    $QUERY = Connection()->query('SELECT * FROM `articles`');
+    $QUERY = Connection()->query('SELECT * FROM `articles` ORDER BY nom;');
     $LIST = ['<option selected>Sélectionner un article</option>'];
     $id = 1;
     while ($STOCK = $QUERY->fetch()) {
@@ -216,7 +216,7 @@ function GetArticlesList():string {
 }
 
 function GetUsersList():string {
-    $QUERY = Connection()->query('SELECT * FROM `utilisateurs`');
+    $QUERY = Connection()->query('SELECT * FROM `utilisateurs` ORDER BY nom,prenom;');
     $LIST = ['<option disabled selected value>Sélectionner un utilisateur</option>'];
     $id = 1;
     while ($STOCK = $QUERY->fetch()) {

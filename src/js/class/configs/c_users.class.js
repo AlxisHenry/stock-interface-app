@@ -83,6 +83,8 @@ export class c_Users {
                     ResearchElement.insertAdjacentHTML('beforeend', Title)
                     ResearchElement.insertAdjacentHTML('beforeend', UsersElements)
 
+                    document.querySelector('.page-separator').classList.remove('invisible')
+                    document.querySelectorAll('.move-pages')[0].classList.remove('invisible')
                     document.querySelector('.page-separator-bottom').classList.remove('invisible')
                     document.querySelectorAll('.move-pages')[1].classList.remove('invisible')
                 },
@@ -93,6 +95,7 @@ export class c_Users {
             });
             return false;
         }
+
 
         $.ajax({
             type: "POST",
@@ -126,7 +129,9 @@ export class c_Users {
                 ResearchElement.insertAdjacentHTML('beforeend', Title)
                 ResearchElement.insertAdjacentHTML('beforeend', UsersElements)
 
+                document.querySelector('.page-separator').classList.add('invisible')
                 document.querySelector('.page-separator-bottom').classList.add('invisible')
+                document.querySelectorAll('.move-pages')[0].classList.add('invisible')
                 document.querySelectorAll('.move-pages')[1].classList.add('invisible')
 
             },

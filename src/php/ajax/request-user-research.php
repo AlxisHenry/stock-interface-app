@@ -4,7 +4,7 @@ include '../functions.php';
 
 $value = $_POST['Value'];
 
-$GET_STOCK = Connection()->query("SELECT * FROM `utilisateurs` WHERE `nom` LIKE '%$value%' OR `prenom` LIKE '%$value%' OR `centreDeCout` LIKE '%$value%' LIMIT 4");
+$GET_STOCK = Connection()->query("SELECT * FROM `utilisateurs` WHERE `nom` LIKE '%$value%' OR `prenom` LIKE '%$value%' OR `centreDeCout` LIKE '%$value%' ORDER BY nom, prenom LIMIT 50;");
 
 $i=1;
 while ($DATA = $GET_STOCK->fetch()) {

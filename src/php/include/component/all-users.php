@@ -53,7 +53,7 @@
     (int)$rows= GetPagesCount()[1];
     (int)$min = (($page - 1) * $rows);
 
-    $QUERY = "SELECT * FROM `utilisateurs` LIMIT $min, $rows ";
+    $QUERY = "SELECT * FROM `utilisateurs` ORDER BY nom,prenom LIMIT $min, $rows;";
 
     $RESULT = Connection()->query($QUERY);
 
